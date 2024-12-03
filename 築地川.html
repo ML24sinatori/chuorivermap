@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>築地川を歩く</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <style>
+    body, html { height: 100%; margin: 0; }
+    #map { height: 100%; }
+    #controlPanel {
+      position: fixed;
+      display: flex;
+      flex-flow: column;
+      top: 10px;
+      right: 10px;
+      z-index: 1001;
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    #filterPanel, #colorPanel {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      padding: 20px;
+      color: white;
+    }
+    .panelContent {
+      background: white; color: black; padding: 15px;
+      max-width: 400px; margin: auto; border-radius: 10px;
+    }
+    #locationButton { position: fixed; bottom: 10px; right: 10px; z-index: 1001; }
+    .inner{
+      height: 80%;
+      overflow-y: scroll;
+    }
+    #riverFeature{
+      position: fixed;
+      width: 40%;
+      /*display: flex;
+      flex-flow: column;*/
+      top: 10px;
+      left: 50px;
+      z-index: 1000;
+    }
+    #riverDescription{
+      position: relative;
+      z-index: 1000;
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    .slider-container {
+      position: relative;
+      display: flex;
+      z-index: 1001;
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      overflow: hidden;
+    }
+    .slider-track {
+      width: 100%;
+      display: flex;
+      animation: none;
+    }
+    @keyframes slide {
+      from {
+        transform: translateX(var(--start-offset, 0));
+      }
+      to {
+        transform: translateX(var(--end-offset, 0));
+      }
+    }
+    .slide {
+      min-width: 50%;
+      padding: 3px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+    .slide img {
+      width: 100%;
+      display: block;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .img-button {
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1002;
+      color: white;
+      border: none;
+      padding: 5px;
+      margin: 3px;
+      cursor: pointer;
+    }
+    .img-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* モーダルスタイル */
+    .modal {
+      display: none;
+      position: fixed;
+      flex-flow: column;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1010;
+    }
+    .modal img {
+      max-width: 60%;
+      max-height: 60%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    #modalCaption{
+      top: 10px;
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+<div id="map"></div>
+
+<div id="riverFeature">
+  <div id="riverDescription">
+    <span style="font-family: serif; font-size: 3vw;">築地川</span>
+    <p style="font-size: 3vh;">明石町付近から、中央区役所の前を通り、旧浜離宮庭園の東側を流れて東京湾に至る。東京オリンピックの高速道路整備以降徐々に埋め立てが進み、現在は旧浜離宮庭園の前以外は埋め立てられている。<a href="">▼詳細</a></p>
+    
+    <div style="display: flex;">
+      <button class="img-button prev"><<br><<br><</button>
+      <div class="slider-container">
+        <div class="slider-track">
+          <div class="slide"><img src="img/photo4.jpg" alt="写真4" data-caption="築地川公園4"></div> <!-- クローン用 -->
+          <div class="slide"><img src="img/photo1.jpg" alt="写真1" data-caption="築地川公園1"></div>
+          <div class="slide"><img src="img/photo2.jpg" alt="写真2" data-caption="築地川公園2"></div>
+          <div class="slide"><img src="img/photo3.jpg" alt="写真3" data-caption="築地川公園3"></div>
+          <div class="slide"><img src="img/photo4.jpg" alt="写真4" data-caption="築地川公園4"></div>
+          <div class="slide"><img src="img/photo1.jpg" alt="写真1" data-caption="築地川公園1"></div> <!-- クローン用 -->
+        </div>
+      </div>
+      <button class="img-button next">><br>><br>></button>
+    </div>
+    
+  </div>
+</div>
+
+<!-- モーダル -->
+<div class="modal" id="photoModal">
+  <span class="modal-close" id="modalClose">&times;</span>
+  <img id="modalImage" alt="拡大写真">
+  <p id="modalCaption">aaaaaaaaaaa</p>
+</div>
+
+<div id="controlPanel">
+  <form action="index.html" method="get">
+    <button type="submit">全河川表示に戻る</button>
+  </form>
+</div>
+
+<button id="locationButton" onclick="locationTracking()">📍</button>
+
+<script>
+var map = L.map('map').setView([35.666830, 139.767709], 15);
+var timeSeriesFilter = false;
+L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png').addTo(map);
+
+var isTracking = false;
+var watchID;
+
+function locationTracking(){
+  if(isTracking){
+    navigator.geolocation.clearWatch(watchID);
+  }
+  else{
+    watchID = navigator.geolocation.watchPosition((position) => {
+      map.setView([position.coords.latitude, position.coords.longitude]);
+    });
+  }
+  isTracking = !isTracking;
+  console.log(isTracking);
+}
+
+function toggleFilterPanel() {
+  const panel = document.getElementById('filterPanel');
+  panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+}
+function closeFilter() {
+  document.getElementById('filterPanel').style.display = 'none';
+}
+
+function toggleColorPanel() {
+  const panel = document.getElementById('colorPanel');
+  panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+}
+function closeColorPanel() {
+  document.getElementById('colorPanel').style.display = 'none';
+}
+
+let geoJsonLayer;
+fetch('https://raw.githubusercontent.com/sirabesilmoon/riv/main/ChuoRiver.geojson')
+  .then(response => response.json())
+  .then(data => {
+    var riverList = document.getElementById('allRiver');
+
+    geoJsonLayer = L.geoJSON(data, {
+      onEachFeature: (feature, layer) => {
+        var riverName = feature.properties.name;
+        var riverTime = feature.properties.time;
+
+        
+        var newpopup = L.popup({
+          closeOnClick: false,
+          autoClose: false
+        }).setContent(`<b>河川名:</b> ${riverName}<br>
+        <b>埋め立て時期:</b> ${riverTime}<br>
+        <form action="${riverName}.html" method="get">
+          <button type="submit">この河川を歩く</button>
+          </form>`
+        );
+
+        
+        var newMarker = layer.addTo(map);
+        newMarker.bindPopup(newpopup, {autoClose:false});
+        if(riverName=="築地川"){
+          layer.setStyle({ color: 'blue', weight: 1 });
+          newMarker.getPopup().on('remove', function() {
+            layer.setStyle({ color: 'blue' });
+          });
+        }
+        else{
+          layer.setStyle({ color: 'aqua', weight: 1, fillOpacity: 0.1 });
+          newMarker.getPopup().on('remove', function() {
+            layer.setStyle({ color: 'aqua' });
+          });
+        }
+        
+        // クリックで選択、ダブルクリックで解除
+        layer.on('click', function() {
+          layer.setStyle({ color: 'yellow' });
+        });
+        
+        layer.on('dblclick', function() {
+          layer.setStyle({ color: getColorByTime(riverTime) });
+          layer.closePopup();
+        });
+      }
+    });
+  })
+  .catch(console.error);
+
+function onMapClick(e) {
+  geoJsonLayer.eachLayer((layer)=>{
+    layer.closePopup();
+  });
+}
+map.on('click', onMapClick);
+
+function buriedPeriod(elem) {
+  geoJsonLayer.eachLayer(layer => {
+    if(layer.feature.properties.time == elem.value){
+      // 処理をする
+      if(elem.checked){
+        document.getElementById(layer.feature.properties.name + layer.feature.properties.time).checked = true;
+      }
+      else{
+        document.getElementById(layer.feature.properties.name + layer.feature.properties.time).checked = false;
+      }
+    }
+  });
+  displayRiverUpdate();
+}
+
+function walkRiver(name){
+  resetAll();
+  geoJsonLayer.eachLayer(layer => {
+    if(layer.feature.properties.name == name){
+      layer.openPopup();
+      layer.setStyle({ color: 'yellow' });
+    }
+  });
+}
+
+// 絞り込み、リセット、全河川表示などの他の関数
+
+function resetFilter() { /* ... */ }
+function resetAll() {
+  timeSeriesFilter = false;
+  var boxes = document.getElementsByClassName('defaultChecked');
+  for(elem of boxes){
+    elem.checked = true;
+  };
+  var boxes2 = document.getElementsByClassName('defaultUnchecked');
+  for(elem of boxes2){
+    elem.checked = false;
+  };
+  geoJsonLayer.eachLayer(layer => {
+    layer.closePopup();
+    layer.setStyle({color: 'blue', opacity: 1.0, fillOpacity: 0.2});
+  });
+  displayRiverUpdate();
+}
+
+// 位置情報取得などの他の関数
+function getLocation() { /* ... */ }
+
+const track = document.querySelector('.slider-track');
+const slides = document.querySelectorAll('.slide');
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+const totalSlides = slides.length;
+const slideWidth = 50; // 1スライドの幅（%）
+let currentIndex = 1;
+
+// スライドアニメーション
+function animateSlider(startOffset, endOffset) {
+  track.style.setProperty('--start-offset', `${startOffset}%`);
+  track.style.setProperty('--end-offset', `${endOffset}%`);
+  track.style.animation = 'slide 0.5s ease-in-out forwards';
+}
+
+function moveToIndex(newIndex) {
+  currentIndex = newIndex;
+  const offset = -currentIndex * slideWidth;
+  track.style.animation = 'none'; // アニメーションを一旦無効化
+  track.style.transform = `translateX(${offset}%)`;
+}
+
+prevButton.addEventListener('click', () => {
+  if (currentIndex === 0) {
+    currentIndex = totalSlides - 2; // 最初の実スライドにジャンプ
+  }
+  moveToIndex(currentIndex);
+  setTimeout(() => animateSlider(-(currentIndex + 1) * slideWidth, -currentIndex * slideWidth), 0);
+  track.style.animation = 'none';
+  currentIndex--;
+});
+
+nextButton.addEventListener('click', () => {
+  if (currentIndex === totalSlides - 2) {
+    currentIndex = 0; // 最初の実スライドにジャンプ
+  }
+  moveToIndex(currentIndex);
+  setTimeout(() => animateSlider(-(currentIndex - 1) * slideWidth, -currentIndex * slideWidth), 0);
+  track.style.animation = 'none';
+  currentIndex++;
+});
+
+// 初期化
+moveToIndex(currentIndex);
+
+//モーダル
+const modal = document.getElementById('photoModal');
+const modalImage = document.getElementById('modalImage');
+const modalClose = document.getElementById('modalClose');
+const modalCaption = document.getElementById('modalCaption');
+
+// モーダルを開く
+slides.forEach(slide => {
+  slide.addEventListener('click', (e) => {
+    modal.style.display = 'flex';
+    modalImage.src = e.target.src;
+    modalCaption.textContent = e.target.caption;
+  });
+});
+
+// モーダルを閉じる
+modal.addEventListener('click', (e) => {
+  if (e.target === modal || e.target === modalClose) {
+      modal.style.display = 'none';
+  }
+});
+
+</script>
+</body>
+</html>
