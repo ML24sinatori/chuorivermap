@@ -135,6 +135,16 @@
       border-radius: 5px;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     }
+    #detailButton{
+      text-decoration: underline;
+      color: blue;
+      cursor: pointer;
+    }
+    #allBunsho{
+      font-size: 3vh;
+      overflow-y: auto;
+      max-height: 50vh;
+    }
   </style>
 </head>
 
@@ -143,19 +153,22 @@
 
 <div id="riverFeature">
   <div id="riverDescription">
-    <span style="font-family: serif; font-size: 3vw;">築地川</span>
-    <p style="font-size: 3vh;">明石町付近から、中央区役所の前を通り、旧浜離宮庭園の東側を流れて東京湾に至る。東京オリンピックの高速道路整備以降徐々に埋め立てが進み、現在は旧浜離宮庭園の前以外は埋め立てられている。<a href="">▼詳細</a></p>
+    <div style="display: flex; justify-content: space-between;"><span style="font-family: serif; font-size: 3vw;">築地川</span><form action="index.html" method="get">
+      <button type="submit">全河川表示に戻る</button>
+    </form></div>
+    
+    <p id="allBunsho"><span>明石町付近から、中央区役所の前を通り、旧浜離宮庭園の東側を流れて東京湾に至る。東京オリンピックの高速道路整備以降徐々に埋め立てが進み、現在は旧浜離宮庭園の前以外は埋め立てられている。</span><span id="detailBunsho"></span><span id="detailButton" onclick="extendDetail()">▼詳細表示</span></p>
     
     <div style="display: flex;">
       <button class="img-button prev"><<br><<br><</button>
       <div class="slider-container">
         <div class="slider-track">
-          <div class="slide"><img src="img/photo4.jpg" alt="写真4" data-caption="築地川公園4"></div> <!-- クローン用 -->
-          <div class="slide"><img src="img/photo1.jpg" alt="写真1" data-caption="築地川公園1"></div>
-          <div class="slide"><img src="img/photo2.jpg" alt="写真2" data-caption="築地川公園2"></div>
-          <div class="slide"><img src="img/photo3.jpg" alt="写真3" data-caption="築地川公園3"></div>
-          <div class="slide"><img src="img/photo4.jpg" alt="写真4" data-caption="築地川公園4"></div>
-          <div class="slide"><img src="img/photo1.jpg" alt="写真1" data-caption="築地川公園1"></div> <!-- クローン用 -->
+          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div> <!-- クローン用 -->
+          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
+          <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
+          <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
+          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
+          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div> <!-- クローン用 -->
         </div>
       </div>
       <button class="img-button next">><br>><br>></button>
@@ -169,12 +182,6 @@
   <span class="modal-close" id="modalClose">&times;</span>
   <img id="modalImage" alt="拡大写真">
   <p id="modalCaption">aaaaaaaaaaa</p>
-</div>
-
-<div id="controlPanel">
-  <form action="index.html" method="get">
-    <button type="submit">全河川表示に戻る</button>
-  </form>
 </div>
 
 <button id="locationButton" onclick="locationTracking()">📍</button>
@@ -217,7 +224,7 @@ function closeColorPanel() {
 }
 
 let geoJsonLayer;
-fetch('https://raw.githubusercontent.com/sirabesilmoon/riv/main/ChuoRiver.geojson')
+fetch('https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdnew.geojson')
   .then(response => response.json())
   .then(data => {
     var riverList = document.getElementById('allRiver');
@@ -331,6 +338,8 @@ const totalSlides = slides.length;
 const slideWidth = 50; // 1スライドの幅（%）
 let currentIndex = 1;
 
+const captionDict={"写真1":"築地川公園1","写真2":"築地川公園2"}
+
 // スライドアニメーション
 function animateSlider(startOffset, endOffset) {
   track.style.setProperty('--start-offset', `${startOffset}%`);
@@ -379,16 +388,32 @@ slides.forEach(slide => {
   slide.addEventListener('click', (e) => {
     modal.style.display = 'flex';
     modalImage.src = e.target.src;
-    modalCaption.textContent = e.target.caption;
+    modalCaption.textContent = captionDict[e.target.alt];
   });
 });
 
 // モーダルを閉じる
 modal.addEventListener('click', (e) => {
   if (e.target === modal || e.target === modalClose) {
-      modal.style.display = 'none';
+    modal.style.display = 'none';
   }
 });
+
+var isOpened = false;
+const detailButton = document.getElementById('detailButton');
+const detailBunsho = document.getElementById('detailBunsho');
+function extendDetail(){
+  if(isOpened){
+    isOpened = false;
+    detailButton.textContent = '▼詳細表示';
+    detailBunsho.textContent = '';
+  }
+  else{
+    isOpened = true;
+    detailButton.textContent = '▲短く表示';
+    detailBunsho.textContent = '明暦の大火の後の埋め立ての際の埋め残しでできた。あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ';
+  }
+}
 
 </script>
 </body>
