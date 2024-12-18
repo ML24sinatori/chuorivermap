@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>築地川を歩く</title>
+  <title>外堀川を歩く</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
   <link rel="stylesheet" href="base.css" type="text/css">
@@ -15,15 +15,15 @@
 <div id="riverFeature">
   <div id="riverDescription">
     <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">築地川</span> - <span class="furigana">つきじがわ</span></span>
+      <span><span class="riverTitle">外堀川</span> - <span class="furigana">そとぼりがわ</span></span>
       <form action="index.html" method="get">
         <button type="submit">全河川表示に戻る</button>
       </form>
     </div>
     
     <p id="allBunsho">
-      <span>明石町付近から、中央区役所の前を通り、旧浜離宮庭園の東側を流れて東京湾に至る。東京オリンピックの高速道路整備以降徐々に埋め立てが進み、現在は旧浜離宮庭園の前以外は埋め立てられている。</span>
-      <span id="detailBunsho">明暦の大火の後の埋め立ての際の埋め残しでできた。</span>
+      <span>外濠川とも。一石橋から東京駅の東側を通り、東海道本線と並行するように流れて、新橋駅の少し北側で汐留川に合流する。戦災復興から東京オリンピックにかけて徐々に埋め立てが進み、現在は全部分が埋め立てられ、跡地は東京高速道路として使われている。</span>
+      <span id="detailBunsho">埋め立てによってできた土地は、東京高速道路株式会社によって上部が高速道路として整備される一方で、下部はビルとして民間に提供することで利益を出していた。</span>
       <span id="detailButton" onclick="extendDetail()">▼詳細表示</span>
     </p>
     
@@ -56,9 +56,9 @@
 
 <script>
   //commonの読み込みに必要な変数だけ定義
-  var defaultPlace = [35.666830, 139.767709];
+  var defaultPlace = [35.676571, 139.765649];
   var defaultZ = 15;
-  var riverNameHere = '築地川';
+  var riverNameHere = '外堀川';
   const captionDict={"写真1":"築地川公園1","写真2":"築地川公園2"};
 </script>
 <script src="common.js"></script>
