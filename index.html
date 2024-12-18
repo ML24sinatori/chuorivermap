@@ -5,40 +5,8 @@
   <title>河川絞り込みマップ</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-  <style>
-    body, html { height: 100%; margin: 0; }
-    #map { height: 100%; }
-    #controlPanel {
-      position: fixed;
-      display: flex;
-      flex-flow: column;
-      top: 10px;
-      right: 10px;
-      z-index: 1001;
-      background: white;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    }
-    #filterPanel, #colorPanel {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-      padding: 20px;
-      color: white;
-    }
-    .panelContent {
-      background: white; color: black; padding: 15px;
-      max-width: 400px; margin: auto; border-radius: 10px;
-    }
-    #locationButton { position: fixed; bottom: 10px; right: 10px; z-index: 1001; }
-    .inner{
-      height: 80%;
-      overflow-y: scroll;
-    }
-  </style>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="indexStyle.css" type="text/css">
 </head>
 
 <body>
@@ -47,6 +15,7 @@
 <div id="controlPanel">
   <button onclick="toggleFilterPanel()">河川名から探す</button>
   <button onclick="toggleColorPanel()">埋め立て時期から探す</button>
+  <button onclick="toggleSight()">観光地の表示/非表示</button>
   <button onclick="resetAll()">デフォルト表示</button>
 </div>
 
@@ -77,192 +46,14 @@
 </div>
 
 <button id="locationButton" onclick="getLocation()">📍</button>
+</body>
 
 <script>
-var map = L.map('map').setView([35.667547, 139.775105], 14);
-var timeSeriesFilter = false;
-L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png').addTo(map);
-
-function toggleFilterPanel() {
-  const panel = document.getElementById('filterPanel');
-  panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-  const panel2 = document.getElementById('colorPanel');
-  panel2.style.display = 'none';
-}
-function closeFilter() {
-  document.getElementById('filterPanel').style.display = 'none';
-}
-
-function toggleColorPanel() {
-  const panel = document.getElementById('colorPanel');
-  panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-  const panel2 = document.getElementById('filterPanel');
-  panel2.style.display = 'none';
-}
-function closeColorPanel() {
-  document.getElementById('colorPanel').style.display = 'none';
-}
-
-let geoJsonLayer;
-fetch('https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdnew.geojson')
-  .then(response => response.json())
-  .then(data => {
-    var riverList = document.getElementById('allRiver');
-
-    geoJsonLayer = L.geoJSON(data, {
-      style: { color: 'blue', weight: 1 },
-      onEachFeature: (feature, layer) => {
-        var riverName = feature.properties.name;
-        var riverTime = feature.properties.time;
-        
-        var river = document.createElement('input');
-        river.type = 'checkbox';
-        river.checked = true;
-        river.setAttribute('value', riverName);
-        river.setAttribute('id', riverName + riverTime);
-        river.setAttribute('class','defaultChecked');
-        river.setAttribute('onclick','displayRiverUpdate()');
-
-        var riverLabel = document.createElement('label');
-        riverLabel.appendChild(river);
-        riverLabel.appendChild(document.createTextNode(riverName));
-        riverList.appendChild(riverLabel);
-        riverList.appendChild(document.createElement("br"));
-
-        feature.properties['displayed'] = true;
-
-        var newpopup = L.popup({
-          closeOnClick: false,
-          autoClose: false
-        }).setContent(`<b>河川名:</b> ${riverName}<br>
-          <b>埋め立て時期:</b> ${riverTime}<br>
-          <form action="${riverName}.html" method="get">
-            <button type="submit">この河川を歩く</button>
-          </form>`
-        );
-
-        var newMarker = layer.addTo(map);
-        newMarker.bindPopup(newpopup, {autoClose:false});
-        newMarker.getPopup().on('remove', function() {
-          layer.setStyle({ color: getColorByTime(riverTime) });
-        });
-        
-        // クリックで選択、ダブルクリックで解除
-        layer.on('click', function() {
-          layer.setStyle({ color: 'yellow' });
-        });
-        
-        layer.on('dblclick', function() {
-          layer.setStyle({ color: getColorByTime(riverTime) });
-          layer.closePopup();
-        });
-        
-      }
-    });
-  })
-  .catch(console.error);
-
-function onMapClick(e) {
-  geoJsonLayer.eachLayer((layer)=>{
-    layer.closePopup();
-  });
-}
-map.on('click', onMapClick);
-
-// 色分け適用
-function applyColorScheme() {
-  timeSeriesFilter = document.getElementById('colorByTime').checked;
-  geoJsonLayer.eachLayer(layer => {
-    layer.setStyle({ color: getColorByTime(layer.feature.properties.time) });
-  });
-}
-
-function getColorByTime(time) {
-  if(!timeSeriesFilter) return 'blue';
-  switch(time) {
-    case '震災復興': return 'red';
-    case '戦災復興': return 'purple';
-    case '東京オリンピック': return 'black';
-    default: return 'orange';
-  }
-}
-
-function checkAll(){
-  geoJsonLayer.eachLayer(layer => {
-    var elem = document.getElementById(layer.feature.properties.name + layer.feature.properties.time);
-    elem.checked = true;
-    layer.setStyle({opacity: 1.0, fillOpacity:0.2});
-  });
-}
-
-function uncheckAll(){
-  geoJsonLayer.eachLayer(layer => {
-    var elem = document.getElementById(layer.feature.properties.name + layer.feature.properties.time);
-    elem.checked = false;
-    layer.setStyle({opacity: 0.0, fillOpacity:0.0});
-  });
-}
-
-function displayRiverUpdate(){
-  geoJsonLayer.eachLayer(layer => {
-    var elem = document.getElementById(layer.feature.properties.name + layer.feature.properties.time);
-    if(elem.checked){
-      layer.setStyle({opacity: 1.0, fillOpacity:0.2});
-    }
-    else{
-      //console.log("no"+elem.id+elem.class);
-      layer.setStyle({opacity: 0.0, fillOpacity:0.0});
-    }
-  });
-}
-
-function buriedPeriod(elem) {
-  geoJsonLayer.eachLayer(layer => {
-    if(layer.feature.properties.time == elem.value){
-      // 処理をする
-      if(elem.checked){
-        document.getElementById(layer.feature.properties.name + layer.feature.properties.time).checked = true;
-      }
-      else{
-        document.getElementById(layer.feature.properties.name + layer.feature.properties.time).checked = false;
-      }
-    }
-  });
-  displayRiverUpdate();
-}
-
-function walkRiver(name){
-  resetAll();
-  geoJsonLayer.eachLayer(layer => {
-    if(layer.feature.properties.name == name){
-      layer.openPopup();
-      layer.setStyle({ color: 'yellow' });
-    }
-  });
-}
-
-// 絞り込み、リセット、全河川表示などの他の関数
-
-function resetFilter() { /* ... */ }
-function resetAll() {
-  timeSeriesFilter = false;
-  var boxes = document.getElementsByClassName('defaultChecked');
-  for(elem of boxes){
-    elem.checked = true;
-  };
-  var boxes2 = document.getElementsByClassName('defaultUnchecked');
-  for(elem of boxes2){
-    elem.checked = false;
-  };
-  geoJsonLayer.eachLayer(layer => {
-    layer.closePopup();
-    layer.setStyle({color: 'blue', opacity: 1.0, fillOpacity: 0.2});
-  });
-  displayRiverUpdate();
-}
-
-// 位置情報取得などの他の関数
-function getLocation() { /* ... */ }
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.667547, 139.775105];
+  var defaultZ = 14;
+  var riverNameHere = 'all';
 </script>
-</body>
+<script src="common.js"></script>
+<script src="indexScript.js"></script>
 </html>
