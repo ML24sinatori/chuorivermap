@@ -3,7 +3,7 @@ let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/cr
 
 //地図の読み込み(座標は河川ごと)
 var map = L.map('map').setView(defaultPlace, defaultZ);
-L.tileLayer('	https://tile.openstreetmap.jp/styles/osm-bright-ja/{z}/{x}/{y}.png').addTo(map);
+L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png').addTo(map);
 
 //現在位置を取得
 var isTracking = false;

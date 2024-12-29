@@ -14,10 +14,10 @@
 <div id="map"></div>
 
 <div id="controlPanel">
-  <button onclick="toggleFilterPanel()">河川名から探す</button>
-  <button onclick="toggleColorPanel()">埋め立て時期から探す</button>
-  <button onclick="toggleSight()">観光地の表示/非表示</button>
-  <button onclick="resetAll()">デフォルト表示</button>
+  <button class="btn" onclick="toggleFilterPanel()">河川名から探す</button>
+  <button class="btn" onclick="toggleColorPanel()">埋め立て時期から探す</button>
+  <button class="btn" onclick="toggleSight()">観光地の表示/非表示</button>
+  <button class="btn" onclick="resetAll()">デフォルト表示</button>
 </div>
 
 <div id="filterPanel">
@@ -46,7 +46,7 @@
   </div>
 </div>
 
-<button id="locationButton" onclick="getLocation()">📍</button>
+<button id="locationButton" onclick="locationTracking()">📍</button>
 </body>
 
 <script>
