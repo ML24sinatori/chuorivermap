@@ -30,20 +30,43 @@ function hoverStyle(hovering){
         locbtn.style.transform='translate(0, 0)';
     }
 }
-locbtn.addEventListener('mouseover',(e)=>{
+locbtn.addEventListener('mousedown',(e)=>{
     hoverStyle(true);
 });
-locbtn.addEventListener('mouseleave',(e)=>{
+locbtn.addEventListener('click',(e)=>{
     hoverStyle(false);
 });
-function locationTracking(){
+function showAlert(messageContent) {
+    const message = document.getElementById('locationAlert');
+    message.textContent=messageContent;
+    message.style.opacity = '1';
+    locbtn.setAttribute('onclick','locationTracking(true)');
+
+    // 文字をフェードアウトさせる
+    setTimeout(() => {
+        message.style.transition='opacity 1s';
+        message.style.opacity = '0';
+        setTimeout(() => {
+            message.style.transition='none';
+            locbtn.setAttribute('onclick','locationTracking(false)');
+            message.textContent = '';
+        }, 1000);
+    }, 1500);
+}
+function locationTracking(disabled){
+    if(disabled){
+        hoverStyle(true);
+        return;
+    }
     if(isTracking){
         navigator.geolocation.clearWatch(watchID);
+        showAlert('追従を解除');
     }
     else{
         watchID = navigator.geolocation.watchPosition((position) => {
             map.setView([position.coords.latitude, position.coords.longitude]);
         });
+        showAlert('現在地を追従');
     }
     isTracking = !isTracking;
     hoverStyle(true);

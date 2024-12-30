@@ -7,7 +7,7 @@ body, html { height: 100%; margin: 0; }
     right: 20px;
     z-index: 1001;
 
-    font-size: 3vw;
+    font-size: 5vh;
 
     color: #fff;
     border-color: gray;
@@ -32,4 +32,14 @@ body, html { height: 100%; margin: 0; }
 .btn:hover {
     color: #fff;
     background: #404040;
+}
+#locationAlert {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1006;
+    font-size: 5vh;
+    color: white;
+    background-color: rgb(30,30,30,80%);
 }
