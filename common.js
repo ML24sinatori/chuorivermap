@@ -9,16 +9,44 @@ L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png').addTo(m
 var isTracking = false;
 var watchID;
 
+let locbtn=document.getElementById('locationButton');
+function hoverStyle(hovering){
+    var col;
+    if(isTracking){
+        col='rgb(152, 80, 58)';
+        locbtn.style.backgroundColor='orange';
+    }
+    else{
+        col='rgb(59, 120, 144)';
+        locbtn.style.backgroundColor='skyblue';
+    }
+
+    if(hovering){
+        locbtn.style.boxShadow='0 2px 0 ' + col;
+        locbtn.style.transform='translate(0, 3px)';
+    }
+    else{
+        locbtn.style.boxShadow='0 5px 0 ' + col;
+        locbtn.style.transform='translate(0, 0)';
+    }
+}
+locbtn.addEventListener('mouseover',(e)=>{
+    hoverStyle(true);
+});
+locbtn.addEventListener('mouseleave',(e)=>{
+    hoverStyle(false);
+});
 function locationTracking(){
-  if(isTracking){
-    navigator.geolocation.clearWatch(watchID);
-  }
-  else{
-    watchID = navigator.geolocation.watchPosition((position) => {
-      map.setView([position.coords.latitude, position.coords.longitude]);
-    });
-  }
-  isTracking = !isTracking;
+    if(isTracking){
+        navigator.geolocation.clearWatch(watchID);
+    }
+    else{
+        watchID = navigator.geolocation.watchPosition((position) => {
+            map.setView([position.coords.latitude, position.coords.longitude]);
+        });
+    }
+    isTracking = !isTracking;
+    hoverStyle(true);
 }
 
 //河川の着色ルール
