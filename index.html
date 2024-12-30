@@ -23,9 +23,9 @@
 <div id="filterPanel">
   <div class="panelContent inner">
     <h3>河川絞り込み</h3>
-    <button onclick="checkAll()">全て選択</button>
-    <button onclick="uncheckAll()">全て選択解除</button>
-    <button onclick="closeFilter()">閉じる</button>
+    <button onclick="checkAll()" class="btn">全て選択</button>
+    <button onclick="uncheckAll()" class="btn">全て選択解除</button>
+    <button onclick="closeFilter()" class="btn closer">閉じる</button>
     <div id="allRiver">
       <label>河川名</label><br>
     </div>
@@ -46,9 +46,11 @@
   </div>
 </div>
 
-<div id="locationAlert"></div>
-<button id="locationButton" onclick="locationTracking(false)">📍</button>
+<!--ここに現在位置ボタンの領域が入る-->
+
 </body>
+
+<script src="createLocationButton.js"></script>
 
 <script>
   //commonの読み込みに必要な変数だけ定義

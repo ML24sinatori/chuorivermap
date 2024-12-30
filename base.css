@@ -29,7 +29,7 @@ body, html { height: 100%; margin: 0; }
     background-color: #e0e0e0;
     padding: 10px;
 }
-.btn:hover {
+.btn:active {
     color: #fff;
     background: #404040;
 }
@@ -39,7 +39,18 @@ body, html { height: 100%; margin: 0; }
     left: 50%;
     transform: translate(-50%,-50%);
     z-index: 1006;
-    font-size: 5vh;
+    padding: 0;
+    border-radius: 50vh;
+    border-width: 1.5px;
     color: white;
     background-color: rgb(30,30,30,80%);
+}
+.pinIcon{
+    font-size: 5vh;
+    text-align: center;
+    opacity: 0.7;
+    background-color: orange;
+    border-radius: 50vh;
+    border-width: 1.5px;
+    border: none;
 }

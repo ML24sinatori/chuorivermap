@@ -16,7 +16,7 @@
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    z-index: 1006;
     padding: 20px;
     color: white;
 }
@@ -28,8 +28,12 @@
     margin: 3px;
     padding: 3px;
 }
-
 .inner{
     height: 80%;
     overflow-y: scroll;
+}
+.closer{
+    position: relative;
+    top: 10px;
+    right: 10px;
 }

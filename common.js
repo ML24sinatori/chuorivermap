@@ -5,73 +5,6 @@ let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/cr
 var map = L.map('map').setView(defaultPlace, defaultZ);
 L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png').addTo(map);
 
-//現在位置を取得
-var isTracking = false;
-var watchID;
-
-let locbtn=document.getElementById('locationButton');
-function hoverStyle(hovering){
-    var col;
-    if(isTracking){
-        col='rgb(152, 80, 58)';
-        locbtn.style.backgroundColor='orange';
-    }
-    else{
-        col='rgb(59, 120, 144)';
-        locbtn.style.backgroundColor='skyblue';
-    }
-
-    if(hovering){
-        locbtn.style.boxShadow='0 2px 0 ' + col;
-        locbtn.style.transform='translate(0, 3px)';
-    }
-    else{
-        locbtn.style.boxShadow='0 5px 0 ' + col;
-        locbtn.style.transform='translate(0, 0)';
-    }
-}
-locbtn.addEventListener('mousedown',(e)=>{
-    hoverStyle(true);
-});
-locbtn.addEventListener('click',(e)=>{
-    hoverStyle(false);
-});
-function showAlert(messageContent) {
-    const message = document.getElementById('locationAlert');
-    message.textContent=messageContent;
-    message.style.opacity = '1';
-    locbtn.setAttribute('onclick','locationTracking(true)');
-
-    // 文字をフェードアウトさせる
-    setTimeout(() => {
-        message.style.transition='opacity 1s';
-        message.style.opacity = '0';
-        setTimeout(() => {
-            message.style.transition='none';
-            locbtn.setAttribute('onclick','locationTracking(false)');
-            message.textContent = '';
-        }, 1000);
-    }, 1500);
-}
-function locationTracking(disabled){
-    if(disabled){
-        hoverStyle(true);
-        return;
-    }
-    if(isTracking){
-        navigator.geolocation.clearWatch(watchID);
-        showAlert('追従を解除');
-    }
-    else{
-        watchID = navigator.geolocation.watchPosition((position) => {
-            map.setView([position.coords.latitude, position.coords.longitude]);
-        });
-        showAlert('現在地を追従');
-    }
-    isTracking = !isTracking;
-    hoverStyle(true);
-}
-
 //河川の着色ルール
 var timeSeriesFilter = false;
 function coloringRule(thisLayer) {
@@ -162,7 +95,6 @@ fetch(geoJsonURL)
 
 function iconObject(s, iconType){
     s = Math.max(8,(s-12)*9);
-    
     var newIconUrl;
     if(iconType == 'bridge')newIconUrl='icon/bridge.png';
     else if(iconType == 'museum')newIconUrl='icon/museum.png';
