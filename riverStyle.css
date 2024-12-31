@@ -32,10 +32,10 @@
 }
 @keyframes slide {
     from {
-    transform: translateX(var(--start-offset, 0));
+        transform: translateX(var(--start-offset, 0));
     }
     to {
-    transform: translateX(var(--end-offset, 0));
+        transform: translateX(var(--end-offset, 0));
     }
 }
 .slide {

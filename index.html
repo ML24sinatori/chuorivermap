@@ -14,21 +14,25 @@
 <div id="map"></div>
 
 <div id="controlPanel">
-  <button class="btn" onclick="toggleFilterPanel()">河川名から探す</button>
-  <button class="btn" onclick="toggleColorPanel()">埋め立て時期から探す</button>
-  <button class="btn" onclick="toggleSight()">観光地の表示/非表示</button>
-  <button class="btn" onclick="resetAll()">デフォルト表示</button>
+  <span class="filterTitle">河川の絞り込み</span>
+  <button class="btn" onclick="toggleFilterPanel()">河川名から</button>
+  <button class="btn" onclick="toggleColorPanel()">埋め立て時期から</button>
+  <button class="btn" onclick="resetRiver()">初期表示に戻す</button>
+  <span class="filterTitle">スポットの絞り込み</span>
+  <label><input type="checkbox" class="sightType" id="bridge" unchecked onclick="displaySightUpdate()">橋</label>
+  <label><input type="checkbox" class="sightType" id="museum" unchecked onclick="displaySightUpdate()">博物館等</label>
+  <label><input type="checkbox" class="sightType" id="others" unchecked onclick="displaySightUpdate()">史跡等</label>
 </div>
 
 <div id="filterPanel">
   <div class="panelContent inner">
     <h3>河川絞り込み</h3>
-    <button onclick="checkAll()" class="btn">全て選択</button>
-    <button onclick="uncheckAll()" class="btn">全て選択解除</button>
-    <button onclick="closeFilter()" class="btn closer">閉じる</button>
+    <button onclick="checkAll()">全て選択</button>
+    <button onclick="uncheckAll()">全て選択解除</button>
     <div id="allRiver">
       <label>河川名</label><br>
     </div>
+    <button onclick="closeFilter()" class="btn closer">閉じる</button>
   </div>
 </div>
 
@@ -42,9 +46,11 @@
       <label><input type="checkbox" value="東京オリンピック" checked onclick="buriedPeriod(this)" class="defaultChecked">東京オリンピック</label><br>
       <label><input type="checkbox" value="その他" checked onclick="buriedPeriod(this)" class="defaultChecked">その他</label><br>
     </div>
-    <button onclick="closeColorPanel()">閉じる</button>
+    <button onclick="closeColorPanel()" class="btn closer">閉じる</button>
   </div>
 </div>
+
+<button id="toggleButton" onclick="toggleSight()"><img src="icon/spot.png" style="max-width: 5vh;"></button>
 
 <!--ここに現在位置ボタンの領域が入る-->
 
@@ -57,6 +63,7 @@
   var defaultPlace = [35.667547, 139.775105];
   var defaultZ = 14;
   var riverNameHere = 'all';
+  var defaultSightDisplayed = false;
 </script>
 <script src="common.js"></script>
 <script src="indexScript.js"></script>

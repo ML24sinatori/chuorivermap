@@ -51,25 +51,23 @@ locbtn.addEventListener('click',(e)=>{
 });
 
 function showAlert(messageContent) {
+    message.style.transition='opacity 0.5s';
     message.textContent = messageContent;
     message.style.opacity = '1';
     message.style.padding = '10px';
-    locbtn.setAttribute('onclick','locationTracking(true)');
 
     // 文字をフェードアウトさせる
     setTimeout(() => {
-        message.style.transition='opacity 1s';
         message.style.opacity = '0';
         setTimeout(() => {
             message.style.padding = 'none';
             message.style.transition='none';
-            locbtn.setAttribute('onclick','locationTracking(false)');
             message.textContent = '';
         }, 1000);
     }, 1000);
 }
 var urHere;
-function locationTracking(disabled){
+function locationTracking(disabled = false){
     if(disabled){
         hoverStyle(true);
         return;

@@ -1,7 +1,7 @@
 @charset "utf-8";
 body, html { height: 100%; margin: 0; }
 #map { height: 100%; }
-#locationButton {
+#locationButton, #toggleButton {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -20,6 +20,9 @@ body, html { height: 100%; margin: 0; }
     height: 100px;
     padding: 0;
     box-shadow: 0 5px 0 rgb(59, 120, 144);
+}
+#toggleButton{
+    right: calc(20px + 20vh);
 }
 .btn{
     color: #000000;
@@ -53,4 +56,8 @@ body, html { height: 100%; margin: 0; }
     border-radius: 50vh;
     border-width: 1.5px;
     border: none;
+}
+.filterTitle{
+    font-weight: bold;
+    margin-top: 10px;
 }

@@ -32,6 +32,88 @@ function eraseNumber(str){
     return str.split('-')[0];
 }
 
+var anySightDisplayed=false;
+let sightbtn = document.getElementById('toggleButton');
+
+function hoverSight(hovering){
+    var col;
+    if(anySightDisplayed){
+        col='rgb(152, 80, 58)';
+        sightbtn.style.backgroundColor='orange';
+    }
+    else{
+        col='rgb(59, 120, 144)';
+        sightbtn.style.backgroundColor='skyblue';
+    }
+
+    if(hovering){
+        sightbtn.style.boxShadow='0 2px 0 ' + col;
+        sightbtn.style.transform='translate(0, 3px)';
+    }
+    else{
+        sightbtn.style.boxShadow='0 5px 0 ' + col;
+        sightbtn.style.transform='translate(0, 0)';
+    }
+}
+
+sightbtn.addEventListener('mousedown',(e)=>{
+    hoverSight(true);
+});
+sightbtn.addEventListener('click',(e)=>{
+    hoverSight(false);
+});
+
+function toggleSight(disabled = false){
+    if(disabled)return;
+    anySightDisplayed = !anySightDisplayed;
+    var elems = document.getElementsByClassName('sightType');
+    for(let i = 0;i < elems.length; i++){
+        elems[i].checked = anySightDisplayed;
+    }
+    displaySightUpdate(true);
+    if(anySightDisplayed)showSightAlert('観光地を表示');
+    else showSightAlert('観光地を非表示');
+}
+
+function showSightAlert(messageContent) {
+    message.style.transition='opacity 0.5s';
+    message.textContent = messageContent;
+    message.style.opacity = '1';
+    message.style.padding = '10px';
+
+    // 文字をフェードアウトさせる
+    setTimeout(() => {
+        message.style.opacity = '0';
+        setTimeout(() => {
+            message.style.padding = 'none';
+            message.style.transition = 'none';
+            message.textContent = '';
+        }, 1000);
+    }, 1000);
+}
+
+function displaySightUpdate(thruSightButton = false){
+    var btcheck = false;
+    dotJsonLayer.eachLayer((layer)=>{
+        var elem = document.getElementById(layer.feature.properties.type);
+        if(!elem){
+            elem=document.getElementById('others');
+        }
+        if(elem.checked){
+            btcheck = true;
+            map.addLayer(layer);
+        }
+        else{
+            map.removeLayer(layer);
+        }
+    });
+    if(thruSightButton)return;
+    if(anySightDisplayed == btcheck)return;
+    anySightDisplayed=btcheck;
+    hoverSight(true);
+    setTimeout(()=>{hoverSight(false);},100);
+}
+
 //地図のポップアップと挙動の設定
 let geoJsonLayer;
 fetch(geoJsonURL)
@@ -134,7 +216,6 @@ fetch(dotJsonURL)
             
             // クリックで選択、ダブルクリックで解除
             layer.on('click', function() {
-                
             });
             
             layer.on('dblclick', function() {
@@ -142,6 +223,7 @@ fetch(dotJsonURL)
             });
         }
     });
+    displaySightUpdate();
 });
 
 function onMapClick(e) {
@@ -160,16 +242,3 @@ map.on('moveend', function(e) {
         layer.setIcon(L.icon(iconObject(z, layer.feature.properties.type)));//現状アイコンはランダム割り当て(仮)
     });
 });
-
-var isSightDisplayed = true;
-function toggleSight(){
-    dotJsonLayer.eachLayer((layer)=>{
-        if(isSightDisplayed){
-            map.removeLayer(layer);
-        }
-        else{
-            map.addLayer(layer);
-        }
-    });
-    isSightDisplayed = !isSightDisplayed;
-}

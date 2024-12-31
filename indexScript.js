@@ -40,7 +40,7 @@ function applyColorScheme() {
 function applyColorScheme() {
     timeSeriesFilter = document.getElementById('colorByTime').checked;
     geoJsonLayer.eachLayer(layer => {
-      coloringRule(layer);
+        coloringRule(layer);
     });
   }
 
@@ -64,11 +64,11 @@ function displayRiverUpdate(){
     geoJsonLayer.eachLayer(layer => {
         var elem = document.getElementById(layer.feature.properties.name + layer.feature.properties.time);
         if(elem.checked){
-        layer.setStyle({opacity: 1.0, fillOpacity:0.2});
+            layer.setStyle({opacity: 1.0, fillOpacity:0.2});
         }
         else{
         //console.log("no"+elem.id+elem.class);
-        layer.setStyle({opacity: 0.0, fillOpacity:0.0});
+            layer.setStyle({opacity: 0.0, fillOpacity:0.0});
         }
     });
 }
@@ -92,8 +92,8 @@ function walkRiver(name){
     resetAll();
     geoJsonLayer.eachLayer(layer => {
         if(layer.feature.properties.name == name){
-        layer.openPopup();
-        layer.setStyle({ color: 'yellow' });
+            layer.openPopup();
+            layer.setStyle({ color: 'yellow' });
         }
     });
 }
@@ -101,7 +101,7 @@ function walkRiver(name){
 // 絞り込み、リセット、全河川表示などの他の関数
 
 function resetFilter() { /* ... */ }
-function resetAll() {
+function resetRiver() {
     timeSeriesFilter = false;
     var boxes = document.getElementsByClassName('defaultChecked');
     for(elem of boxes){
@@ -116,8 +116,6 @@ function resetAll() {
         layer.setStyle({color: 'blue', opacity: 1.0, fillOpacity: 0.2});
     });
     displayRiverUpdate();
-
-    if(!isSightDisplayed)toggleSight();
 }
 
 // 位置情報取得などの他の関数
