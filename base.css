@@ -4,7 +4,7 @@ body, html { height: 100%; margin: 0; }
 #locationButton, #toggleButton {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    right: 50px;
     z-index: 1001;
 
     font-size: 5vh;
@@ -22,7 +22,7 @@ body, html { height: 100%; margin: 0; }
     box-shadow: 0 5px 0 rgb(59, 120, 144);
 }
 #toggleButton{
-    right: 140px;
+    right: 160px;
 }
 #innerControlPanel {
     display: flex;

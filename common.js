@@ -5,6 +5,12 @@ let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/cr
 var map = L.map('map').setView(defaultPlace, defaultZ);
 L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png').addTo(map);
 
+L.control.scale({
+    imperial: false,
+    metric: true
+}).addTo(map);
+map.zoomControl.setPosition("bottomright");
+
 //河川の着色ルール
 var timeSeriesFilter = false;
 function coloringRule(thisLayer) {

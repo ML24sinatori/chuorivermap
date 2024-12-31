@@ -1,7 +1,7 @@
 /*
 <div id="locationAlert"></div>
 <button id="toggleButton" onclick="toggleSight()"><img src="icon/spot.png" style="max-width: 5vh;"></button>
-<button id="locationButton" onclick="locationTracking(false)">📍</button>
+<button id="locationButton" onclick="locationTracking()">📍</button>
 
 のように、観光地一括表示ボタン・現在位置の表示ボタンと、それに付随して発生する警告文を表示するのが目的
 
@@ -21,7 +21,7 @@ sightbtn.appendChild(sightbtnImage);
 
 let locbtn=document.createElement('button');
 locbtn.setAttribute('id','locationButton');
-locbtn.setAttribute('onclick','locationTracking(false)');
+locbtn.setAttribute('onclick','locationTracking()');
 locbtn.textContent='📍';
 
 document.body.appendChild(message);
@@ -54,48 +54,31 @@ function pushStyle(btnelem, pushing, nowon){
     }
 }
 
-sightbtn.addEventListener('mousedown',(e)=>{
-    pushStyle(sightbtn, true, anySightDisplayed);
-});
-
 function toggleSight(showmessage = true){
     anySightDisplayed = !anySightDisplayed;
-
-    pushStyle(sightbtn, false, anySightDisplayed);
-
     var elems = document.getElementsByClassName('sightType');
     for(let i = 0;i < elems.length; i++){
         elems[i].checked = anySightDisplayed;
     }
     displaySightUpdate(true);
+    pushStyle(sightbtn, true, anySightDisplayed);
     setTimeout(()=>{pushStyle(sightbtn,false,anySightDisplayed);},100);
 
     if(!showmessage)return;
 
-    if(anySightDisplayed)showSightAlert('観光地を全表示');
-    else showSightAlert('観光地を非表示');
+    if(anySightDisplayed)showAlert('観光地を全表示');
+    else showAlert('観光地を非表示');
 }
 
-function showSightAlert(messageContent) {
-    message.style.transition='opacity 0.5s';
-    message.textContent = messageContent;
-    message.style.opacity = '1';
-    message.style.padding = '10px';
+/*
+locbtn.addEventListener('mousedown',(e)=>{
+    pushStyle(locbtn,true,isTracking);
+});
 
-    // 文字をフェードアウトさせる
-    transparency++;
-    setTimeout(() => {
-        message.style.opacity = '0';
-        setTimeout(() => {
-            transparency--;
-            if(transparency == 0){
-                message.style.padding = 'none';
-                message.style.transition = 'none';
-                message.textContent = '';
-            }
-        }, 1000);
-    }, 1000);
-}
+locbtn.addEventListener('click',(e)=>{
+    pushStyle(locbtn,false,isTracking);
+});
+*/
 
 function displaySightUpdate(thruSightButton = false){
     var btcheck = false;
@@ -119,14 +102,6 @@ function displaySightUpdate(thruSightButton = false){
     pushStyle(sightbtn,true,anySightDisplayed);
     setTimeout(()=>{pushStyle(sightbtn,false,anySightDisplayed);},100);
 }
-
-locbtn.addEventListener('mousedown',(e)=>{
-    pushStyle(locbtn,true,isTracking);
-});
-
-locbtn.addEventListener('click',(e)=>{
-    pushStyle(locbtn,false,isTracking);
-});
 
 let transparency = 0;
 function showAlert(messageContent) {

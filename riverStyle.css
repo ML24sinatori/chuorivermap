@@ -5,7 +5,7 @@
     /*display: flex;
     flex-flow: column;*/
     top: 10px;
-    left: 50px;
+    left: 10px;
     z-index: 1000;
 }
 #riverDescription{
@@ -113,7 +113,7 @@
     display: none;
 }
 #allBunsho{
-    font-size: 3vw;
+    font-size: min(3vw,3vh);
     overflow-y: auto;
     max-height: 50vw;
 }
