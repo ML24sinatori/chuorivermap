@@ -60,12 +60,15 @@ sightbtn.addEventListener('mousedown',(e)=>{
 
 function toggleSight(showmessage = true){
     anySightDisplayed = !anySightDisplayed;
+
     pushStyle(sightbtn, false, anySightDisplayed);
+
     var elems = document.getElementsByClassName('sightType');
     for(let i = 0;i < elems.length; i++){
         elems[i].checked = anySightDisplayed;
     }
     displaySightUpdate(true);
+    setTimeout(()=>{pushStyle(sightbtn,false,anySightDisplayed);},100);
 
     if(!showmessage)return;
 
@@ -173,4 +176,5 @@ function locationTracking(disabled = false){
     }
     isTracking = !isTracking;
     pushStyle(locbtn,true,isTracking);
+    setTimeout(()=>{pushStyle(locbtn,false,isTracking);},100);
 }

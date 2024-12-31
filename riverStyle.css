@@ -113,9 +113,9 @@
     display: none;
 }
 #allBunsho{
-    font-size: 3vh;
+    font-size: 3vw;
     overflow-y: auto;
-    max-height: 50vh;
+    max-height: 50vw;
 }
 #returnButton{
     margin: 10px 5px;
