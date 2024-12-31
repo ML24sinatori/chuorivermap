@@ -10,8 +10,7 @@
 .panelContent {
     background: white; color: black; padding: 15px;
     border-radius: 10px;
-    min-width: 40%;
-    max-width: 80%;
+    width: max(calc(70%),calc(15em + 50px));
     left: 50%;
     top: 20px;
     transform: translate(-50%);

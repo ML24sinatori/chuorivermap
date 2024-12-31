@@ -1,6 +1,16 @@
 @charset "utf-8";
 body, html { height: 100%; margin: 0; }
 #map { height: 100%; }
+#textSection{
+    position: fixed;
+    display: flex;
+    flex-flow: column;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    width: max(40%,13em);
+    pointer-events: none;
+}
 #locationButton, #toggleButton {
     position: fixed;
     bottom: 20px;
@@ -32,15 +42,13 @@ body, html { height: 100%; margin: 0; }
     padding: 0 0.5em 0.5em 0.5em;
 }
 #controlPanel{
-    position: fixed;
-    top: 20px;
-    right: 20px;
     color: black;
     background-color: white;
     width: 13em;
     z-index: 1001;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    pointer-events: all;
 }
 .showDetails{
     cursor: pointer;
@@ -52,7 +60,6 @@ body, html { height: 100%; margin: 0; }
 details[open] .showDetails{
     border-radius: 5px 5px 0 0;
     background: linear-gradient(rgb(213, 243, 255),white 88%,#e0e0e0);
-    
 }
 .smallbtn{
     color: #000000;

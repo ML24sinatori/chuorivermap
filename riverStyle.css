@@ -1,12 +1,10 @@
 @charset "utf-8";
 #riverFeature{
-    position: fixed;
-    width: 40%;
     /*display: flex;
     flex-flow: column;*/
     top: 10px;
     left: 10px;
-    z-index: 1000;
+    pointer-events: all;
 }
 #riverDescription{
     position: relative;
@@ -15,6 +13,7 @@
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
 }
 .slider-container {
     position: relative;

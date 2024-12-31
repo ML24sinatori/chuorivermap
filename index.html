@@ -13,7 +13,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <div id="map"></div>
 
-<details id="controlPanel" class="classControlPanel"><summary class="showDetails">詳細な表示設定</summary>
+<div id="textSection">
+<details id="controlPanel"><summary class="showDetails">詳細な表示設定</summary>
 <div id="innerControlPanel">
   <!-- ここはindexのみ -->
   <span class="filterTitle">河川の絞り込み</span>
@@ -29,13 +30,14 @@
   -->
 </div>
 </details>
+</div>
 
 <div id="filterPanel">
   <div class="panelContent inner">
-    <div style="display: flex;align-items: center;">
     <b class="filterBold">河川名を選んで表示</b>
-    <button onclick="checkAll()" class="smallbtn">全て選択</button>
-    <button onclick="uncheckAll()" class="smallbtn">全て選択解除</button>
+    <div style="display: flex;align-items: center;">
+      <button onclick="checkAll()" class="smallbtn">全て選択</button>
+      <button onclick="uncheckAll()" class="smallbtn">全て選択解除</button>
     </div>
     <div id="allRiver">
     </div>
@@ -45,7 +47,7 @@
 
 <div id="colorPanel">
   <div class="panelContent">
-    <label><h3><input type="checkbox" id="colorByTime" onclick="applyColorScheme()" class="defaultUnchecked"> 埋め立て時期で色分け</h3></label><br>
+    <label><h3><input type="checkbox" id="colorByTime" onclick="applyColorScheme()" class="defaultUnchecked">埋め立て時期で色分け</h3></label><br>
     <div>
       <b class="filterBold">埋め立て時期を限定して表示</b><br>
       <label><input type="checkbox" value="震災復興" checked onclick="buriedPeriod(this)" class="defaultChecked">震災復興</label><br>
