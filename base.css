@@ -22,7 +22,50 @@ body, html { height: 100%; margin: 0; }
     box-shadow: 0 5px 0 rgb(59, 120, 144);
 }
 #toggleButton{
-    right: calc(20px + 20vh);
+    right: 140px;
+}
+#innerControlPanel {
+    display: flex;
+    flex-flow: column;
+    z-index: 1002;
+    border-radius: 5px;
+    padding: 0 0.5em 0.5em 0.5em;
+}
+#controlPanel{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: black;
+    background-color: white;
+    width: 13em;
+    z-index: 1001;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.showDetails{
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    background: linear-gradient(white, rgb(213, 243, 255));
+    padding: 0.5em;
+}
+details[open] .showDetails{
+    border-radius: 5px 5px 0 0;
+    background: linear-gradient(rgb(213, 243, 255),white 88%,#e0e0e0);
+    
+}
+.smallbtn{
+    color: #000000;
+    border-color: gray;
+    border-radius: 0.3em;
+    border-width: 1px;
+    background-color: #e0e0e0;
+    padding: 3px;
+    margin: 0 3px;
+}
+.smallbtn:active {
+    color: #fff;
+    background: #404040;
 }
 .btn{
     color: #000000;
@@ -60,4 +103,8 @@ body, html { height: 100%; margin: 0; }
 .filterTitle{
     font-weight: bold;
     margin-top: 10px;
+}
+.filterBold{
+    font-size: 120%;
+    margin-right: 10px;
 }

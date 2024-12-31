@@ -13,24 +13,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <div id="map"></div>
 
-<div id="controlPanel">
+<details id="controlPanel" class="classControlPanel"><summary class="showDetails">詳細な表示設定</summary>
+<div id="innerControlPanel">
+  <!-- ここはindexのみ -->
   <span class="filterTitle">河川の絞り込み</span>
   <button class="btn" onclick="toggleFilterPanel()">河川名から</button>
   <button class="btn" onclick="toggleColorPanel()">埋め立て時期から</button>
   <button class="btn" onclick="resetRiver()">初期表示に戻す</button>
+
+  <!-- 以下はJavaScriptによって生成される
   <span class="filterTitle">スポットの絞り込み</span>
   <label><input type="checkbox" class="sightType" id="bridge" unchecked onclick="displaySightUpdate()">橋</label>
   <label><input type="checkbox" class="sightType" id="museum" unchecked onclick="displaySightUpdate()">博物館等</label>
   <label><input type="checkbox" class="sightType" id="others" unchecked onclick="displaySightUpdate()">史跡等</label>
+  -->
 </div>
+</details>
 
 <div id="filterPanel">
   <div class="panelContent inner">
-    <h3>河川絞り込み</h3>
-    <button onclick="checkAll()">全て選択</button>
-    <button onclick="uncheckAll()">全て選択解除</button>
+    <div style="display: flex;align-items: center;">
+    <b class="filterBold">河川名を選んで表示</b>
+    <button onclick="checkAll()" class="smallbtn">全て選択</button>
+    <button onclick="uncheckAll()" class="smallbtn">全て選択解除</button>
+    </div>
     <div id="allRiver">
-      <label>河川名</label><br>
     </div>
     <button onclick="closeFilter()" class="btn closer">閉じる</button>
   </div>
@@ -40,7 +47,7 @@
   <div class="panelContent">
     <label><h3><input type="checkbox" id="colorByTime" onclick="applyColorScheme()" class="defaultUnchecked"> 埋め立て時期で色分け</h3></label><br>
     <div>
-      <b>埋め立て時期を限定して表示</b><br>
+      <b class="filterBold">埋め立て時期を限定して表示</b><br>
       <label><input type="checkbox" value="震災復興" checked onclick="buriedPeriod(this)" class="defaultChecked">震災復興</label><br>
       <label><input type="checkbox" value="戦災復興" checked onclick="buriedPeriod(this)" class="defaultChecked">戦災復興</label><br>
       <label><input type="checkbox" value="東京オリンピック" checked onclick="buriedPeriod(this)" class="defaultChecked">東京オリンピック</label><br>
@@ -50,21 +57,20 @@
   </div>
 </div>
 
-<button id="toggleButton" onclick="toggleSight()"><img src="icon/spot.png" style="max-width: 5vh;"></button>
-
 <!--ここに現在位置ボタンの領域が入る-->
 
 </body>
-
-<script src="createLocationButton.js"></script>
 
 <script>
   //commonの読み込みに必要な変数だけ定義
   var defaultPlace = [35.667547, 139.775105];
   var defaultZ = 14;
   var riverNameHere = 'all';
-  var defaultSightDisplayed = false;
 </script>
+
+<script src="createControlPanel.js"></script>
+<script src="createLocationButton.js"></script>
+
 <script src="common.js"></script>
 <script src="indexScript.js"></script>
 </html>

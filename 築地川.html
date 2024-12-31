@@ -12,6 +12,8 @@
 <body>
 <div id="map"></div>
 
+<details id="controlPanel" class="classControlPanel"><summary class="showDetails">詳細な表示設定</summary><div id="innerControlPanel"></div></details>
+
 <div id="riverFeature">
   <div id="riverDescription">
     <div style="display: flex; justify-content: space-between;">
@@ -51,8 +53,8 @@
   <img id="modalImage" alt="拡大写真">
   <p id="modalCaption"></p>
 </div>
+</body>
 
-<script src="createLocationButton.js"></script>
 <script>
   //commonの読み込みに必要な変数だけ定義
   var defaultPlace = [35.666830, 139.767709];
@@ -60,7 +62,9 @@
   var riverNameHere = '築地川';
   const captionDict={"写真1":"築地川公園1","写真2":"築地川公園2"};
 </script>
+
+<script src="createControlPanel.js"></script>
+<script src="createLocationButton.js"></script>
 <script src="common.js"></script>
 <script src="riverScript.js"></script>
-</body>
 </html>

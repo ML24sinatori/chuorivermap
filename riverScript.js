@@ -82,3 +82,18 @@ function extendDetail(){
   }
 }
 
+let otherRiverFlag = false;
+function nearRiver(){
+  otherRiverFlag = !otherRiverFlag;
+  if(otherRiverFlag){
+    dotJsonLayer.eachLayer((layer)=>{
+      layer.setOpacity(1.0);
+    });
+  }
+  else{
+    dotJsonLayer.eachLayer((layer)=>{
+      if(riverNameHere != layer.feature.properties.river)layer.setOpacity(0.2);
+      else layer.setOpacity(1.0);
+    });
+  }
+}
