@@ -8,8 +8,9 @@ body, html { height: 100%; margin: 0; }
     top: 20px;
     left: 20px;
     z-index: 1001;
-    width: max(40%,13em);
+    width: auto;
     pointer-events: none;
+    font-size: 0.8rem;
 }
 #locationButton, #toggleButton {
     position: fixed;
@@ -44,20 +45,29 @@ body, html { height: 100%; margin: 0; }
 #controlPanel{
     color: black;
     background-color: white;
-    width: 13em;
+    width: 15em;
     z-index: 1001;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     pointer-events: all;
 }
-.showDetails{
+.showDetails, .largebtn{
     cursor: pointer;
     font-weight: bold;
+    border-width: 0;
     border-radius: 5px;
     background: linear-gradient(white, rgb(213, 243, 255));
     padding: 0.5em;
 }
-details[open] .showDetails{
+.largebtn{
+    font-size: inherit;
+    margin-bottom: 10px;
+    pointer-events: all;
+    text-align: left;
+    width: 15em;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+details[open] .showDetails, .largebtn:active{
     border-radius: 5px 5px 0 0;
     background: linear-gradient(rgb(213, 243, 255),white 88%,#e0e0e0);
 }

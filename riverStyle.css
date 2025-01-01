@@ -2,6 +2,8 @@
 #riverFeature{
     /*display: flex;
     flex-flow: column;*/
+    width: 15em;
+    font-size: 1em;
     top: 10px;
     left: 10px;
     pointer-events: all;
@@ -50,11 +52,15 @@
 }
 .riverTitle{
     font-family: serif;
-    font-size: 3vw;
+    font-size: 1.5em;
 }
 .furigana{
     font-family: serif;
-    font-size: 1.5vw;
+    font-size: 1.2em;
+}
+.furiganasmall{
+    font-family: serif;
+    font-size: 1em;
 }
 .img-button {
     background-color: rgba(0, 0, 0, 0.5);
@@ -112,11 +118,6 @@
     display: none;
 }
 #allBunsho{
-    font-size: min(3vw,3vh);
     overflow-y: auto;
-    max-height: 50vw;
+    max-height: 50vh;
 }
-#returnButton{
-    margin: 10px 5px;
-    padding: 5px;
-};
