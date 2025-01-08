@@ -14,24 +14,38 @@ map.zoomControl.setPosition("bottomleft");
 //河川の着色ルール
 var timeSeriesFilter = false;
 function coloringRule(thisLayer) {
+    let time = thisLayer.feature.properties.time;
+    let name = thisLayer.feature.properties.name;
     if(riverNameHere != 'all'){
-        var riverName = thisLayer.feature.properties.name;
-        if(eraseNumber(riverName)==riverNameHere){
+        if(eraseNumber(name)==riverNameHere){
             thisLayer.setStyle({color: 'blue', fillOpacity: 0.2});
+        }
+        else if(time=='現存'){
+            thisLayer.setStyle({color: 'aqua', opacity: 0, fillOpacity: 0});
         }
         else{
             thisLayer.setStyle({color: 'aqua', fillOpacity: 0.1});
         }
         return;
     }
-    let col,time = thisLayer.feature.properties.time;
-    if(!timeSeriesFilter) col = 'blue';
-    else if(time === '震災復興')col = 'red';
-    else if(time === '戦災復興')col = 'purple';
-    else if(time === '東京オリンピック')col = 'black';
+    if(time=='現存'){
+        thisLayer.setStyle({color: 'aqua', opacity: 0, fillOpacity: 0});
+        return;
+    }
+    var elem = document.getElementById(name+time);
+    console.log(elem.checked);
+    if(!elem.checked){
+        thisLayer.setStyle({color: 'aqua', opacity: 0, fillOpacity:0});
+        return;
+    }
+    let col;
+    if(!timeSeriesFilter)col='blue';
+    else if(time === '震災復興まで')col = 'red';
+    else if(time === '戦災復興まで')col = 'purple';
+    else if(time === '東京オリンピックまで')col = 'black';
     else col = 'orange';
     //switch-case文にすると動かない？
-    thisLayer.setStyle({color:col});
+    thisLayer.setStyle({color:col,opacity: 1.0, fillOpacity: 0.2});
 }
 
 function eraseNumber(str){
@@ -90,7 +104,7 @@ fetch(geoJsonURL)
             
             // クリックで選択、ダブルクリックで解除
             layer.on('click', function() {
-                layer.setStyle({ color: 'yellow' });
+                layer.setStyle({color: 'yellow', opacity: 1.0, fillOpacity:0.2});
             });
             
             layer.on('dblclick', function() {
@@ -167,7 +181,7 @@ map.on('click', onMapClick);
 map.on('moveend', function(e) {
     var z = map.getZoom();
     dotJsonLayer.eachLayer((layer)=>{
-        layer.setIcon(L.icon(iconObject(z, layer.feature.properties.type)));//現状アイコンはランダム割り当て(仮)
+        layer.setIcon(L.icon(iconObject(z, layer.feature.properties.type)));
     });
     if(!trackingUpdated)return;
     var mapcoord=map.getCenter();
