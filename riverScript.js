@@ -1,48 +1,50 @@
-const track = document.querySelector('.slider-track');
+document.title=riverNameHere+'を歩く';
+
 const slides = document.querySelectorAll('.slide');
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
-const totalSlides = slides.length;
-const slideWidth = 50; // 1スライドの幅（%）
-let currentIndex = 1;
+// const track = document.querySelector('.slider-track');
+// const prevButton = document.querySelector('.prev');
+// const nextButton = document.querySelector('.next');
+// const totalSlides = slides.length;
+// const slideWidth = 50; // 1スライドの幅（%）
+// let currentIndex = 1;
 
 
 // スライドアニメーション
-function animateSlider(startOffset, endOffset) {
-  track.style.setProperty('--start-offset', `${startOffset}%`);
-  track.style.setProperty('--end-offset', `${endOffset}%`);
-  track.style.animation = 'slide 0.5s ease-in-out forwards';
-}
+// function animateSlider(startOffset, endOffset) {
+//   track.style.setProperty('--start-offset', `${startOffset}%`);
+//   track.style.setProperty('--end-offset', `${endOffset}%`);
+//   track.style.animation = 'slide 0.5s ease-in-out forwards';
+// }
 
-function moveToIndex(newIndex) {
-  currentIndex = newIndex;
-  const offset = -currentIndex * slideWidth;
-  track.style.animation = 'none'; // アニメーションを一旦無効化
-  track.style.transform = `translateX(${offset}%)`;
-}
+// function moveToIndex(newIndex) {
+//   currentIndex = newIndex;
+//   const offset = -currentIndex * slideWidth;
+//   track.style.animation = 'none'; // アニメーションを一旦無効化
+//   track.style.transform = `translateX(${offset}%)`;
+// }
 
-prevButton.addEventListener('click', () => {
-  if (currentIndex === 0) {
-    currentIndex = totalSlides - 2; // 最初の実スライドにジャンプ
-  }
-  moveToIndex(currentIndex);
-  setTimeout(() => animateSlider(-(currentIndex + 1) * slideWidth, -currentIndex * slideWidth), 0);
-  track.style.animation = 'none';
-  currentIndex--;
-});
+// prevButton.addEventListener('click', () => {
+//   if (currentIndex === 0) {
+//     currentIndex = totalSlides - 2; // 最初の実スライドにジャンプ
+//   }
+//   moveToIndex(currentIndex);
+//   setTimeout(() => animateSlider(-(currentIndex + 1) * slideWidth, -currentIndex * slideWidth), 0);
+//   track.style.animation = 'none';
+//   currentIndex--;
+// });
 
-nextButton.addEventListener('click', () => {
-  if (currentIndex === totalSlides - 2) {
-    currentIndex = 0; // 最初の実スライドにジャンプ
-  }
-  moveToIndex(currentIndex);
-  setTimeout(() => animateSlider(-(currentIndex - 1) * slideWidth, -currentIndex * slideWidth), 0);
-  track.style.animation = 'none';
-  currentIndex++;
-});
+// nextButton.addEventListener('click', () => {
+//   if (currentIndex === totalSlides - 2) {
+//     currentIndex = 0; // 最初の実スライドにジャンプ
+//   }
+//   moveToIndex(currentIndex);
+//   setTimeout(() => animateSlider(-(currentIndex - 1) * slideWidth, -currentIndex * slideWidth), 0);
+//   track.style.animation = 'none';
+//   currentIndex++;
+// });
 
 // 初期化
-moveToIndex(currentIndex);
+// moveToIndex(currentIndex);
 
 //モーダル
 const modal = document.getElementById('photoModal');

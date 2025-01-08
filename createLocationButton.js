@@ -1,7 +1,7 @@
 /*
 <div id="locationAlert"></div>
 <button id="toggleButton" onclick="toggleSight()"><img src="icon/spot.png" style="max-width: 5vh;"></button>
-<button id="locationButton" onclick="locationTracking()">📍</button>
+<button id="locationButton" onclick="locationTracking()"><img src="icon/cross.png" style="max-width: 5vh;"></button>
 
 のように、観光地一括表示ボタン・現在位置の表示ボタンと、それに付随して発生する警告文を表示するのが目的
 
@@ -16,13 +16,15 @@ sightbtn.setAttribute('onclick','toggleSight()');
 let sightbtnImage=document.createElement('img');
 sightbtnImage.setAttribute('src','icon/spot.png');
 sightbtnImage.setAttribute('style','max-width: 5vh;');
-
 sightbtn.appendChild(sightbtnImage);
 
 let locbtn=document.createElement('button');
 locbtn.setAttribute('id','locationButton');
 locbtn.setAttribute('onclick','locationTracking()');
-locbtn.textContent='📍';
+let locbtnImage=document.createElement('img');
+locbtnImage.setAttribute('src','icon/cross.png');
+locbtnImage.setAttribute('style','max-width: 5vh;');
+locbtn.appendChild(locbtnImage);
 
 document.body.appendChild(message);
 document.body.appendChild(sightbtn);
@@ -125,17 +127,20 @@ function showAlert(messageContent) {
     }, 1000);
 }
 var urHere;
-function locationTracking(disabled = false){
+var trackingUpdated = null;
+function locationTracking(disabled = false, hidealert = false){
     if(disabled)return;
     if(isTracking){
         navigator.geolocation.clearWatch(watchID);
         if(urHere)map.removeLayer(urHere);
         urHere = null;
-        showAlert('追従を解除');
+        trackingUpdated = null;
+        if(!hidealert)showAlert('追従を解除');
     }
     else{
         watchID = navigator.geolocation.watchPosition((position) => {
             var pos = [position.coords.latitude, position.coords.longitude];
+            trackingUpdated = pos;
             map.setView(pos);
             if(urHere)map.removeLayer(urHere);
             urHere=L.marker(pos,{

@@ -1,5 +1,6 @@
 let geoJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdnew.geojson';
-let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot.geojson';
+//let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot.geojson';
+let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot2.geojson';
 
 //地図の読み込み(座標は河川ごと)
 var map = L.map('map').setView(defaultPlace, defaultZ);
@@ -9,7 +10,7 @@ L.control.scale({
     imperial: false,
     metric: true
 }).addTo(map);
-map.zoomControl.setPosition("bottomright");
+map.zoomControl.setPosition("bottomleft");
 
 //河川の着色ルール
 var timeSeriesFilter = false;
@@ -165,4 +166,10 @@ map.on('moveend', function(e) {
     dotJsonLayer.eachLayer((layer)=>{
         layer.setIcon(L.icon(iconObject(z, layer.feature.properties.type)));//現状アイコンはランダム割り当て(仮)
     });
+    if(!trackingUpdated)return;
+    var mapcoord=map.getCenter();
+    if(mapcoord.lat == trackingUpdated[0] && mapcoord.lng == trackingUpdated[1])return;
+    console.log(trackingUpdated);
+    console.log(mapcoord);
+    locationTracking(false,true);
 });

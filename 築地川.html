@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>築地川を歩く</title>
+  <title></title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
   <link rel="stylesheet" href="base.css" type="text/css">
@@ -14,39 +14,48 @@
 <div id="map"></div>
 
 <div id="textSection">
-  <div id="riverFeature">
-    <div id="riverDescription">
-      <div style="display: flex; justify-content: space-between;">
-        <span><span class="riverTitle">築地川</span> - <span class="furigana">つきじがわ</span></span>
-      </div>
-      
-      <p id="allBunsho">
-        <span>明石町付近から、中央区役所の前を通り、旧浜離宮庭園の東側を流れて東京湾に至る。東京オリンピックの高速道路整備以降徐々に埋め立てが進み、現在は旧浜離宮庭園の前以外は埋め立てられている。</span>
-        <span id="detailBunsho">明暦の大火の後の埋め立ての際の埋め残しでできた。</span>
-        <span id="detailButton" onclick="extendDetail()">▼詳細表示</span>
-      </p>
-      
-      <div style="display: flex;">
-        <button class="img-button prev"><<br><<br><</button>
-        <div class="slider-container">
-          <div class="slider-track">
-            <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div> <!-- クローン用 -->
-            <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-            <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
-            <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
-            <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-            <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div> <!-- クローン用 -->
-          </div>
+<div id="riverFeature">
+  <div id="riverDescription">
+    <div style="display: flex; justify-content: space-between;">
+      <span><span class="riverTitle">築地川</span> - <span class="furigana">つきじがわ</span></span>
+    </div>
+    
+    <p id="allBunsho">
+      <span>明石町付近から、中央区役所の前を通り、旧浜離宮庭園の東側を流れて東京湾に至る。東京オリンピックの高速道路整備以降徐々に埋め立てが進み、現在は旧浜離宮庭園の前以外は埋め立てられている。</span>
+      <span id="detailBunsho">明暦の大火の後の埋め立ての際の埋め残しでできた。</span>
+      <span id="detailButton" onclick="extendDetail()">▼詳細表示</span>
+    </p>
+    
+    <!--
+    <div><button class="img-button prev"><<br><<br><</button>
+      <div class="slider-container">
+        <div class="slider-track">
+          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
+          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
+          <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
+          <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
+          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
+          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
         </div>
-        <button class="img-button next">><br>><br>></button>
       </div>
-      
+
+      <button class="img-button next">><br>><br>></button>
+    </div> -->
+    <div class="easy-slider">
+        <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
+        <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
+        <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
+        <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
+        <div class="slide"><img src="img/tate.jpg" alt="縦長"></div>
     </div>
   </div>
-  <form action="index.html" method="get">
-    <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
-  </form>
-  <details id="controlPanel"><summary class="showDetails">詳細な表示設定</summary><div id="innerControlPanel"></div></details>
+</div>
+<form action="index.html" method="get">
+  <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
+</form>
+<details id="controlPanel" class="classControlPanel"><summary class="showDetails">詳細な表示設定</summary>
+  <div id="innerControlPanel"></div>
+</details>
 </div>
 
 <!-- モーダル -->

@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>外堀川を歩く</title>
+  <title></title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
   <link rel="stylesheet" href="base.css" type="text/css">
@@ -13,43 +13,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <div id="map"></div>
 
-<details id="controlPanel" class="classControlPanel"><summary class="showDetails">詳細な表示設定</summary>
-  <div id="innerControlPanel"></div>
-</details>
-
 <div id="textSection">
 <div id="riverFeature">
   <div id="riverDescription">
     <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">外堀川</span> - <span class="furigana">そとぼりがわ</span></span>
+      <span><span class="riverTitle">外堀川</span> - <span class="furigana">そとぼりがわ</span></span><!--河川ごとに-->
     </div>
     
     <p id="allBunsho">
-      <span>外濠川とも。一石橋から東京駅の東側を通り、東海道本線と並行するように流れて、新橋駅の少し北側で汐留川に合流する。戦災復興から東京オリンピックにかけて徐々に埋め立てが進み、現在は全部分が埋め立てられ、跡地は東京高速道路として使われている。</span>
-      <span id="detailBunsho">埋め立てによってできた土地は、東京高速道路株式会社によって上部が高速道路として整備される一方で、下部はビルとして民間に提供することで利益を出していた。</span>
+      <span>外濠川とも。戦災復興から東京オリンピックにかけて徐々に埋め立てが進み、現在は全部分が埋め立てられ、跡地は東京高速道路として使われている。</span>
+      <span id="detailBunsho">埋め立てによってできた土地は、東京高速道路株式会社によって上部が高速道路として整備される一方で、下部はビルとして民間に提供することで利益を出していた。</span><!--河川ごとに-->
       <span id="detailButton" onclick="extendDetail()">▼詳細表示</span>
     </p>
     
-    <div style="display: flex;">
-      <button class="img-button prev"><<br><<br><</button>
+    <!--
+    <div><button class="img-button prev"><<br><<br><</button>
       <div class="slider-container">
         <div class="slider-track">
-          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div> <!-- クローン用 -->
+          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
           <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
           <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
           <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
           <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div> <!-- クローン用 -->
+          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
         </div>
       </div>
+
       <button class="img-button next">><br>><br>></button>
+    </div> -->
+    <div class="easy-slider"><!--河川ごとに-->
+        <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
+        <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
+        <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
+        <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
+        <div class="slide"><img src="img/tate.jpg" alt="縦長"></div>
     </div>
   </div>
 </div>
 <form action="index.html" method="get">
   <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
 </form>
-<details id="controlPanel"><summary class="showDetails">詳細な表示設定</summary><div id="innerControlPanel"></div></details>
+<details id="controlPanel" class="classControlPanel"><summary class="showDetails">詳細な表示設定</summary>
+  <div id="innerControlPanel"></div>
+</details>
 </div>
 
 <!-- モーダル -->
