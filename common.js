@@ -67,7 +67,7 @@ fetch(geoJsonURL)
                 riverList.appendChild(riverLabel);
             }
 
-            var setContentHTML = `<b>河川名:</b> ${riverName}<br> <b>埋め立て時期:</b> ${riverEra}`;
+            var setContentHTML = `<b>河川名:</b> ${riverName}<br> <b>埋め立て時期:</b> ${(riverEra == null ? riverTime : riverEra)}`;
             if(riverTime != '現存'){
                 setContentHTML += `<br>
                 <form action="${eraseNumber(riverName)}.html" method="get">
