@@ -1,6 +1,5 @@
-let geoJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdnew.geojson';
+let geoJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot2.geojson';
 let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot.geojson';
-//let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot2.geojson';
 
 //地図の読み込み(座標は河川ごと)
 var map = L.map('map').setView(defaultPlace, defaultZ);
@@ -50,6 +49,7 @@ fetch(geoJsonURL)
         onEachFeature: (feature, layer) => {
             var riverName = feature.properties.name;
             var riverTime = feature.properties.time;
+            var riverEra = feature.properties.era;
             
             if(riverNameHere == 'all'){
                 //全河川表示の時は色分け
@@ -67,15 +67,18 @@ fetch(geoJsonURL)
                 riverList.appendChild(riverLabel);
             }
 
+            var setContentHTML = `<b>河川名:</b> ${riverName}<br> <b>埋め立て時期:</b> ${riverEra}`;
+            if(riverTime != '現存'){
+                setContentHTML += `<br>
+                <form action="${eraseNumber(riverName)}.html" method="get">
+                    <button type="submit" class="smallbtn">この河川を歩く</button>
+                </form>`;
+            }
+
             var newpopup = L.popup({
                 closeOnClick: false,
                 autoClose: false
-            }).setContent(`<b>河川名:</b> ${riverName}<br>
-            <b>埋め立て時期:</b> ${riverTime}<br>
-            <form action="${eraseNumber(riverName)}.html" method="get">
-                <button type="submit" class="smallbtn">この河川を歩く</button>
-            </form>`
-            );
+            }).setContent(setContentHTML);
 
             var newMarker = layer.addTo(map);
             newMarker.bindPopup(newpopup, {autoClose: false});
