@@ -33,7 +33,6 @@ function coloringRule(thisLayer) {
         return;
     }
     var elem = document.getElementById(name+time);
-    console.log(elem.checked);
     if(!elem.checked){
         thisLayer.setStyle({color: 'aqua', opacity: 0, fillOpacity:0});
         return;
@@ -72,8 +71,14 @@ fetch(geoJsonURL)
                 river.checked = true;
                 river.setAttribute('value', riverName);
                 river.setAttribute('id', riverName + riverTime);
-                river.setAttribute('class','defaultChecked');
-                river.setAttribute('onclick','displayRiverUpdate()');
+
+                if(riverTime == '現存'){
+                    river.setAttribute('disabled', "");
+                }
+                else{
+                    river.setAttribute('class','defaultChecked');
+                    river.setAttribute('onclick','displayRiverUpdate()');
+                }
 
                 var riverLabel = document.createElement('label');
                 riverLabel.appendChild(river);

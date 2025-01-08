@@ -35,7 +35,7 @@ function applyColorScheme() {
 function checkAll(){
     geoJsonLayer.eachLayer(layer => {
         var elem = document.getElementById(layer.feature.properties.name + layer.feature.properties.time);
-        elem.checked = true;
+        if(!elem.disabled)elem.checked = true;
         coloringRule(layer);
     });
 }
@@ -43,7 +43,7 @@ function checkAll(){
 function uncheckAll(){
     geoJsonLayer.eachLayer(layer => {
         var elem = document.getElementById(layer.feature.properties.name + layer.feature.properties.time);
-        elem.checked = false;
+        if(!elem.disabled)elem.checked = false;
         coloringRule(layer);
     });
 }
@@ -84,6 +84,3 @@ function resetRiver() {
     };
     displayRiverUpdate();
 }
-
-// 位置情報取得などの他の関数
-function getLocation() { /* ... */ }
