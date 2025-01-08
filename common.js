@@ -1,6 +1,6 @@
 let geoJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdnew.geojson';
-//let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot.geojson';
-let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot2.geojson';
+let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot.geojson';
+//let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot2.geojson';
 
 //地図の読み込み(座標は河川ごと)
 var map = L.map('map').setView(defaultPlace, defaultZ);
