@@ -3,8 +3,11 @@ let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/cr
 
 //地図の読み込み(座標は河川ごと)
 var map = L.map('map').setView(defaultPlace, defaultZ);
-L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png').addTo(map);
-map.setMaxBounds([[35.645672,139.729843],[35.709909,139.807320]]);
+//L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png').addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    attribution: '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+}).addTo(map);
+map.setMaxBounds([[35.645672,139.707843],[35.709909,139.850320]]);
 
 L.control.scale({
     imperial: false,

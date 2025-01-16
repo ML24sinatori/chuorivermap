@@ -1,6 +1,6 @@
 @charset "utf-8";
 #riverFeature{
-    width: 15em;
+    max-width: 30em;
     font-size: 1em;
     top: 10px;
     left: 10px;
@@ -31,7 +31,7 @@
     display: flex;
     animation: none;
 }
-.easy-slider{
+#easy-slider{
     display: flex;
     z-index: 1001;
     height: min(calc(20vw),calc(20vh));
@@ -96,8 +96,8 @@
     z-index: 1010;
 }
 .modal img {
-    max-width: 60%;
-    max-height: 60%;
+    max-width: 80%;
+    max-height: 80%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 .modal-close {

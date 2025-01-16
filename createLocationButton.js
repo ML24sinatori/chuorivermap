@@ -72,15 +72,15 @@ function toggleSight(showmessage = true){
     else showAlert('観光地を非表示');
 }
 
-/*
-locbtn.addEventListener('mousedown',(e)=>{
-    pushStyle(locbtn,true,isTracking);
-});
 
-locbtn.addEventListener('click',(e)=>{
-    pushStyle(locbtn,false,isTracking);
-});
-*/
+// locbtn.addEventListener('mousedown',(e)=>{
+//     pushStyle(locbtn,true,isTracking);
+// });
+
+// locbtn.addEventListener('click',(e)=>{
+//     pushStyle(locbtn,false,isTracking);
+// });
+
 
 function displaySightUpdate(thruSightButton = false){
     var btcheck = false;
@@ -145,10 +145,10 @@ function locationTracking(disabled = false, hidealert = false){
             if(urHere)map.removeLayer(urHere);
             urHere=L.marker(pos,{
                 icon: L.divIcon({
-                    html: '●',
+                    html: '',
                     className:'pinIcon',
-                    iconAnchor:   [50 / 2, 50 / 2], // point of the icon which will correspond to marker's location
-                    iconSize: [50, 50]}),
+                    iconAnchor: [10 / 2, 10 / 2], // point of the icon which will correspond to marker's location
+                    iconSize: [10, 10]}),
                 interactive: false
             }).addTo(map);
         });
