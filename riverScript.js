@@ -51,6 +51,7 @@ const modal = document.getElementById('photoModal');
 const modalImage = document.getElementById('modalImage');
 const modalClose = document.getElementById('modalClose');
 const modalCaption = document.getElementById('modalCaption');
+const modalCaptionDetail = document.getElementById('modalCaptionDetail');
 
 // モーダルを開く
 slides.forEach(slide => {
@@ -58,6 +59,7 @@ slides.forEach(slide => {
     modal.style.display = 'flex';
     modalImage.src = e.target.src;
     modalCaption.textContent = captionDict[e.target.alt];
+    modalCaptionDetail.textContent = captionDetail[e.target.alt];
   });
 });
 

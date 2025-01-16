@@ -54,6 +54,9 @@ function coloringRule(thisLayer) {
 function eraseNumber(str){
     return str.split('-')[0];
 }
+function eraseHyphen(str){
+    return str.replace('-','');
+}
 
 //地図のポップアップと挙動の設定
 let geoJsonLayer;
@@ -86,11 +89,11 @@ fetch(geoJsonURL)
 
                 var riverLabel = document.createElement('label');
                 riverLabel.appendChild(river);
-                riverLabel.appendChild(document.createTextNode(riverName));
+                riverLabel.appendChild(document.createTextNode(eraseHyphen(riverName)));
                 riverList.appendChild(riverLabel);
             }
 
-            var setContentHTML = `<b>河川名:</b> ${riverName}<br> <b>埋め立て時期:</b> ${(riverEra == null ? riverTime : riverEra)}`;
+            var setContentHTML = `<b>河川名:</b> ${eraseHyphen(riverName)}<br> <b>埋め立て時期:</b> ${(riverEra == null ? riverTime : riverEra)}`;
             if(riverTime != '現存'){
                 setContentHTML += `<br>
                 <form action="${eraseNumber(riverName)}.html" method="get">

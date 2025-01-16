@@ -17,13 +17,13 @@
 <div id="riverFeature">
   <div id="riverDescription">
     <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">築地川</span> - <span class="furigana">つきじがわ</span></span>
+      <span><span class="riverTitle">西堀留川</span> - <span class="furigana">にしほりどめがわ</span></span><!--河川ごとに-->
     </div>
     
     <p id="allBunsho">
-      <span>明石町付近から、中央区役所の前を通り、旧浜離宮庭園の東側を流れて東京湾に至る。東京オリンピックの高速道路整備以降徐々に埋め立てが進み、現在は旧浜離宮庭園の前以外は埋め立てられている。</span><br>
-      <span id="detailBunsho">明暦の大火の後の埋め立ての際の埋め残しでできた。</span>
-      <span id="detailButton" onclick="extendDetail()">▼詳細表示</span>
+      <span>日本橋川左岸にあり、本船町・小網町の間から分かれ、室町まで存在した入堀。東堀留川（堀江町入堀）と同じく旧石神井川の河口部にあたり、慶長年間の工事で伊勢町堀として整備、1883年に西堀留川に名称が変更され、翌1884年にまず奥部が埋め立てられ、関東大震災後は震災復興の区画整理で残りの区画が埋め立てられた。水路跡地はオフィスビルと道路に変わっている。</span><br>
+      <!-- <span id="detailBunsho"></span>河川ごとに
+      <span id="detailButton" onclick="extendDetail()">▼詳細表示</span> -->
     </p>
     
     <!--
@@ -41,19 +41,12 @@
 
       <button class="img-button next">><br>><br>></button>
     </div> -->
-    <div id="easy-slider">
-      <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-      <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
-      <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
-      <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-      <!-- <div class="slide"><img src="img/築地川/001700785.jpg" alt="写真1"></div>
-      <div class="slide"><img src="img/築地川/001700861.jpg" alt="写真2"></div>
-      <div class="slide"><img src="img/築地川/001703285.jpg" alt="写真3"></div>
-      <div class="slide"><img src="img/築地川/001703386.jpg" alt="写真4"></div>
-      <div class="slide"><img src="img/築地川/002266349.jpg" alt="写真5"></div>
-      <div class="slide"><img src="img/築地川/002267711.jpg" alt="写真6"></div>
-      <div class="slide"><img src="img/築地川/002630522.jpg" alt="写真7"></div>
-      <div class="slide"><img src="img/築地川/002630976.jpg" alt="写真8"></div> -->
+    <div id="easy-slider"><!--河川ごとに-->
+        <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
+        <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
+        <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
+        <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
+        <div class="slide"><img src="img/tate.jpg" alt="縦長"></div>
     </div>
   </div>
 </div>
@@ -76,11 +69,11 @@
 
 <script>
   //commonの読み込みに必要な変数だけ定義
-  var defaultPlace = [35.666830, 139.767709];
+  var defaultPlace = [35.685599,139.777837];
   var defaultZ = 15;
-  var riverNameHere = '築地川';
-  const captionDict={"写真1":"築地川の流れ(1950年製作)","写真2":"築地川公園2"};
-  const captionDetail={"写真1":"当時は……ああああああああああああああああああああああああああ"};
+  var riverNameHere = '西堀留川';
+  const captionDict={"写真1":"築地川公園1","写真2":"築地川公園2"};
+  const captionDetail={};
 </script>
 
 <script src="createControlPanel.js"></script>

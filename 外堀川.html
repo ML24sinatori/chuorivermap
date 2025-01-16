@@ -41,7 +41,7 @@
 
       <button class="img-button next">><br>><br>></button>
     </div> -->
-    <div class="easy-slider"><!--河川ごとに-->
+    <div id="easy-slider"><!--河川ごとに-->
         <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
         <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
         <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
@@ -63,6 +63,7 @@
   <span class="modal-close" id="modalClose">&times;</span>
   <img id="modalImage" alt="拡大写真">
   <p id="modalCaption"></p>
+  <p id="modalCaptionDetail"></p>
 </div>
 </body>
 
@@ -72,6 +73,7 @@
   var defaultZ = 15;
   var riverNameHere = '外堀川';
   const captionDict={"写真1":"築地川公園1","写真2":"築地川公園2"};
+  const captionDetail={};
 </script>
 
 <script src="createControlPanel.js"></script>
