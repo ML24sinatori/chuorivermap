@@ -1,5 +1,6 @@
-let geoJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot2.geojson';
-let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot.geojson';
+let geoJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/chuorivermap/smartphone/CHUORIVER.geojson';
+//let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot.geojson';
+let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/chuorivermap/smartphone/CHUORIVERDOT.geojson';
 
 //地図の読み込み(座標は河川ごと)
 var map = L.map('map').setView(defaultPlace, defaultZ);
@@ -7,7 +8,7 @@ var map = L.map('map').setView(defaultPlace, defaultZ);
 L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
     attribution: '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
 }).addTo(map);
-map.setMaxBounds([[35.645672,139.707843],[35.709909,139.850320]]);
+map.setMaxBounds([nanseiBound,hokutoBound]);
 
 L.control.scale({
     imperial: false,
@@ -131,8 +132,8 @@ fetch(geoJsonURL)
 function iconObject(s, iconType){
     s = Math.max(8,(s-12)*9);
     var newIconUrl;
-    if(iconType == 'bridge')newIconUrl='icon/bridge.png';
-    else if(iconType == 'museum')newIconUrl='icon/museum.png';
+    if(iconType == '橋')newIconUrl='icon/bridge.png';
+    else if(iconType == '博物館等')newIconUrl='icon/museum.png';
     else newIconUrl='icon/spot.png';
 
     return {
@@ -145,6 +146,10 @@ function iconObject(s, iconType){
         popupAnchor:  [0, -s / 2] // point from which the popup should open relative to the iconAnchor
     }
 };
+
+function riverInProperties(searchName,setOfName){
+    return setOfName.split('/').includes(searchName);
+}
 
 let dotJsonLayer;
 fetch(dotJsonURL)
@@ -159,17 +164,16 @@ fetch(dotJsonURL)
             
             var newMarker = layer.addTo(map);
             newMarker.setIcon(L.icon(iconObject(map.getZoom(),feature.properties.type)));
-            if(riverNameHere != 'all' && riverNameHere != feature.properties.river){
+            if(riverNameHere != 'all' && !riverInProperties(riverNameHere,feature.properties.river)){
                 newMarker.setOpacity(0.2);
             }
             newMarker.bindPopup(newpopup);
 
-            newMarker.getPopup().on('remove', function() {
-            });
+            // newMarker.getPopup().on('remove', function() {
+            // });
             
-            // クリックで選択、ダブルクリックで解除
-            layer.on('click', function() {
-            });
+            // layer.on('click', function() {
+            // });
             
             layer.on('dblclick', function() {
                 layer.closePopup();
@@ -180,25 +184,24 @@ fetch(dotJsonURL)
     else displaySightUpdate(true);
 });
 
-function onMapClick(e) {
-    geoJsonLayer.eachLayer((layer)=>{
-        layer.closePopup();
-    });
-    dotJsonLayer.eachLayer((layer)=>{
-        layer.closePopup();
-    });
-}
-map.on('click', onMapClick);
+let moveCounter = 0;
 
 map.on('moveend', function(e) {
     var z = map.getZoom();
     dotJsonLayer.eachLayer((layer)=>{
         layer.setIcon(L.icon(iconObject(z, layer.feature.properties.type)));
     });
-    if(!trackingUpdated)return;
-    var mapcoord=map.getCenter();
-    if(mapcoord.lat == trackingUpdated[0] && mapcoord.lng == trackingUpdated[1])return;
-    console.log(trackingUpdated);
-    console.log(mapcoord);
-    locationTracking(false,true);
+    if(trackingUpdated){
+        moveCounter--;
+        if(moveCounter<0)finishTracking();
+    }
+    else moveCounter=0;
+});
+map.on('click', function(e) {
+    geoJsonLayer.eachLayer((layer)=>{
+        layer.closePopup();
+    });
+    dotJsonLayer.eachLayer((layer)=>{
+        layer.closePopup();
+    });
 });

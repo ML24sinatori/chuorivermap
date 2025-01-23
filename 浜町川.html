@@ -42,18 +42,6 @@
       <button class="img-button next">><br>><br>></button>
     </div> -->
     <div id="easy-slider">
-      <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-      <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
-      <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
-      <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-      <!-- <div class="slide"><img src="img/築地川/001700785.jpg" alt="写真1"></div>
-      <div class="slide"><img src="img/築地川/001700861.jpg" alt="写真2"></div>
-      <div class="slide"><img src="img/築地川/001703285.jpg" alt="写真3"></div>
-      <div class="slide"><img src="img/築地川/001703386.jpg" alt="写真4"></div>
-      <div class="slide"><img src="img/築地川/002266349.jpg" alt="写真5"></div>
-      <div class="slide"><img src="img/築地川/002267711.jpg" alt="写真6"></div>
-      <div class="slide"><img src="img/築地川/002630522.jpg" alt="写真7"></div>
-      <div class="slide"><img src="img/築地川/002630976.jpg" alt="写真8"></div> -->
     </div>
   </div>
 </div>
@@ -79,8 +67,14 @@
   var defaultPlace = [35.689503,139.783301];
   var defaultZ = 15;
   var riverNameHere = '浜町川';
-  const captionDict={"写真1":"築地川の流れ(1950年製作)","写真2":"築地川公園2"};
-  const captionDetail={"写真1":"当時は……ああああああああああああああああああああああああああ"};
+  const capTextDict={
+    "001701371":["「復興した鞍掛橋－浜町川」（1930年頃）","関東大震災では多くの橋が崩壊し、その後の復興事業で架け替えられた。"],
+    "002265827":["「浜町川－鞍掛橋より緑橋方面を望む」（1949年頃）","ギャラリー右隣の「浜町川－埋立て中」と同じアングルと思われる。"],
+    "002265826":["「浜町川－埋立て中」（1949年頃）","中央に見えるのは下水道管。埋め立てられた浜町川の下には今でも下水道が通っている。"],
+    "002265817":["「浜町川－埋立て中」（1949年頃）","岩井橋付近。浜町川は戦災復興の一環で埋め立てられた。"],
+    "002265829":["「浜町川－埋立て後」（1949年頃）","現在の東日本橋三丁目1付近。"],
+    "001702894":["「浜町川を埋立てた公園」（1981年頃）","浜町川緑道（日本漢方医学復興之地 記念碑　付近）"],
+  };
 </script>
 
 <script src="createControlPanel.js"></script>

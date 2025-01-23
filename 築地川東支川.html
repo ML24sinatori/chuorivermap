@@ -28,11 +28,6 @@
       
       <div style="display: flex;">
         <div id="easy-slider">
-          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-          <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
-          <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
-          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-          <div class="slide"><img src="img/tate.jpg" alt="縦長"></div>
       </div>
       </div>
       
@@ -58,8 +53,14 @@
   var defaultPlace = [35.666065, 139.768696];
   var defaultZ = 15;
   var riverNameHere = '築地川東支川';
-  const captionDict={"写真1":"築地川公園1","写真2":"築地川公園2"};
-  const captionDetail={};
+  const capTextDict={
+    "001700833":["「海幸橋」（1979年頃）","河川は見えづらいが、埋め立て前であると思われる。"],
+    "001700785":["「市場橋」（1979年頃）","河川は見えづらいが、埋め立て前であると思われる。"],
+    "001702230":["「海幸橋上より市場橋を見る」（1988年頃）","製作年月は1988年とされているが、埋め立ての進行状況を鑑みると、それ以前の撮影かと思われる。"],
+    "002631190":["「築地川東支川埋立て工事」（1983年頃）","埋め立てが進行している。"],
+    "002631186":["「築地川東支川埋立て工事」（1983年頃）","左に分かれるのは南支川で、架かっているのは小田原橋。手前は埋め立てられた東支川で、右側が東支川の残存部分である。"],
+    "002631197":["「築地川東支川」（1984年頃）","中央に架かっているのは小田原橋で、その奥に進むのが南支川である。左は埋め立てられた東支川で、右側が東支川の残存部分である。"],
+  };
 </script>
 
 <script src="createControlPanel.js"></script>

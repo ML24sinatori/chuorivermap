@@ -7,6 +7,11 @@
 
 */
 
+let nanseiBound=[35.645672,139.707843];
+let hokutoBound=[35.709909,139.850320];
+// let nanseiBound=[0,0];
+// let hokutoBound=[90,180];
+
 let message = document.createElement('div');
 message.setAttribute('id','locationAlert');
 
@@ -33,7 +38,6 @@ document.body.appendChild(locbtn);
 //現在位置を取得
 var anySightDisplayed = false;
 var isTracking = false;
-var watchID;
 
 function pushStyle(btnelem, pushing, nowon){
     var col;
@@ -128,19 +132,28 @@ function showAlert(messageContent) {
 }
 var urHere;
 var trackingUpdated = null;
-function locationTracking(disabled = false, hidealert = false){
-    if(disabled)return;
-    if(isTracking){
-        navigator.geolocation.clearWatch(watchID);
-        if(urHere)map.removeLayer(urHere);
-        urHere = null;
-        trackingUpdated = null;
-        if(!hidealert)showAlert('追従を解除');
-    }
-    else{
-        watchID = navigator.geolocation.watchPosition((position) => {
-            var pos = [position.coords.latitude, position.coords.longitude];
+var watchID;
+
+function finishTracking(alert=true){
+    moveCounter=0;
+    navigator.geolocation.clearWatch(watchID);
+    if(urHere)map.removeLayer(urHere);
+    urHere = null;
+    trackingUpdated = null;
+    pushStyle(locbtn, false, false);
+    if(alert)showAlert('追従を解除');
+}
+function startTracking(){
+    watchID = navigator.geolocation.watchPosition((position) => {
+        var pos = [position.coords.latitude, position.coords.longitude];
+        if(nanseiBound[0]<=pos[0] && pos[0]<=hokutoBound[0] && nanseiBound[1]<=pos[1] && pos[1]<=hokutoBound[1]){
+            moveCounter=1;
+            //OK
+            if(!trackingUpdated){
+                showAlert('現在地を追従');
+            }
             trackingUpdated = pos;
+            pushStyle(locbtn, false, true);
             map.setView(pos);
             if(urHere)map.removeLayer(urHere);
             urHere=L.marker(pos,{
@@ -151,10 +164,23 @@ function locationTracking(disabled = false, hidealert = false){
                     iconSize: [10, 10]}),
                 interactive: false
             }).addTo(map);
-        });
-        showAlert('現在地を追従');
+        }
+        else{
+            showAlert('中央区から遠すぎます');
+            finishTracking(false);
+            return;
+        }
+    });
+}
+
+function locationTracking(){
+    if(trackingUpdated){
+        finishTracking();
+    }
+    else{
+        startTracking();
     }
     isTracking = !isTracking;
-    pushStyle(locbtn,true,isTracking);
-    setTimeout(()=>{pushStyle(locbtn,false,isTracking);},100);
+    pushStyle(locbtn,true,Boolean(trackingUpdated));
+    setTimeout(()=>{pushStyle(locbtn,false,Boolean(trackingUpdated));},100);
 }

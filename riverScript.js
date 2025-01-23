@@ -1,50 +1,23 @@
 document.title=riverNameHere+'を歩く';
 
+function insertImageAndCaption(){
+  const slider = document.getElementById('easy-slider');
+  Object.entries(capTextDict).forEach(([key,value])=>{
+    const newImgDiv=document.createElement('div');
+    newImgDiv.setAttribute('class','slide');
+    const newImg=document.createElement('img');
+    newImg.setAttribute('src','img/'+key+'.jpg');
+    newImg.setAttribute('data-srcnumber',key);
+    if(key[0]!='0')newImg.setAttribute('data-ours',true);
+    newImg.setAttribute('alt',value[0]);
+
+    newImgDiv.appendChild(newImg);
+    slider.appendChild(newImgDiv);
+  });
+}
+insertImageAndCaption();
+
 const slides = document.querySelectorAll('.slide');
-// const track = document.querySelector('.slider-track');
-// const prevButton = document.querySelector('.prev');
-// const nextButton = document.querySelector('.next');
-// const totalSlides = slides.length;
-// const slideWidth = 50; // 1スライドの幅（%）
-// let currentIndex = 1;
-
-
-// スライドアニメーション
-// function animateSlider(startOffset, endOffset) {
-//   track.style.setProperty('--start-offset', `${startOffset}%`);
-//   track.style.setProperty('--end-offset', `${endOffset}%`);
-//   track.style.animation = 'slide 0.5s ease-in-out forwards';
-// }
-
-// function moveToIndex(newIndex) {
-//   currentIndex = newIndex;
-//   const offset = -currentIndex * slideWidth;
-//   track.style.animation = 'none'; // アニメーションを一旦無効化
-//   track.style.transform = `translateX(${offset}%)`;
-// }
-
-// prevButton.addEventListener('click', () => {
-//   if (currentIndex === 0) {
-//     currentIndex = totalSlides - 2; // 最初の実スライドにジャンプ
-//   }
-//   moveToIndex(currentIndex);
-//   setTimeout(() => animateSlider(-(currentIndex + 1) * slideWidth, -currentIndex * slideWidth), 0);
-//   track.style.animation = 'none';
-//   currentIndex--;
-// });
-
-// nextButton.addEventListener('click', () => {
-//   if (currentIndex === totalSlides - 2) {
-//     currentIndex = 0; // 最初の実スライドにジャンプ
-//   }
-//   moveToIndex(currentIndex);
-//   setTimeout(() => animateSlider(-(currentIndex - 1) * slideWidth, -currentIndex * slideWidth), 0);
-//   track.style.animation = 'none';
-//   currentIndex++;
-// });
-
-// 初期化
-// moveToIndex(currentIndex);
 
 //モーダル
 const modal = document.getElementById('photoModal');
@@ -58,8 +31,8 @@ slides.forEach(slide => {
   slide.addEventListener('click', (e) => {
     modal.style.display = 'flex';
     modalImage.src = e.target.src;
-    modalCaption.textContent = captionDict[e.target.alt];
-    modalCaptionDetail.textContent = captionDetail[e.target.alt];
+    modalCaption.textContent = e.target.alt + (e.target.dataset.ours ? "(サイト管理者撮影)":"(中央区立京橋図書館所蔵)");
+    modalCaptionDetail.textContent = capTextDict[e.target.dataset.srcnumber][1];
   });
 });
 
@@ -96,8 +69,8 @@ function nearRiver(){
   }
   else{
     dotJsonLayer.eachLayer((layer)=>{
-      if(riverNameHere != layer.feature.properties.river)layer.setOpacity(0.2);
-      else layer.setOpacity(1.0);
+      if(riverInProperties(riverNameHere,feature.properties.river))layer.setOpacity(1.0);
+      else layer.setOpacity(0.2);
     });
   }
 }

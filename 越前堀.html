@@ -23,16 +23,11 @@
       <p id="allBunsho">
         <span>かつて霊岸島内に存在した、隅田川から分かれ、再び隅田川に注いでいた水路。明治期の市区改正事業で大部分は埋め立てられ道路となった上、わずかに残されていた隅田川からの分岐点付近と、隅田川への合流点付近の水面も関東大震災後埋め立てられた。</span><br>
         <span id="detailBunsho">名前の由来は、霊岸島南の葦原地を中屋敷として拝領した福井藩主松平越前守が、屋敷地の周囲三面に堀を張り巡らせたことによる。</span>
-        <span id="detailButton" onclick="extendDetail()">▼詳細表示</span> -->
+        <span id="detailButton" onclick="extendDetail()">▼詳細表示</span>
       </p>
       
       <div style="display: flex;">
         <div id="easy-slider">
-          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-          <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
-          <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
-          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-          <div class="slide"><img src="img/tate.jpg" alt="縦長"></div>
         </div>
       </div>
       
@@ -58,8 +53,11 @@
   var defaultPlace = [35.675598,139.783015];
   var defaultZ = 15;
   var riverNameHere = '越前堀';
-  const captionDict={"写真1":"築地川公園1","写真2":"築地川公園2"};
-  const captionDetail={};
+  const capTextDict={
+    "001702189":["「越前堀二丁目の河岸」（1957年頃）","埋め立て後の越前堀。右が隅田川であり、越前堀は切妻屋根の小屋のあたりを流れていたと考えられる。"],
+    "001702183":["「越前堀の入堀」（1957年頃）","大部分が埋め立てられた中、栄橋付近に僅かに残されていた水面。（現在の新川二丁目27番/29番）"],
+    "002630309":["「越前堀児童公園」（1966年頃）","関東大震災後の復興小公園として整備された公園。この船の遊具も2016年頃まで存在した。"],
+  };
 </script>
 
 <script src="createControlPanel.js"></script>

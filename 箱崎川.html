@@ -42,18 +42,6 @@
       <button class="img-button next">><br>><br>></button>
     </div> -->
     <div id="easy-slider">
-      <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-      <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
-      <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
-      <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-      <!-- <div class="slide"><img src="img/築地川/001700785.jpg" alt="写真1"></div>
-      <div class="slide"><img src="img/築地川/001700861.jpg" alt="写真2"></div>
-      <div class="slide"><img src="img/築地川/001703285.jpg" alt="写真3"></div>
-      <div class="slide"><img src="img/築地川/001703386.jpg" alt="写真4"></div>
-      <div class="slide"><img src="img/築地川/002266349.jpg" alt="写真5"></div>
-      <div class="slide"><img src="img/築地川/002267711.jpg" alt="写真6"></div>
-      <div class="slide"><img src="img/築地川/002630522.jpg" alt="写真7"></div>
-      <div class="slide"><img src="img/築地川/002630976.jpg" alt="写真8"></div> -->
     </div>
   </div>
 </div>
@@ -79,8 +67,13 @@
   var defaultPlace = [35.682904,139.789066];
   var defaultZ = 15;
   var riverNameHere = '箱崎川';
-  const captionDict={"写真1":"築地川の流れ(1950年製作)","写真2":"築地川公園2"};
-  const captionDetail={"写真1":"当時は……ああああああああああああああああああああああああああ"};
+  const capTextDict={
+    "001702864":["「新永久橋から蛎殻町を望む」（1957年頃）","新永久橋は震災で被害を受けて廃橋になった永久橋に代わって架けられた。"],
+    "002265620":["「箱崎川日本橋蛎殻町四丁目付近」（1957年頃）","奥に渋沢倉庫や箱崎川支川が見られる。"],
+    "002267058":["「土州橋開通祝賀會記念－土州橋」（1915年頃）","正面が北東に当たる。写真左側が蛎殻町、右側が箱崎町である。"],
+    "002265624":["「箱崎川　浜町川合流付近」（1957年頃）","中央奥に伸びるのが浜町川。これに架かるのが川口橋で、右側が女橋である。"],
+    "001703422":["「首都高速箱崎町ランプ」（1971年頃）","跡地は高速道路に転用された。"],
+  };
 </script>
 
 <script src="createControlPanel.js"></script>

@@ -21,7 +21,7 @@
     </div>
     
     <p id="allBunsho">
-      <span>築地川は、1657年の明暦の大火を受けて築地が埋め立てられた際に埋め残された水面の総称であり、明石堀、築地川南支川、築地川東支川を含む。本流は明石堀の西端で明石堀および南支川と別れて北に逸れる。中央区役所前で南方に左折し、コの字のような形になる。築地市場前で東支川が分流し、浜離宮恩賜庭園手前で曲がり再び隅田川に合流する。1965年、埋め立てられ首都高速道路に姿を変えている。埋め立てされるまで、舟運の拠点として水上生活する人々が存在した。</span>
+      <span>築地川は、1657年の明暦の大火を受けて築地が埋め立てられた際に埋め残された水面の総称であり、明石堀、築地川南支川、築地川東支川を含む。本流は明石堀の西端で明石堀および南支川と別れて北に逸れる。中央区役所前で南方に左折し、コの字のような形になる。築地市場前で東支川が分流し、浜離宮恩賜庭園手前で曲がり再び隅田川に合流する。1965年、埋め立てられ首都高速道路に姿を変えている。</span>
       <!-- <span id="detailBunsho">明暦の大火の後の埋め立ての際の埋め残しでできた。</span>
       <span id="detailButton" onclick="extendDetail()">▼詳細表示</span> -->
     </p>
@@ -42,18 +42,6 @@
       <button class="img-button next">><br>><br>></button>
     </div> -->
     <div id="easy-slider">
-      <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-      <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
-      <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
-      <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-      <!-- <div class="slide"><img src="img/築地川/001700785.jpg" alt="写真1"></div>
-      <div class="slide"><img src="img/築地川/001700861.jpg" alt="写真2"></div>
-      <div class="slide"><img src="img/築地川/001703285.jpg" alt="写真3"></div>
-      <div class="slide"><img src="img/築地川/001703386.jpg" alt="写真4"></div>
-      <div class="slide"><img src="img/築地川/002266349.jpg" alt="写真5"></div>
-      <div class="slide"><img src="img/築地川/002267711.jpg" alt="写真6"></div>
-      <div class="slide"><img src="img/築地川/002630522.jpg" alt="写真7"></div>
-      <div class="slide"><img src="img/築地川/002630976.jpg" alt="写真8"></div> -->
     </div>
   </div>
 </div>
@@ -79,8 +67,15 @@
   var defaultPlace = [35.666830, 139.767709];
   var defaultZ = 15;
   var riverNameHere = '築地川';
-  const captionDict={"写真1":"築地川の流れ(1950年製作)","写真2":"築地川公園2"};
-  const captionDetail={"写真1":"当時は……ああああああああああああああああああああああああああ"};
+  
+  const capTextDict={
+    "002267711":["「築地川－京橋區役所屋上より下流を望む」（1930年頃）","京橋区役所は今の中央区役所に当たる。手前から順に、亀井橋、祝橋、万年橋。"],
+    "001703386":["「采女橋」（1956年頃）","現在は采女橋公園となっている。"],
+    "001700861":["「亀井橋－築地警察、区役所」（1957年頃）",""],
+    "001703285":["「高速道路築造工事－変貌する築地川－」","工事中の亀井橋の写真。三吉橋から大手門橋までは早くに埋め立てられた。"],
+    "002630522":["「中央区役所旧庁舎全景」（1964年頃）","三吉橋。手前（連絡運河）と右側（築地川）は高速道路になっているが、左側（築地川）はまだ水面が残っている。"],
+    "tsukiji1":["築地川公園",""],
+  };
 </script>
 
 <script src="createControlPanel.js"></script>
