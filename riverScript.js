@@ -6,7 +6,7 @@ function insertImageAndCaption(){
     const newImgDiv=document.createElement('div');
     newImgDiv.setAttribute('class','slide');
     const newImg=document.createElement('img');
-    newImg.setAttribute('src','img/'+key+'.jpg');
+    newImg.setAttribute('src','img/'+key+'.JPG');
     newImg.setAttribute('data-srcnumber',key);
     if(key[0]!='0')newImg.setAttribute('data-ours',true);
     newImg.setAttribute('alt',value[0]);
