@@ -97,7 +97,7 @@
 }
 .modal img {
     max-width: 90vw;
-    max-height: 90vh;
+    max-height: 80vh;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 .modal-close {
@@ -111,11 +111,13 @@
 #modalCaption {
     color: white;
     font-weight: bold;
+    max-width: 90vw;
     margin-bottom: 0;
 }
 #modalCaptionDetail{
     color: white;
     margin: 0;
+    margin-bottom: 10px;
     font-size: small;
     max-width: 90vw;
 }

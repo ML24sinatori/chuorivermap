@@ -31,7 +31,7 @@ slides.forEach(slide => {
   slide.addEventListener('click', (e) => {
     modal.style.display = 'flex';
     modalImage.src = e.target.src;
-    modalCaption.textContent = e.target.alt + (e.target.dataset.ours ? "(サイト管理者撮影)":"(中央区立京橋図書館所蔵)");
+    modalCaption.textContent = e.target.alt + (e.target.dataset.ours ? "（サイト管理者撮影）":"（中央区立京橋図書館所蔵）");
     modalCaptionDetail.textContent = capTextDict[e.target.dataset.srcnumber][1];
   });
 });
