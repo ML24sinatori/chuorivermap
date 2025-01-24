@@ -17,7 +17,7 @@
 <div id="riverFeature">
   <div id="riverDescription">
     <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">東堀留川</span> - <span class="furigana">ひがしほりどめがわ</span></span><!--河川ごとに-->
+      <span><span class="riverTitle">東堀留川</span> - <span class="furiganasmall">ひがしほりどめがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
     </div>
     
     <p id="allBunsho">
@@ -67,6 +67,7 @@
   var defaultPlace = [35.685739,139.779668];
   var defaultZ = 15;
   var riverNameHere = '東堀留川';
+  var tallTitle;
   const capTextDict={
     "001700812":["「親父橋」（1916年頃）","「親父」と呼ばれた元吉原遊郭の創始者・庄司甚右衛門が元吉原への道にあるこの地に橋を架けたと伝わる。"],
     "002267197":["「復興局橋梁設計圖集－親父橋　第1輯」（1928年頃）","関東大震災後に架け替えられた。"],

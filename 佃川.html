@@ -17,7 +17,7 @@
   <div id="riverFeature">
     <div id="riverDescription">
       <div style="display: flex; justify-content: space-between;">
-        <span><span class="riverTitle">佃川</span> - <span class="furigana">つくだがわ</span></span>
+        <span><span class="riverTitle">佃川</span> - <span class="furigana">つくだがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
       </div>
       
       <p id="allBunsho">
@@ -53,6 +53,7 @@
   var defaultPlace = [35.665115,139.783924];
   var defaultZ = 15;
   var riverNameHere = '佃川';
+  var tallTitle;
   const capTextDict={
     "001700888":["「佃橋から佃島9,10番地の河岸を見る」（1956年頃）","佃川にかかっていた佃橋から望む佃。1965年に埋め立てられた佃川埋立前の画像。"],
     "002265768":["「佃川沿いの佃島」（1957年頃）","1965年に埋め立てられた佃川埋立前の画像。"],

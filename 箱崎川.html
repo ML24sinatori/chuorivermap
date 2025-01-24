@@ -17,7 +17,7 @@
 <div id="riverFeature">
   <div id="riverDescription">
     <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">箱崎川</span> - <span class="furigana">はこざきがわ</span></span>
+      <span><span class="riverTitle">箱崎川</span> - <span class="furigana">はこざきがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
     </div>
     
     <p id="allBunsho">
@@ -67,6 +67,7 @@
   var defaultPlace = [35.682904,139.789066];
   var defaultZ = 15;
   var riverNameHere = '箱崎川';
+  var tallTitle;
   const capTextDict={
     "002267058":["「土州橋開通祝賀會記念－土州橋」（1915年頃）","正面が北東に当たる。写真左側が蛎殻町、右側が箱崎町である。"],
     "001702864":["「新永久橋から蛎殻町を望む」（1957年頃）","新永久橋は震災で被害を受けて廃橋になった永久橋に代わって架けられた。"],

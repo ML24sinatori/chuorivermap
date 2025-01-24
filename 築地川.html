@@ -17,7 +17,7 @@
 <div id="riverFeature">
   <div id="riverDescription">
     <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">築地川</span> - <span class="furigana">つきじがわ</span></span>
+      <span><span class="riverTitle">築地川</span> - <span class="furigana">つきじがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
     </div>
     
     <p id="allBunsho">
@@ -67,7 +67,7 @@
   var defaultPlace = [35.666830, 139.767709];
   var defaultZ = 15;
   var riverNameHere = '築地川';
-  
+  var tallTitle;
   const capTextDict={
     "002267711":["「築地川－京橋區役所屋上より下流を望む」（1930年頃）","京橋区役所は今の中央区役所に当たる。手前から順に、亀井橋、祝橋、万年橋。"],
     "001703386":["「采女橋」（1956年頃）","現在は采女橋公園となっている。"],

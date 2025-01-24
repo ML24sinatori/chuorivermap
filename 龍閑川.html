@@ -17,7 +17,7 @@
 <div id="riverFeature">
   <div id="riverDescription">
     <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">龍閑川</span> - <span class="furigana">りゅうかんがわ</span></span>
+      <span><span class="riverTitle">龍閑川</span> - <span class="furigana">りゅうかんがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
     </div>
     
     <p id="allBunsho">
@@ -67,6 +67,7 @@
   var defaultPlace = [35.691014,139.775634];
   var defaultZ = 15;
   var riverNameHere = '龍閑川';
+  var tallTitle;
   const capTextDict={
     "001700782":["「今川橋－竜閑川室町」（1916年頃）","今川橋は日本橋から北に向かう際に最初に渡る橋であり、多くの人でにぎわった。"],
     "001989453":["「龍閑川－地蔵橋より東仲の橋を望む」（1948年頃）","埋め立て直前の様子。"],

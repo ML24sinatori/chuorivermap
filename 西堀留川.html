@@ -17,7 +17,7 @@
 <div id="riverFeature">
   <div id="riverDescription">
     <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">西堀留川</span> - <span class="furigana">にしほりどめがわ</span></span><!--河川ごとに-->
+      <span><span class="riverTitle">西堀留川</span> - <span class="furiganasmall">にしほりどめがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
     </div>
     
     <p id="allBunsho">
@@ -67,6 +67,7 @@
   var defaultPlace = [35.685599,139.777837];
   var defaultZ = 15;
   var riverNameHere = '西堀留川';
+  var tallTitle;
   const capTextDict={
     "001702830":["「西堀留川周辺」（1900年頃）","埋め立て前の西堀留川。"],
     "002267684":["「日本橋區江戸橋方面より親父橋を望む－第十四地區及第二十一地區」（1930年頃）","中央に写る江戸橋の少し奥に、埋め立て後の西堀留川が見える。"],

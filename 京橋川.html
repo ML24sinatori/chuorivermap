@@ -17,7 +17,7 @@
   <div id="riverFeature">
     <div id="riverDescription">
       <div style="display: flex; justify-content: space-between;">
-        <span><span class="riverTitle">京橋川</span> - <span class="furigana">きょうばしがわ</span></span>
+        <span><span class="riverTitle">京橋川</span> - <span class="furigana">きょうばしがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
       </div>
       
       <p id="allBunsho">
@@ -53,6 +53,7 @@
   var defaultPlace = [35.674970,139.769361];
   var defaultZ = 15;
   var riverNameHere = '京橋川';
+  var tallTitle;
   const capTextDict={
     "002267714":["「京橋川改修工事中」（1929年頃）","京橋周辺の震災復興の図。"],
     "001701313":["「京橋」","奥に映るのが京橋である。"],

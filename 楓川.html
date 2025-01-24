@@ -17,7 +17,7 @@
   <div id="riverFeature">
     <div id="riverDescription">
       <div style="display: flex; justify-content: space-between;">
-        <span><span class="riverTitle">楓川</span> - <span class="furigana">かえでがわ</span></span>
+        <span><span class="riverTitle">楓川</span> - <span class="furigana">かえでがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
       </div>
       
       <p id="allBunsho">
@@ -53,6 +53,7 @@
   var defaultPlace = [35.679011,139.775534];
   var defaultZ = 15;
   var riverNameHere = '楓川';
+  var tallTitle;
   const capTextDict={
     "002267712":["「楓川－千代田橋より上流を望む」（年頃）","楓川は千代田橋で永代通りと交差した。"],
     "001703228":["「楓川を疾るモーターボート」（1955年頃）",""],

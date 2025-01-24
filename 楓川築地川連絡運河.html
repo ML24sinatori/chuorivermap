@@ -17,7 +17,7 @@
   <div id="riverFeature">
     <div id="riverDescription">
       <div style="display: flex; justify-content: space-between;">
-        <span><span class="riverTitle">楓川築地川連絡運河</span> <br> <span class="furiganasmall">かえでがわ つきじがわ れんらくうんが</span></span>
+        <span><span class="riverTitle">楓川築地川連絡運河</span> <br> <span class="furiganasmall">かえでがわつきじがわれんらくうんが</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
       </div>
       
       <p id="allBunsho">
@@ -53,7 +53,7 @@
   var defaultPlace = [35.672550,139.772272];
   var defaultZ = 15;
   var riverNameHere = '楓川築地川連絡運河';
-  const captionDict={"写真1":"築地川公園1","写真2":"築地川公園2"};
+  var tallTitle=true;
   const capTextDict={
     "002267710":["「新鑿工事中の築地川・楓川連絡運河」（1929年頃）","楓川築地川連絡運河は関東大震災後の復興事業として開削された。"],
     "001700608":["「京橋川と楓川築地川連絡運河」（1960年頃）","左側が楓川築地川連絡運河で、右側は京橋川。中央に写るのは京橋電話交換局で、跡地には現在「自動電話交換発祥の地」の碑がある。"],

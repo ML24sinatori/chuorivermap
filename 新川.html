@@ -17,7 +17,7 @@
   <div id="riverFeature">
     <div id="riverDescription">
       <div style="display: flex; justify-content: space-between;">
-        <span><span class="riverTitle">新川</span> - <span class="furigana">しんかわ</span></span>
+        <span><span class="riverTitle">新川</span> - <span class="furigana">しんかわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
       </div>
       
       <p id="allBunsho">
@@ -53,6 +53,7 @@
   var defaultPlace = [35.676493,139.784431];
   var defaultZ = 15;
   var riverNameHere = '新川';
+  var tallTitle;
   const capTextDict={
     "001702206":["「新川」（1907年頃）","新川沿いには、江戸～大正期に酒問屋が集積し多くの老舗が存在し繁栄した。現在も新川大神宮は酒問屋の守り神として知られる。"],
     "001702199":["「新川酒問屋街」（1935年頃）","江戸・東京随一の酒問屋街として名を馳せた新川一帯だが、関東大震災・第二次大戦の結果衰退・全滅した。"],

@@ -17,7 +17,7 @@
 <div id="riverFeature">
   <div id="riverDescription">
     <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">汐留川</span> - <span class="furigana">しおどめがわ</span></span>
+      <span><span class="riverTitle">汐留川</span> - <span class="furigana">しおどめがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
     </div>
     
     <p id="allBunsho">
@@ -67,11 +67,12 @@
   var defaultPlace = [35.667434,139.761186];
   var defaultZ = 15;
   var riverNameHere = '汐留川';
+  var tallTitle;
   const capTextDict={
     "002266398":["「建築写真類聚 官衙学校－遞信省」（1912年頃）","埋め立て前の汐留川の写真。"],
     "001701163":["「関東大震災後の新橋」（1923年頃）","埋め立て前、震災直後の汐留川。"],
     "002266082":["「汐留川跡　高速道路建設工事」（1961年頃）","埋め立て後高速道路建設作業中の汐留川。"],
-    "002630047":["「水上生活者」（1966年頃）","汐留川の埋め立てられなかった区間。"],
+    "002630047":["「水上生活者」（1966年頃）","汐留川に限らず、東京の河川には舟運の拠点として水上生活する人々が存在した。"],
     "002631224":["「汐留川」（1973年頃）","汐留川の埋め立てられなかった区間。"],
   };
 </script>

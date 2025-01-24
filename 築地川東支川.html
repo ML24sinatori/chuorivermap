@@ -17,7 +17,7 @@
   <div id="riverFeature">
     <div id="riverDescription">
       <div style="display: flex; justify-content: space-between;">
-        <span><span class="riverTitle">築地川東支川</span> <br> <span class="furiganasmall">つきじがわひがししせん</span></span>
+        <span><span class="riverTitle">築地川東支川</span> <br> <span class="furiganasmall">つきじがわひがししせん</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
       </div>
       
       <p id="allBunsho">
@@ -53,6 +53,7 @@
   var defaultPlace = [35.666065, 139.768696];
   var defaultZ = 15;
   var riverNameHere = '築地川東支川';
+  var tallTitle=true;
   const capTextDict={
     "001700833":["「海幸橋」（1979年頃）","河川は見えづらいが、埋め立て前であると思われる。"],
     "001700785":["「市場橋」（1979年頃）","河川は見えづらいが、埋め立て前であると思われる。"],

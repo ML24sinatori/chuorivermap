@@ -17,7 +17,7 @@
   <div id="riverFeature">
     <div id="riverDescription">
       <div style="display: flex; justify-content: space-between;">
-        <span><span class="riverTitle">明石堀</span> - <span class="furigana">あかしぼり</span></span>
+        <span><span class="riverTitle">明石堀</span> - <span class="furigana">あかしぼり</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
       </div>
       
       <p id="allBunsho">
@@ -53,6 +53,7 @@
   var defaultPlace = [35.666286,139.776664];
   var defaultZ = 15;
   var riverNameHere = '明石堀';
+  var tallTitle;
   const capTextDict={
     "002266143":["「明石堀」（1955年頃）",""],
     "001702124":["「[航空写真]明石町付近」","撮影は1958年より前とされる(引用元より)。中央に架かるのが新栄橋。"],

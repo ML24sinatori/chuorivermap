@@ -17,7 +17,7 @@
   <div id="riverFeature">
     <div id="riverDescription">
       <div style="display: flex; justify-content: space-between;">
-        <span><span class="riverTitle">築地川南支川</span> <br> <span class="furiganasmall">つきじがわみなみしせん</span></span>
+        <span><span class="riverTitle">築地川南支川</span> <br> <span class="furiganasmall">つきじがわみなみしせん</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
       </div>
       
       <p id="allBunsho">
@@ -53,6 +53,7 @@
   var defaultPlace = [35.666830, 139.767709];
   var defaultZ = 15;
   var riverNameHere = '築地川南支川';
+  var tallTitle=true;
   const capTextDict={
     "001989643":["「江戸土産－築地西本願寺　上」","江戸時代から描かれていた。"],
     "001988158":["「聖路加病院の見える場所」（1962年頃）","暁橋の向こうに聖路加病院が映る。"],

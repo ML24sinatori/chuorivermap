@@ -17,7 +17,7 @@
 <div id="riverFeature">
   <div id="riverDescription">
     <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">外堀川</span> - <span class="furigana">そとぼりがわ</span></span><!--河川ごとに-->
+      <span><span class="riverTitle">外堀川</span> - <span class="furigana">そとぼりがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
     </div>
     
     <p id="allBunsho">
@@ -67,6 +67,7 @@
   var defaultPlace = [35.676571, 139.765649];
   var defaultZ = 15;
   var riverNameHere = '外堀川';
+  var tallTitle;
   const capTextDict={
     "002267708":["「常盤橋遠景－明治七年頃寫眞」（1874年頃）","奥から右に流れるのが日本橋川、手前が外堀川である。"],
     "001701696":["「日本銀行」（1897年頃）","日本銀行が現在の位置に移転したのは1896年。この写真はその直後のものである。手前が外堀川、左右に横切るのが日本橋川。"],

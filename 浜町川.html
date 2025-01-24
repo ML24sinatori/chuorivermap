@@ -17,7 +17,7 @@
 <div id="riverFeature">
   <div id="riverDescription">
     <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">浜町川</span> - <span class="furigana">はまちょうがわ</span></span>
+      <span><span class="riverTitle">浜町川</span> - <span class="furigana">はまちょうがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
     </div>
     
     <p id="allBunsho">
@@ -67,6 +67,7 @@
   var defaultPlace = [35.689503,139.783301];
   var defaultZ = 15;
   var riverNameHere = '浜町川';
+  var tallTitle;
   const capTextDict={
     "001701371":["「復興した鞍掛橋－浜町川」（1930年頃）","関東大震災では多くの橋が崩壊し、その後の復興事業で架け替えられた。"],
     "002265827":["「浜町川－鞍掛橋より緑橋方面を望む」（1949年頃）","ギャラリー右隣の「浜町川－埋立て中」と同じアングルと思われる。"],

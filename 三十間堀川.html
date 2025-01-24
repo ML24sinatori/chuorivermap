@@ -17,7 +17,7 @@
   <div id="riverFeature">
     <div id="riverDescription">
       <div style="display: flex; justify-content: space-between;">
-        <span><span class="riverTitle">三十間堀川</span> - <span class="furiganasmall">さんじっけんぼりがわ</span></span>
+        <span><span class="riverTitle">三十間堀川</span> <br> <span class="furiganasmall">さんじっけんぼりがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
       </div>
       
       <p id="allBunsho">
@@ -53,6 +53,7 @@
   var defaultPlace = [35.670368,139.766235];
   var defaultZ = 15;
   var riverNameHere = '三十間堀川';
+  var tallTitle=true;
   const capTextDict={
     "001701713":["「三原橋」（1905年頃）","埋め立て前の三十間堀川。"],
     "002266405":["「建築写真類聚 橋梁 巻二－木挽橋」（1912年頃）","埋め立て前の三十間堀川。"],

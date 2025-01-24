@@ -17,7 +17,7 @@
   <div id="riverFeature">
     <div id="riverDescription">
       <div style="display: flex; justify-content: space-between;">
-        <span><span class="riverTitle">桜川</span> - <span class="furigana">さくらがわ</span></span>
+        <span><span class="riverTitle">桜川</span> - <span class="furigana">さくらがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
       </div>
       
       <p id="allBunsho">
@@ -53,6 +53,7 @@
   var defaultPlace = [35.673715,139.776757];
   var defaultZ = 15;
   var riverNameHere = '桜川';
+  var tallTitle=false;
   const capTextDict={
     "002630107":["「桜川」（1969年頃）","手前が八丁堀橋、奥が稲荷橋。"],
     "002630105":["「桜川(埋立て前)」（1969年頃）","中ノ橋側から八丁堀橋を臨む。"],
