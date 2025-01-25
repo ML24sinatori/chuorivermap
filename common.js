@@ -1,5 +1,4 @@
 let geoJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/chuorivermap/smartphone/CHUORIVER.geojson';
-//let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/mapdata/main/crdot.geojson';
 let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/chuorivermap/smartphone/CHUORIVERDOT.geojson';
 
 //地図の読み込み(座標は河川ごと)
@@ -56,6 +55,7 @@ function eraseNumber(str){
     return str.split('-')[0];
 }
 function eraseHyphen(str){
+    console.log(str);
     return str.replace('-','');
 }
 
@@ -151,16 +151,50 @@ function riverInProperties(searchName,setOfName){
     return setOfName.split('/').includes(searchName);
 }
 
+//モーダル
+const modal = document.getElementById('photoModal');
+const modalImage = document.getElementById('modalImage');
+const modalClose = document.getElementById('modalClose');
+const modalCaption = document.getElementById('modalCaption');
+const modalCaptionDetail = document.getElementById('modalCaptionDetail');
+
+function modalOpen(num,title){
+    modal.style.display = 'flex';
+    modalImage.src = 'img/'+num+'.JPG';
+    modalCaption.textContent = title + (num[0]!='0' ? "（サイト管理者撮影）":"（中央区立京橋図書館所蔵）");
+    modalCaptionDetail.textContent = "";
+}
+
+// モーダルを閉じる
+modal.addEventListener('click', (e) => {
+    if (e.target === modal || e.target === modalClose) {
+    modal.style.display = 'none';
+    }
+});
+
 let dotJsonLayer;
 fetch(dotJsonURL)
 .then(response => response.json())
 .then(data => {
     dotJsonLayer = L.geoJSON(data, {
         onEachFeature: (feature, layer) => {
+            var setContentHTML=feature.properties.name;
+            if(feature.properties.time){
+                var timeList=feature.properties.time.split('/');
+
+                if(timeList.length==1) setContentHTML+=`<br>時期：${timeList[0]}`;
+                else setContentHTML+=`<br>時期：${timeList[0]}～${timeList[timeList.length-1]}`;
+            }
+            var imageNumber=feature.properties.image;
+            var imageTitle=feature.properties.title;
+            if(imageNumber){
+                setContentHTML+=`<br><img class="popupImg" src="img/${imageNumber}.JPG" alt="${imageTitle}" onclick="modalOpen(${"'"+imageNumber+"','"+imageTitle+"'"})">`;
+            }
+            console.log(setContentHTML);
             var newpopup = L.popup({
                 closeOnClick: false,
                 autoClose: false
-            }).setContent(feature.properties.name);
+            }).setContent(setContentHTML);
             
             var newMarker = layer.addTo(map);
             newMarker.setIcon(L.icon(iconObject(map.getZoom(),feature.properties.type)));
@@ -205,3 +239,81 @@ map.on('click', function(e) {
         layer.closePopup();
     });
 });
+
+var bridgeDict={
+    "001700597":["白魚橋"],
+    "001700600":["松幡橋"],
+    "001700606":["海運橋"],
+    "001700765":["朝日橋"],
+    "001700776":["荒布橋"],
+    "001700778":["永久橋"],
+    "001700782":["今川橋"],
+    "001700812":["親父橋"],
+    "001700826":["女橋"],
+    "001700830":["鍛冶橋"],
+    "001700831":["蛎浜橋"],
+    "001700864":["兜橋"],
+    "001700865":["紀伊国橋"],
+    "001701214":["新幸橋"],
+    "001701362":["川口橋"],
+    "001701374":["呉服橋"],
+    "001701378":["桜橋"],
+    "001701380":["思案橋"],
+    "001701398":["新橋"],
+    "001701412":["新場橋"],
+    "001701413":["新場橋"],
+    "001701415":["有楽橋"],
+    "001701423":["数寄屋橋"],
+    "001701430":["千代田橋"],
+    "001701441":["土州橋"],
+    "001701445":["三吉橋"],
+    "001701702":["丸ノ内橋"],
+    "001701718":["八重洲橋"],
+    "001701731":["新桜橋"],
+    "001701843":["暁橋"],
+    "001701988":["龍閑橋"],
+    "001702863":["新永久橋"],
+    "001703229":["新橋"],
+    "001703375":["新京橋"],
+    "001703377":["城辺橋"],
+    "001703381":["炭屋橋"],
+    "001989460":["火除橋"],
+    "001989463":["甚兵衛橋"],
+    "001989481":["新川橋(二ノ橋)"],
+    "001989483":["三ノ橋"],
+    "001989488":["萬橋"],
+    "002265814":["柳原橋"],
+    "002265820":["岩井橋"],
+    "002265823":["大和橋"],
+    "002265825":["橋本橋"],
+    "002265827":["緑橋"],
+    "002265830":["千鳥橋"],
+    "002265842":["栄橋"],
+    "002266094":["明治橋"],
+    "002266097":["小川橋"],
+    "002266112":["箱崎橋"],
+    "002266184":["菖蒲橋"],
+    "002266363":["千代橋"],
+    "002266376":["千代田橋"],
+    "002266378":["備前橋"],
+    "002266402":["起生橋"],
+    "002266405":["木挽橋"],
+    "002266407":["豊玉橋"],
+    "002266751":["三原橋"],
+    "002266762":["萬年橋"],
+    "002266773":["難波橋"],
+    "002267197":["親父橋"],
+    "002267198":["兜橋"],
+    "002267212":["門跡橋"],
+    "002267242":["東新川橋"],
+    "002267248":["土橋"],
+    "002267269":["弾正橋"],
+    "002267279":["鞍掛橋"],
+    "002267653":["采女橋"],
+    "002267683":["蓬莱橋"],
+    "002267702":["開国橋"],
+    "002267707":["尾張橋"],
+    "002268243":["京橋"],
+    "002630084":["築地橋"],
+    "002668226":["男橋"],
+};

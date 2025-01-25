@@ -1,12 +1,5 @@
 document.title=riverNameHere+'を歩く';
 
-//モーダル
-const modal = document.getElementById('photoModal');
-const modalImage = document.getElementById('modalImage');
-const modalClose = document.getElementById('modalClose');
-const modalCaption = document.getElementById('modalCaption');
-const modalCaptionDetail = document.getElementById('modalCaptionDetail');
-
 function insertImageAndCaption(){
   const slider = document.getElementById('easy-slider');
 
@@ -29,13 +22,6 @@ function insertImageAndCaption(){
   });
 }
 insertImageAndCaption();
-
-// モーダルを閉じる
-modal.addEventListener('click', (e) => {
-  if (e.target === modal || e.target === modalClose) {
-    modal.style.display = 'none';
-  }
-});
 
 var isDetailOpened = false;
 var isDescriptionOpened = true;
