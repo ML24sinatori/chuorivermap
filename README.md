@@ -1,5 +1,7 @@
 ### かわるばむ@中央区 について
-サイトはこちら[https://ml24sinatori.github.io/chuorivermap/index]
+表示サイトはこちら： https://ml24sinatori.github.io/chuorivermap/index
+
+かわるばむ@中央区 は(ここに説明を書く)
 
 ### 画像の利用について
 
