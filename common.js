@@ -161,7 +161,7 @@ const modalCaptionDetail = document.getElementById('modalCaptionDetail');
 function modalOpen(num,title){
     modal.style.display = 'flex';
     modalImage.src = 'img/'+num+'.JPG';
-    modalCaption.textContent = title + (num[0]!='0' ? "（サイト管理者撮影）":"（中央区立京橋図書館所蔵）");
+    modalCaption.textContent = title + (num[0]!='0' ? "（サイト管理者撮影）":"（写真提供：中央区立京橋図書館）");
     modalCaptionDetail.textContent = "";
 }
 
