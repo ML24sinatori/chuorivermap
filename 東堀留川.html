@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<div id="map"></div>
+
+<div id="textSection">
+<div id="riverFeature">
+  <div id="riverDescription">
+    <div style="display: flex; justify-content: space-between;">
+      <span><span class="riverTitle">東堀留川</span> - <span class="furiganasmall">ひがしほりどめがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
+    </div>
+    
+    <p id="allBunsho">
+      <span>日本橋左岸にあり、小網町から分かれ堀留町まで存在した入堀。西堀留川（伊勢町堀）と同じく旧石神井川の河口部にあたり、慶長年間の工事で堀江町入堀として整備された。1883年には東堀留川に名称が変更され、その後、関東大震災復興の運河改修工事で北側が埋め立てられ、戦後には戦災残土処理で残りの区間も埋め立てられた。水路跡は道路が少し盛り上がっており、左に大きくカーブしているのでわかりやすい。</span><br>
+      <!-- <span id="detailBunsho"></span>河川ごとに
+      <span id="detailButton" onclick="extendDetail()">▼詳細表示</span> -->
+    </p>
+    
+    <!--
+    <div><button class="img-button prev"><<br><<br><</button>
+      <div class="slider-container">
+        <div class="slider-track">
+          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
+          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
+          <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
+          <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
+          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
+          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
+        </div>
+      </div>
+
+      <button class="img-button next">><br>><br>></button>
+    </div> -->
+    <div id="easy-slider">
+    </div>
+  </div>
+</div>
+<form action="index.html" method="get">
+  <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
+</form>
+<details id="controlPanel" class="classControlPanel"><summary class="showDetails">詳細な表示設定</summary>
+  <div id="innerControlPanel"></div>
+</details>
+<form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
+  <button type="submit" class="largebtn">利用規約</button>
+</form>
+</div>
+
+<!-- モーダル -->
+<div class="modal" id="photoModal">
+  <span class="modal-close" id="modalClose">&times;</span>
+  <img id="modalImage" alt="拡大写真">
+  <p id="modalCaption"></p>
+  <p id="modalCaptionDetail"></p>
+</div>
+</body>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.685739,139.779668];
+  var defaultZ = 15;
+  var riverNameHere = '東堀留川';
+  var tallTitle;
+  const capTextDict={
+    "001700812":["「親父橋」（1916年頃）","「親父」と呼ばれた元吉原遊郭の創始者・庄司甚右衛門が元吉原への道にあるこの地に橋を架けたと伝わる。"],
+    "002267197":["「復興局橋梁設計圖集－親父橋　第1輯」（1928年頃）","関東大震災後に架け替えられた。"],
+    "001989487":["「東堀留川－萬橋より親父橋」（1948年頃）","東堀留川沿いは江戸期以来舟運の荷揚場であり倉庫群が存在したが、往時の面影が残る。"],
+    "001703096":["「東堀留川の埋立工事」","東堀留川の埋め立ては1949年。写真はその当時のものと考えられる。"],
+    "001989493":["「東堀留川－埋立作業状況小網橋附近　其ノ1」（1948年頃）",""],
+    "higashihori1":["中央区立堀留児童公園","公園内には川を模した水路が設置され、東堀留川の歴史を伝える。写真は2023年9月撮影（当時は工事中）。"],
+  };
+</script>
+
+<script src="createControlPanel.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>

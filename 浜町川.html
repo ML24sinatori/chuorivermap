@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<div id="map"></div>
+
+<div id="textSection">
+<div id="riverFeature">
+  <div id="riverDescription">
+    <div style="display: flex; justify-content: space-between;">
+      <span><span class="riverTitle">浜町川</span> - <span class="furigana">はまちょうがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
+    </div>
+    
+    <p id="allBunsho">
+      <span>箱崎川から北西に向けて龍閑川まで（後に神田川まで）繋がっていた水路。江戸初期（元和年間）に開削が行われ、市街地発展とともに水路の拡幅・延長が続けられ龍閑川へ合流し、明治時代の1883年には神田川にまで延長された。戦後にその役目を終え、1948年には埋め立てが開始され、1972年には全域の埋め立てが完了した。現在、水路跡は浜町緑道や細い路地となっている。</span>
+      <!-- <span id="detailBunsho"></span>
+      <span id="detailButton" onclick="extendDetail()">▼詳細表示</span> -->
+    </p>
+    
+    <!--
+    <div><button class="img-button prev"><<br><<br><</button>
+      <div class="slider-container">
+        <div class="slider-track">
+          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
+          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
+          <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
+          <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
+          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
+          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
+        </div>
+      </div>
+
+      <button class="img-button next">><br>><br>></button>
+    </div> -->
+    <div id="easy-slider">
+    </div>
+  </div>
+</div>
+<form action="index.html" method="get">
+  <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
+</form>
+<details id="controlPanel" class="classControlPanel"><summary class="showDetails">詳細な表示設定</summary>
+  <div id="innerControlPanel"></div>
+</details>
+<form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
+  <button type="submit" class="largebtn">利用規約</button>
+</form>
+</div>
+
+<!-- モーダル -->
+<div class="modal" id="photoModal">
+  <span class="modal-close" id="modalClose">&times;</span>
+  <img id="modalImage" alt="拡大写真">
+  <p id="modalCaption"></p>
+  <p id="modalCaptionDetail"></p>
+</div>
+</body>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.689503,139.783301];
+  var defaultZ = 15;
+  var riverNameHere = '浜町川';
+  var tallTitle;
+  const capTextDict={
+    "001701371":["「復興した鞍掛橋－浜町川」（1930年頃）","関東大震災では多くの橋が崩壊し、その後の復興事業で架け替えられた。"],
+    "002265827":["「浜町川－鞍掛橋より緑橋方面を望む」（1949年頃）","ギャラリー右隣の「浜町川－埋立て中」と同じアングルと思われる。"],
+    "002265826":["「浜町川－埋立て中」（1949年頃）","中央に見えるのは下水道管。埋め立てられた浜町川の下には今でも下水道が通っている。"],
+    "002265817":["「浜町川－埋立て中」（1949年頃）","岩井橋付近。浜町川は戦災復興の一環で埋め立てられた。"],
+    "002265829":["「浜町川－埋立て後」（1949年頃）","現在の東日本橋三丁目1付近。"],
+    "001702894":["「浜町川を埋立てた公園」（1981年頃）","浜町川緑道（日本漢方医学復興之地 記念碑）付近"],
+    "hamacho1":["都有地（水道用地）となった浜町川（千代田区東神田1丁目6）","ビルとビルの間に細く長く続く道は、浜町川の面影を今なおとどめる。"],
+    "hamacho2":["浜町川緑道と甘酒横丁","甘酒横丁は明治座の観劇客で賑わってきた商店街であり、途中で浜町川と交差していた。"],
+  };
+</script>
+
+<script src="createControlPanel.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>

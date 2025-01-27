@@ -1,0 +1,84 @@
+@charset "utf-8";
+#riverFeature{
+    max-width: 30em;
+    font-size: 1em;
+    top: 10px;
+    left: 10px;
+    pointer-events: all;
+}
+#riverDescription{
+    position: relative;
+    z-index: 1000;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+
+    overflow-y: hidden;
+}
+.slider-container {
+    position: relative;
+    display: flex;
+    z-index: 1001;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+}
+.slider-track {
+    width: 100%;
+    display: flex;
+    animation: none;
+}
+#easy-slider{
+    display: flex;
+    z-index: 1001;
+    height: min(calc(45vw*9/16),calc(15em*9/16));
+    overflow-x: scroll;
+}
+/* @keyframes slide {
+    from {
+        transform: translateX(var(--start-offset, 0));
+    }
+    to {
+        transform: translateX(var(--end-offset, 0));
+    }
+} */
+.riverTitle{
+    font-family: serif;
+    font-size: 1.5em;
+}
+.furigana{
+    font-family: serif;
+    font-size: 1.2em;
+}
+.furiganasmall{
+    font-family: serif;
+    font-size: 1em;
+}
+.img-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1002;
+    color: white;
+    border: none;
+    padding: 5px;
+    margin: 3px;
+    cursor: pointer;
+}
+.img-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#detailButton{
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+#detailBunsho{
+    display: none;
+}
+#allBunsho{
+    overflow-y: auto;
+    max-height: 50vh;
+}

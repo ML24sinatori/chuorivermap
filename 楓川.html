@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<div id="map"></div>
+
+<div id="textSection">
+  <div id="riverFeature">
+    <div id="riverDescription">
+      <div style="display: flex; justify-content: space-between;">
+        <span><span class="riverTitle">楓川</span> - <span class="furigana">かえでがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
+      </div>
+      
+      <p id="allBunsho">
+        <span>楓川は、日本橋川の兜町付近から分流し、京橋JCT付近で京橋川、桜川と合流する全長約1.2kmの河川であった。1960年に埋め立て免許がおり、現在では干拓跡地に首都高都心環状線が通っている。兜町付近には、証券会社が密集している。</span>
+        <!-- <span id="detailBunsho">あ</span>
+        <span id="detailButton" onclick="extendDetail()">▼詳細表示</span> -->
+      </p>
+      
+      <div style="display: flex;">
+        <div id="easy-slider">
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <form action="index.html" method="get">
+    <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
+  </form>
+  <details id="controlPanel"><summary class="showDetails">詳細な表示設定</summary><div id="innerControlPanel"></div></details>
+  <form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
+    <button type="submit" class="largebtn">利用規約</button>
+  </form>
+</div>
+
+<!-- モーダル -->
+<div class="modal" id="photoModal">
+  <span class="modal-close" id="modalClose">&times;</span>
+  <img id="modalImage" alt="拡大写真">
+  <p id="modalCaption"></p>
+  <p id="modalCaptionDetail"></p>
+</div>
+</body>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.679011,139.775534];
+  var defaultZ = 15;
+  var riverNameHere = '楓川';
+  var tallTitle;
+  const capTextDict={
+    "002267712":["「楓川－千代田橋より上流を望む」（年頃）","楓川は千代田橋で永代通りと交差した。"],
+    "001703228":["「楓川を疾るモーターボート」（1955年頃）",""],
+    "001702856":["「兜町証券街を見る」（1957年頃）","兜橋から撮影。兜町は銀行発祥の地・証券取引発祥の地があるなど、昔から金融の街であった。"],
+    "001702921":["「楓川より白木屋を望む」（1959年頃）","新場橋から撮影。新場橋は震災復興の際に移設されている。"],
+    "kaede1":["首都高速都心環状線　宝町出入口","久安橋からの眺め。"],
+    "kaede2":["弾正橋","上を東京高速道路（KK線）が、下を首都高速都心環状線が走っている。"],
+  };
+</script>
+
+<script src="createControlPanel.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>

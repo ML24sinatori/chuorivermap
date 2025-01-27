@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<div id="map"></div>
+
+<div id="textSection">
+  <div id="riverFeature">
+    <div id="riverDescription">
+      <div style="display: flex; justify-content: space-between;">
+        <span><span class="riverTitle">楓川築地川連絡運河</span> <br> <span class="furiganasmall">かえでがわつきじがわれんらくうんが</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
+      </div>
+      
+      <p id="allBunsho">
+        <span>関東大震災後の帝都復興事業で1930年に新たに開削された「復興運河」である。この運河は、築地川と楓川、京橋川、桜川を結ぶことになり築地方面への舟運の利便性を格段に向上させたが、1960年に高速道路建設のため埋め立てが認可され、現在は首都高速都心環状線が走っている。</span>
+        <!-- <span id="detailBunsho">あ</span>
+        <span id="detailButton" onclick="extendDetail()">▼詳細表示</span> -->
+      </p>
+      
+      <div style="display: flex;">
+        <div id="easy-slider">
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <form action="index.html" method="get">
+    <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
+  </form>
+  <details id="controlPanel"><summary class="showDetails">詳細な表示設定</summary><div id="innerControlPanel"></div></details>
+  <form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
+    <button type="submit" class="largebtn">利用規約</button>
+  </form>
+</div>
+
+<!-- モーダル -->
+<div class="modal" id="photoModal">
+  <span class="modal-close" id="modalClose">&times;</span>
+  <img id="modalImage" alt="拡大写真">
+  <p id="modalCaption"></p>
+  <p id="modalCaptionDetail"></p>
+</div>
+</body>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.672550,139.772272];
+  var defaultZ = 15;
+  var riverNameHere = '楓川築地川連絡運河';
+  var tallTitle=true;
+  const capTextDict={
+    "002267710":["「新鑿工事中の築地川・楓川連絡運河」（1929年頃）","楓川築地川連絡運河は関東大震災後の復興事業として開削された。"],
+    "001700608":["「京橋川と楓川築地川連絡運河」（1960年頃）","左側が楓川築地川連絡運河で、右側は京橋川。中央に写るのは京橋電話交換局で、跡地には現在「自動電話交換発祥の地」の碑がある。"],
+    "002265902":["「図書館屋上から銀座方面を見る－埋立て前の築地川、楓川築地川連絡運河」（1960年頃）","三吉橋から北を望む。中央が楓川築地川連絡運河、左下が築地川。"],
+    "kaedetsukiji1":["首都高速都心環状線","三吉橋からの眺め。"],
+  };
+</script>
+
+<script src="createControlPanel.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>

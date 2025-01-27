@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<div id="map"></div>
+
+<div id="textSection">
+<div id="riverFeature">
+  <div id="riverDescription">
+    <div style="display: flex; justify-content: space-between;">
+      <span><span class="riverTitle">築地川</span> - <span class="furigana">つきじがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
+    </div>
+    
+    <p id="allBunsho">
+      <span>築地川は、1657年の明暦の大火を受けて築地が埋め立てられた際に埋め残された水面の総称であり、明石堀、築地川南支川、築地川東支川を含む。本流は明石堀の西端で明石堀および南支川と別れて北に逸れる。中央区役所前で南方に左折し、コの字のような形になる。築地市場前で東支川が分流し、浜離宮恩賜庭園手前で曲がり再び隅田川に合流する。1965年、埋め立てられ首都高速道路に姿を変えている。</span>
+      <!-- <span id="detailBunsho">明暦の大火の後の埋め立ての際の埋め残しでできた。</span>
+      <span id="detailButton" onclick="extendDetail()">▼詳細表示</span> -->
+    </p>
+    
+    <!--
+    <div><button class="img-button prev"><<br><<br><</button>
+      <div class="slider-container">
+        <div class="slider-track">
+          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
+          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
+          <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
+          <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
+          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
+          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
+        </div>
+      </div>
+
+      <button class="img-button next">><br>><br>></button>
+    </div> -->
+    <div id="easy-slider">
+    </div>
+  </div>
+</div>
+<form action="index.html" method="get">
+  <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
+</form>
+<details id="controlPanel" class="classControlPanel"><summary class="showDetails">詳細な表示設定</summary>
+  <div id="innerControlPanel"></div>
+</details>
+<form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
+  <button type="submit" class="largebtn">利用規約</button>
+</form>
+</div>
+
+<!-- モーダル -->
+<div class="modal" id="photoModal">
+  <span class="modal-close" id="modalClose">&times;</span>
+  <img id="modalImage" alt="拡大写真">
+  <p id="modalCaption"></p>
+  <p id="modalCaptionDetail"></p>
+</div>
+</body>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.666830, 139.767709];
+  var defaultZ = 15;
+  var riverNameHere = '築地川';
+  var tallTitle;
+  const capTextDict={
+    "002267711":["「築地川－京橋區役所屋上より下流を望む」（1930年頃）","京橋区役所は今の中央区役所に当たる。手前から順に、亀井橋、祝橋、万年橋。"],
+    "001703386":["「采女橋」（1956年頃）","現在は采女橋公園となっている。"],
+    "001700861":["「亀井橋－築地警察、区役所」（1957年頃）",""],
+    "001703285":["「高速道路築造工事－変貌する築地川－」","工事中の亀井橋の写真。三吉橋から大手門橋までは早くに埋め立てられた。"],
+    "002630522":["「中央区役所旧庁舎全景」（1964年頃）","三吉橋。手前（連絡運河）と右側（築地川）は高速道路になっているが、左側（築地川）はまだ水面が残っている。"],
+    "tsukiji1":["築地川公園","首都高が分岐して有明方面へ伸びる際の道路として使うはずだった空間。しかし計画は進んでおらず、公園として使われている。"],
+    "tsukiji2":["祝橋","首都高速都心環状線の上に架かる。橋には築地川祝橋公園が併設されている。"],
+    "tsukiji3":["名犬チロリ","セラピードッグの代表犬として活躍したチロリを記念する像。"],
+  };
+</script>
+
+<script src="createControlPanel.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>

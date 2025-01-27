@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<div id="map"></div>
+
+<div id="textSection">
+  <div id="riverFeature">
+    <div id="riverDescription">
+      <div style="display: flex; justify-content: space-between;">
+        <span><span class="riverTitle">鉄砲洲川</span> - <span class="furigana">てっぽうずがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
+      </div>
+      
+      <p id="allBunsho">
+        <span>隅田川から分かれて明石町を通り、明石堀までを結ぶ河川。その名は、桜川（八丁堀）の南側の土手が埋立で拡大し、その突堤が鉄砲の試射場になったとされる鉄砲洲に由来する。関東大震災後の復興区画整理事業で1929年までには埋め立てられ、鉄砲洲通りをはじめ現在は道路となっている。</span>
+        <!-- <span id="detailBunsho">あ</span>
+        <span id="detailButton" onclick="extendDetail()">▼詳細表示</span> -->
+      </p>
+      
+      <div style="display: flex;">
+        <div id="easy-slider">
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <form action="index.html" method="get">
+    <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
+  </form>
+  <details id="controlPanel"><summary class="showDetails">詳細な表示設定</summary><div id="innerControlPanel"></div></details>
+  <form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
+    <button type="submit" class="largebtn">利用規約</button>
+  </form>
+</div>
+
+<!-- モーダル -->
+<div class="modal" id="photoModal">
+  <span class="modal-close" id="modalClose">&times;</span>
+  <img id="modalImage" alt="拡大写真">
+  <p id="modalCaption"></p>
+  <p id="modalCaptionDetail"></p>
+</div>
+</body>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.670397,139.780004];
+  var defaultZ = 15;
+  var riverNameHere = '鉄砲洲川';
+  const capTextDict={
+    "000747849":["「東京名勝図会　鉄砲洲明石ばし」（1868年頃）","鉄砲洲川の終点の明石堀のようす。"],
+    "000747911":["「東京鉄砲洲新島原遊郭之図」（1869年頃）","新富町にあった新島原遊郭から見た光景。遊郭（手前）と鉄砲洲（奥）の間を流れていたのが鉄砲洲川である。"],
+    "002667161":["「鉄砲洲稲荷神社前－観光めぐりスタンプラリー」（1983年頃）","鉄砲洲川が埋め立てられた鉄砲洲通り沿いに位置する鉄砲洲稲荷神社。"],
+    "teppozu1":["平和の橋付近","この左右を走る道がかつての鉄砲洲川の跡である。平和の橋は聖路加国際病院と聖路加ガーデンを結ぶ歩道橋。"],
+  };
+</script>
+
+<script src="createControlPanel.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>

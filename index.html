@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>かわるばむ@中央区</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="indexStyle.css" type="text/css">
+</head>
+
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<div id="map"></div>
+
+<div id="textSection">
+<details id="controlPanel"><summary class="showDetails">詳細な表示設定</summary>
+<div id="innerControlPanel">
+  <!-- ここはindexのみ -->
+  <span class="filterTitle">河川の絞り込み</span>
+  <button class="btn" onclick="toggleFilterPanel()">河川名から</button>
+  <button class="btn" onclick="toggleColorPanel()">埋め立て時期から</button>
+  <button class="btn" onclick="resetRiver()">初期表示に戻す</button>
+
+  <!-- 以下はJavaScriptによって生成される
+  <span class="filterTitle">スポットの絞り込み</span>
+  <label><input type="checkbox" class="sightType" id="bridge" unchecked onclick="displaySightUpdate()">橋</label>
+  <label><input type="checkbox" class="sightType" id="museum" unchecked onclick="displaySightUpdate()">博物館等</label>
+  <label><input type="checkbox" class="sightType" id="others" unchecked onclick="displaySightUpdate()">史跡等</label>
+  -->
+</div>
+</details>
+<form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
+  <button type="submit" class="largebtn">利用規約</button>
+</form>
+</div>
+
+<div id="filterPanel">
+  <div class="panelContent inner">
+    <b class="filterBold">河川名を選んで表示</b>
+    <div style="display: flex;align-items: center;">
+      <button onclick="checkAll()" class="smallbtn">全て選択</button>
+      <button onclick="uncheckAll()" class="smallbtn">全て選択解除</button>
+    </div>
+    <div id="allRiver">
+    </div>
+    <button onclick="closeFilter()" class="btn closer">閉じる</button>
+  </div>
+</div>
+
+<div id="colorPanel">
+  <div class="panelContent">
+    <label><h3><input type="checkbox" id="colorByTime" onclick="applyColorScheme()" class="defaultUnchecked">埋め立て時期で色分け</h3></label><br>
+    <div>
+      <b class="filterBold">埋め立て時期を限定して表示</b><br>
+      <label><input type="checkbox" value="震災復興まで" checked onclick="buriedPeriod(this)" class="defaultChecked">震災復興期まで(～1930年頃)</label><br>
+      <label><input type="checkbox" value="戦災復興まで" checked onclick="buriedPeriod(this)" class="defaultChecked">戦災復興期(1945～52年頃)</label><br>
+      <label><input type="checkbox" value="東京オリンピックまで" checked onclick="buriedPeriod(this)" class="defaultChecked">東京オリンピック(1959～65年頃)</label><br>
+      <label><input type="checkbox" value="その他" checked onclick="buriedPeriod(this)" class="defaultChecked">その後の埋め立て(1965年頃～)</label><br>
+    </div>
+    <button onclick="closeColorPanel()" class="btn closer">閉じる</button>
+  </div>
+</div>
+
+<div class="modal" id="photoModal">
+  <span class="modal-close" id="modalClose">&times;</span>
+  <img id="modalImage" alt="拡大写真">
+  <p id="modalCaption"></p>
+  <p id="modalCaptionDetail"></p>
+</div>
+
+<!--ここに現在位置ボタンの領域が入る-->
+
+</body>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.667547, 139.775105];
+  var defaultZ = 14;
+  var riverNameHere = 'all';
+  var capTextDict={};
+</script>
+
+<script src="createControlPanel.js"></script>
+<script src="createLocationButton.js"></script>
+
+<script src="common.js"></script>
+<script src="indexScript.js"></script>
+</html>

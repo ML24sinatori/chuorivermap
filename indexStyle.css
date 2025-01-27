@@ -1,0 +1,39 @@
+@charset "utf-8";
+#filterPanel, #colorPanel {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1006;
+    color: white;
+}
+.panelContent {
+    background: white; color: black; padding: 15px;
+    border-radius: 10px;
+    width: max(calc(70%),calc(15em + 50px));
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%);
+    position: absolute;
+}
+#allRiver{
+    margin-top: 5px;
+    display: flex;
+    flex-flow: column;
+}
+#controlPanel button{
+    margin: 3px;
+    padding: 3px;
+}
+.inner{
+    height: 80%;
+    overflow-y: scroll;
+}
+.closer{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.inlineButton{
+    font-size: 100%;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<div id="map"></div>
+
+<div id="textSection">
+  <div id="riverFeature">
+    <div id="riverDescription">
+      <div style="display: flex; justify-content: space-between;">
+        <span><span class="riverTitle">築地川南支川</span> <br> <span class="furiganasmall">つきじがわみなみしせん</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
+      </div>
+      
+      <p id="allBunsho">
+        <span>築地川南支川は、中央区築地7丁目で築地川から分流して南に流れ、小田原橋付近で築地川東支川と合流する約0.4kmの水路。1657年の明暦の大火後に築地が埋め立てられ、その際に水路となった。備前橋よりも上流の部分は1960年に埋め立てられ、残りの部分も1979年から埋め立てられた。</span><br>
+        <span id="detailBunsho">築地川南支川の西岸に築地本願寺、東岸に小田原河岸があった。築地には本願寺周辺に武家屋敷が多く、岡山藩の中屋敷の名残が備前橋という名前に現れている。</span>
+        <span id="detailButton" onclick="extendDetail()">▼詳細表示</span>
+      </p>
+      
+      <div style="display: flex;">
+        <div id="easy-slider">
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <form action="index.html" method="get">
+    <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
+  </form>
+  <details id="controlPanel"><summary class="showDetails">詳細な表示設定</summary><div id="innerControlPanel"></div></details>
+  <form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
+    <button type="submit" class="largebtn">利用規約</button>
+  </form>
+</div>
+
+<!-- モーダル -->
+<div class="modal" id="photoModal">
+  <span class="modal-close" id="modalClose">&times;</span>
+  <img id="modalImage" alt="拡大写真">
+  <p id="modalCaption"></p>
+  <p id="modalCaptionDetail"></p>
+</div>
+</body>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.666830, 139.767709];
+  var defaultZ = 15;
+  var riverNameHere = '築地川南支川';
+  var tallTitle=true;
+  const capTextDict={
+    "001989643":["「江戸土産－築地西本願寺　上」","江戸時代から描かれていた。"],
+    "001988158":["「聖路加病院の見える場所」（1962年頃）","暁橋の向こうに聖路加病院が映る。"],
+    "002631221":["「築地川南支川」（1977年頃）","奥に映るのは門跡橋。"],
+    "002630976":["「建設中の築地川第三駐車場」（1984年頃）","築地川第三駐車場は暁橋跡の北側にある。"],
+    "002667213":["「築地川南支川－埋立工事」（1985年頃）","中央に映るのは暁橋。この付近は埋め立てが遅かった。"],
+    "minami1":["築地魚河岸（小田原橋棟）","築地市場閉鎖にともなって、築地魚河岸が開設されている。小田原橋の名は以前あった橋にちなむ。"],
+    "minami2":["中央区立築地川公園","せせらぎが整備され、かつての橋付近には橋名板と解説板が設置されている。"],
+  };
+</script>
+
+<script src="createControlPanel.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>
