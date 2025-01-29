@@ -313,6 +313,6 @@
 { "type": "Feature", "properties": { "id": 323, "name": "佃大橋", "latitude": 35.667777, "longitude": 139.781084, "river": "隅田川", "time": null, "type": "橋", "image": null, "title": null }, "geometry": { "type": "Point", "coordinates": [ 139.781084, 35.667777 ] } },
 { "type": "Feature", "properties": { "id": 324, "name": "築地大橋", "latitude": 35.659345, "longitude": 139.770677, "river": "隅田川", "time": null, "type": "橋", "image": null, "title": null }, "geometry": { "type": "Point", "coordinates": [ 139.770677, 35.659345 ] } },
 { "type": "Feature", "properties": { "id": 325, "name": "中央大橋", "latitude": 35.671674, "longitude": 139.784424, "river": "隅田川", "time": null, "type": "橋", "image": null, "title": null }, "geometry": { "type": "Point", "coordinates": [ 139.784424, 35.671674 ] } },
-{ "type": "Feature", "properties": { "id": 326, "name": "八重洲橋(震災前)跡", "latitude": 35.68044, "longitude": 139.7688, "river": "外堀川", "time": "震災復興頃まで", "type": "橋", "image": null, "title": null }, "geometry": { "type": "Point", "coordinates": [ 139.7688, 35.68044 ] } }
+{ "type": "Feature", "properties": { "id": 326, "name": "八重洲橋(明治期)跡", "latitude": 35.68044, "longitude": 139.7688, "river": "外堀川", "time": "明治末期頃まで", "type": "橋", "image": null, "title": null }, "geometry": { "type": "Point", "coordinates": [ 139.7688, 35.68044 ] } }
 ]
 }
