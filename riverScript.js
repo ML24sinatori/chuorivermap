@@ -68,7 +68,7 @@ function nearRiver(){
   }
   else{
     dotJsonLayer.eachLayer((layer)=>{
-      if(riverInProperties(riverNameHere,feature.properties.river))layer.setOpacity(1.0);
+      if(riverInProperties(riverNameHere,layer.feature.properties.river))layer.setOpacity(1.0);
       else layer.setOpacity(0.2);
     });
   }
