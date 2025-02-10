@@ -7,5 +7,7 @@ let wantToInsert;
 let nanseiBound=[0,0];
 let hokutoBound=[90,180];
 
-let geoJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/chuorivermap/main/CHUORIVER.geojson';
-let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/chuorivermap/main/CHUORIVERDOT.geojson';
+let geoJsonURL = 'CHUORIVER.geojson';
+let dotJsonURL = 'CHUORIVERDOT.geojson';
+// let geoJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/chuorivermap/main/CHUORIVER.geojson';
+// let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/chuorivermap/main/CHUORIVERDOT.geojson';

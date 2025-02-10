@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.676571, 139.765649]
+  var defaultZ = 15
+  var riverNameHere = "外堀川"
+  var riverNameFurigana = "そとぼりがわ"
+  var riverNameRomaji = "sotoborigawa"
+  var bunsho = ["外濠川とも。現在の呉服橋交差点付近で日本橋川から分流し、千代田・中央区境界に沿って流れ、土橋で汐留川に合流した掘割。東岸の城辺河岸は、日本橋・京橋・銀座と商工業者の集住地区が続き、江戸時代から物資輸送のための重要な水路となった。戦後、占領軍の命令により戦災残土の処理場所として利用され、1949年から埋め立て開始、現在では全域埋め立てられている。", "埋め立てられた部分は首都高速八重洲線に利用されている他、跡地には鉄鋼ビルディングや銀座インズ、銀座コリドー街などが立ち並ぶ。東京高速道路株式会社は、上部を高速道路として整備する一方で、下部はビルとして民間に提供することで利益を出していた。"]
+  var capTextDict = {"002267708": ["「常盤橋遠景－明治七年頃寫眞」（1874年頃）", "奥から右に流れるのが日本橋川、手前が外堀川である。"], "001701696": ["「日本銀行」（1897年頃）", "日本銀行が現在の位置に移転したのは1896年。この写真はその直後のものである。手前が外堀川、左右に横切るのが日本橋川。"], "001701204": ["「山下橋より新幸橋方面高架線を望む」（1936年頃）", "以前は東海道線のすぐ東側を外堀川が流れていた。"], "001701423": ["「数寄屋橋－銀座方面を見る」（1956年頃）", "埋め立て中の外堀川。"], "002266084": ["「外濠川埋立工事」（1956年頃）", "埋め立て中の外堀川。"], "001701376": ["「呉服橋交差点－呉服橋跡」（1975年頃）", "埋め立て後の外堀川。"], "sotobori1": ["東京駅八重洲口", "かつては八重洲口の前に外堀川が流れており、八重洲橋が架けられていた。"], "sotobori2": ["呉服橋交差点", "呉服とは、幕府御用の呉服師・後藤家の屋敷があったことに由来する。"]}
+</script>
+
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>

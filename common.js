@@ -65,6 +65,7 @@ fetch(geoJsonURL)
         style : { weight: 2 },
         onEachFeature: (feature, layer) => {
             var riverName = feature.properties.name;
+            var riverRomaji = feature.properties.romaji;
             var riverTime = feature.properties.time;
             var riverEra = feature.properties.era;
             
@@ -93,7 +94,7 @@ fetch(geoJsonURL)
             var setContentHTML = `<b>河川名:</b> ${eraseHyphen(riverName)}<br> <b>埋め立て時期:</b> ${(riverEra == null ? riverTime : riverEra)}`;
             if(riverTime != '現存'){
                 setContentHTML += `<br>
-                <form action="${eraseNumber(riverName)}.html" method="get">
+                <form action="${riverRomaji}.html" method="get">
                     <button type="submit" class="smallbtn">この河川を歩く</button>
                 </form>`;
             }

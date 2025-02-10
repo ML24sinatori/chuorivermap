@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.676493, 139.784431]
+  var defaultZ = 15
+  var riverNameHere = "新川"
+  var riverNameFurigana = "しんかわ"
+  var riverNameRomaji = "shinkawa"
+  var bunsho = ["亀島川から隅田川までを結び、東に流れる河川。1659年に河村瑞賢によって開削され、大正期まで両岸では酒問屋や廻船問屋の老舗が多数存在していた。しかし、関東大震災や戦時中の統制経済、空襲などを通じて問屋街は壊滅し、戦後の1948年に埋め立て工事が行われた。"]
+  var capTextDict = {"001702206": ["「新川」（1907年頃）", "新川沿いには、江戸～大正期に酒問屋が集積し多くの老舗が存在し繁栄した。現在も新川大神宮は酒問屋の守り神として知られる。"], "001702199": ["「新川酒問屋街」（1935年頃）", "江戸・東京随一の酒問屋街として名を馳せた新川一帯だが、関東大震災・第二次大戦の結果衰退・全滅した。"], "001702207": ["「新川の酒問屋街」（1935年頃）", ""], "001989482": ["「新川－埋立作業中」（1949年頃）", "埋め立て中のようす。新川は1948～1949年にかけて埋め立てられた。"], "001989478": ["「新川－新川橋撤去後」（1949年頃）", ""], "shinkawa1": ["現在の新川の跡", "中央のビルの建っているところが昔の川かと思われる。"]}
+</script>
+
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>

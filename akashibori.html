@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.666286, 139.776664]
+  var defaultZ = 15
+  var riverNameHere = "明石堀"
+  var riverNameFurigana = "あかしぼり"
+  var riverNameRomaji = "akashibori"
+  var bunsho = ["築地川との分岐点である南小田原四丁目（現在築地七丁目1番）から明石町の間に存在した水路。明石町一帯は明治時代には外国人居留地があり、洋風の建物が立ち並ぶ景観が広がっていた。特徴的な扇状の区画を有しており、1967～71年に埋め立てられたが、跡地に造成された中央区立あかつき公園は、明石堀の特徴的な形状を今も伝えている。"]
+  var capTextDict = {"002266143": ["「明石堀」（1955年頃）", ""], "001702124": ["「[航空写真]明石町付近」", "撮影は1958年より前とされる(引用元より)。中央に架かるのが新栄橋。"], "002630604": ["「築地川(明石掘)埋め立て」（1968年頃）", "埋め立ての工事が進む様子。"], "002630435": ["「あかつき公園」（1971年頃）", "あかつき公園は明石堀の跡地に作られた。写真手前の道路が新栄橋跡である。"], "akashi1": ["あかつき公園（冒険広場）", "タイヤの遊具が特徴的な公園。"], "akashi2": ["あかつき公園（保健所側）", "特徴的な扇状のかたちをしているのは、かつての明石堀の痕跡である。"]}
+</script>
+
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>

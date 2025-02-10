@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.671629, 139.775569]
+  var defaultZ = 15
+  var riverNameHere = "入船川"
+  var riverNameFurigana = "いりふねがわ"
+  var riverNameRomaji = "irifunegawa"
+  var bunsho = ["築地川と桜川を結ぶ河川。もともと、新島原遊郭のお歯黒どぶとして掘削された。3年で遊郭が廃止されたのち、拡幅を経て入船川となった。入船川は、関東大震災後の復興区画整理事業で1924年に埋め立てられ、新大橋通りに作り替えられている。新大橋通り沿いにはビルが立ち並ぶ。写真資料はほとんど残っていない。"]
+  var capTextDict = {"001703117": ["「新富座附近の図」（1901年頃）", "図の左右の区間を大きく流れるのが築地川であり、入船川は図の左奥、築地川が屈曲する箇所の手前で合流していた。"], "irifune2": ["新富2丁目", "入船川の名残はほとんど残っていない。"]}
+</script>
+
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>

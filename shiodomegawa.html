@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.667434, 139.761186]
+  var defaultZ = 15
+  var riverNameHere = "汐留川"
+  var riverNameFurigana = "しおとめがわ"
+  var riverNameRomaji = "shiotomegawa"
+  var bunsho = ["中央区と港区の境界を成す。明治期までは外堀川との接続点より上流の赤坂溜池まで繋がっていた。1954～63年にかけて5区画に分けて埋め立てられ、跡地は東京高速道路と首都高速道路となったが、現在も浜離宮外周の南門橋先から汐留川水門の延長0.90kmが残存している。", "虎ノ門の堰堤から流れ出る赤坂溜池の余水と外堀の水の排水路として、江戸時代に整備された。汐留とは、溜池に潮の干満の影響が及ばないように造られた虎ノ門の堰堤に由来する。また、付近の「新橋」の地名は汐留川に架かっていた橋の名である。"]
+  var capTextDict = {"002266398": ["「建築写真類聚官衙学校－遞信省」（1912年頃）", "埋め立て前の汐留川の写真。"], "001701163": ["「関東大震災後の新橋」（1923年頃）", "埋め立て前、震災直後の汐留川。"], "002266082": ["「汐留川跡　高速道路建設工事」（1961年頃）", "埋め立て後高速道路建設作業中の汐留川。"], "002630047": ["「水上生活者」（1966年頃）", "汐留川に限らず、東京の河川には舟運の拠点として水上生活する人々が存在した。"], "002631224": ["「汐留川」（1973年頃）", "汐留川の埋め立てられなかった区間。"], "shiodome1": ["土橋跡", "汐留川の跡地には東京高速道路（KK線）が開通し、その高架下には銀座ナインなどの商業施設が生まれた。"], "shiodome2": ["蓬莱橋跡", "蓬莱の名は、明治期に後藤象二郎らが建てた蓬萊社がこの橋を石橋に架け替えたことに由来する。"]}
+</script>
+
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>

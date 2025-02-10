@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.670397, 139.780004]
+  var defaultZ = 15
+  var riverNameHere = "鉄砲洲川"
+  var riverNameFurigana = "てっぽうずがわ"
+  var riverNameRomaji = "teppozugawa"
+  var bunsho = ["隅田川から分かれて明石町を通り、明石堀までを結ぶ河川。その名は、桜川（八丁堀）の南側の土手が埋立で拡大し、その突堤が鉄砲の試射場になったとされる鉄砲洲に由来する。関東大震災後の復興区画整理事業で1929年までには埋め立てられ、鉄砲洲通りをはじめ現在は道路となっている。"]
+  var capTextDict = {"000747849": ["「東京名勝図会　鉄砲洲明石ばし」（1868年頃）", "鉄砲洲川の終点の明石堀のようす。"], "000747911": ["「東京鉄砲洲新島原遊郭之図」（1869年頃）", "新富町にあった新島原遊郭から見た光景。遊郭（手前）と鉄砲洲（奥）の間を流れていたのが鉄砲洲川である。"], "002667161": ["「鉄砲洲稲荷神社前－観光めぐりスタンプラリー」（1983年頃）", "鉄砲洲川が埋め立てられた鉄砲洲通り沿いに位置する鉄砲洲稲荷神社。"], "teppozu1": ["平和の橋付近", "この左右を走る道がかつての鉄砲洲川の跡である。平和の橋は聖路加国際病院と聖路加ガーデンを結ぶ歩道橋。"]}
+</script>
+
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>

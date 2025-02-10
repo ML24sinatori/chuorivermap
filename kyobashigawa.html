@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.67497, 139.769361]
+  var defaultZ = 15
+  var riverNameHere = "京橋川"
+  var riverNameFurigana = "きょうばしがわ"
+  var riverNameRomaji = "kyobashigawa"
+  var bunsho = ["京橋川は、外濠から楓川および桜川と合流する約0.6kmの河川。1603年の最初の天下普請で外堀川とともに開削された。大根河岸、竹河岸、白魚河岸などがあり、江戸時代は京橋が東海道の起点である日本橋から交差する最初の橋として職人などが多く集い賑わっていた。現在では、首都高速道路に接続する東京高速道路となっており、周辺はビジネス街を形成している。"]
+  var capTextDict = {"002267714": ["「京橋川改修工事中」（1929年頃）", "京橋周辺の震災復興の図。"], "001701313": ["「京橋」", "奥に映るのが京橋である。"], "001701358": ["「京橋川」（1957年頃）", "埋め立てられる前。画像中の説明書きにある通り、京橋川は高速に転用され、その高架下に商店が入ることとなる。"], "002631178": ["「京橋撤去工事」（1965年頃）", "京橋の写真。高速道路が建設されようとしている。当時は路面電車も走っていた。"], "002631180": ["「京橋周辺」（1975年頃）", "京橋の写真。上側の高架は東京高速道路。"]}
+</script>
+
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>

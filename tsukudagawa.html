@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="base.css" type="text/css">
+  <link rel="stylesheet" href="riverStyle.css" type="text/css">
+</head>
+
+<script>
+  //commonの読み込みに必要な変数だけ定義
+  var defaultPlace = [35.665115, 139.783924]
+  var defaultZ = 15
+  var riverNameHere = "佃川"
+  var riverNameFurigana = "つくだがわ"
+  var riverNameRomaji = "tsukudagawa"
+  var bunsho = ["佃島と月島の間に存在した水路。延長0.5km、幅員45m。1964年に佃大橋の架橋に伴い、現在佃大橋が架かる区間から初見橋（現在：初見橋交差点）までが埋め立てられ、1987年には残り区間も道路用地として埋め立てられた。現在は支川のみが残る。", "佃大橋の架橋まで、隅田川対岸の本土（湊町）と佃島を結ぶ「佃の渡」があった。また、現在残っている支川には、付近の住吉神社の本祭りで使われる幟の柱が埋められ、3年に一度の本祭りの度に掘り出されるという。"]
+  var capTextDict = {"001700888": ["「佃橋から佃島9,10番地の河岸を見る」（1956年頃）", "佃川にかかっていた佃橋から望む佃。1965年に埋め立てられた佃川埋立前の画像。"], "002265768": ["「佃川沿いの佃島」（1957年頃）", "1965年に埋め立てられた佃川埋立前の画像。"], "002719947": ["「佃」（1988年頃）", "佃川埋め立て後の佃の写真。佃川支川の佃小橋や、建設中のリバーシティ21などを見ることができる。"], "tsukuda1": ["佃大橋", "1964年に架橋された。架橋とともに「佃の渡し」は長い歴史を終えた。"], "tsukuda3": ["佃川支川(佃堀)", "漁師の船が係留されている景観が特徴的である。"]}
+</script>
+
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
+<script src="createLocationButton.js"></script>
+<script src="common.js"></script>
+<script src="riverScript.js"></script>
+</html>
