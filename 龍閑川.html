@@ -9,68 +9,15 @@
   <link rel="stylesheet" href="riverStyle.css" type="text/css">
 </head>
 
-<body>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<div id="map"></div>
-
-<div id="textSection">
-<div id="riverFeature">
-  <div id="riverDescription">
-    <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">龍閑川</span> - <span class="furigana">りゅうかんがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
-    </div>
-    
-    <p id="allBunsho">
-      <span>日本橋川から分流し、北東に流れ、小伝馬町付近で浜町川と合流する人口の掘割。江戸時代、防火堤防及び排水路として開削された。1948年から戦災がれきの残土処理のため埋め立てられた。</span>
-      <!-- <span id="detailBunsho"></span>
-      <span id="detailButton" onclick="extendDetail()">▼詳細表示</span> -->
-    </p>
-    
-    <!--
-    <div><button class="img-button prev"><<br><<br><</button>
-      <div class="slider-container">
-        <div class="slider-track">
-          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-          <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
-          <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
-          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-        </div>
-      </div>
-
-      <button class="img-button next">><br>><br>></button>
-    </div> -->
-    <div id="easy-slider">
-    </div>
-  </div>
-</div>
-<form action="index.html" method="get">
-  <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
-</form>
-<details id="controlPanel" class="classControlPanel"><summary class="showDetails">詳細な表示設定</summary>
-  <div id="innerControlPanel"></div>
-</details>
-<form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
-  <button type="submit" class="largebtn">利用規約</button>
-</form>
-</div>
-
-<!-- モーダル -->
-<div class="modal" id="photoModal">
-  <span class="modal-close" id="modalClose">&times;</span>
-  <img id="modalImage" alt="拡大写真">
-  <p id="modalCaption"></p>
-  <p id="modalCaptionDetail"></p>
-</div>
-</body>
-
 <script>
   //commonの読み込みに必要な変数だけ定義
   var defaultPlace = [35.691014,139.775634];
   var defaultZ = 15;
   var riverNameHere = '龍閑川';
-  var tallTitle;
+  var riverNameFurigana = 'りゅうかんがわ';
+  var bunsho = [
+    '日本橋川から分流し、北東に流れ、小伝馬町付近で浜町川と合流する人口の掘割。江戸時代、防火堤防及び排水路として開削された。1948年から戦災がれきの残土処理のため埋め立てられた。'
+  ]
   const capTextDict={
     "001700782":["「今川橋－竜閑川室町」（1916年頃）","今川橋は日本橋から北に向かう際に最初に渡る橋であり、多くの人でにぎわった。"],
     "001989453":["「龍閑川－地蔵橋より東仲の橋を望む」（1948年頃）","埋め立て直前の様子。"],
@@ -81,8 +28,18 @@
   };
 </script>
 
-<script src="createControlPanel.js"></script>
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
 <script src="createLocationButton.js"></script>
-<script src="common.js"></script>
+<script src="newcommon.js"></script>
 <script src="riverScript.js"></script>
 </html>

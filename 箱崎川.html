@@ -9,68 +9,15 @@
   <link rel="stylesheet" href="riverStyle.css" type="text/css">
 </head>
 
-<body>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<div id="map"></div>
-
-<div id="textSection">
-<div id="riverFeature">
-  <div id="riverDescription">
-    <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">箱崎川</span> - <span class="furigana">はこざきがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
-    </div>
-    
-    <p id="allBunsho">
-      <span>隅田川から日本橋川までの南に流れる約1kmの本川と、現在の箱崎JCT付近で分流し東に流れる約0.1kmの支川からなる。箱崎川は1968年から埋め立てが始まり、現在川跡の上には首都高速道路が走っている。</span><br>
-      <span id="detailBunsho">江戸時代には、菖蒲河岸、蛎殻河岸、行徳河岸、山谷河岸などの河岸があり、小荷物や旅客の輸送が行われてきた。特に、行徳河岸は行徳（現在の市川市）の人々が幕府の許可を得て、行徳方面への船を出していたとされる河岸である。</span>
-      <span id="detailButton" onclick="extendDetail()">▼詳細表示</span>
-    </p>
-    
-    <!--
-    <div><button class="img-button prev"><<br><<br><</button>
-      <div class="slider-container">
-        <div class="slider-track">
-          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-          <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
-          <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
-          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-        </div>
-      </div>
-
-      <button class="img-button next">><br>><br>></button>
-    </div> -->
-    <div id="easy-slider">
-    </div>
-  </div>
-</div>
-<form action="index.html" method="get">
-  <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
-</form>
-<details id="controlPanel" class="classControlPanel"><summary class="showDetails">詳細な表示設定</summary>
-  <div id="innerControlPanel"></div>
-</details>
-<form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
-  <button type="submit" class="largebtn">利用規約</button>
-</form>
-</div>
-
-<!-- モーダル -->
-<div class="modal" id="photoModal">
-  <span class="modal-close" id="modalClose">&times;</span>
-  <img id="modalImage" alt="拡大写真">
-  <p id="modalCaption"></p>
-  <p id="modalCaptionDetail"></p>
-</div>
-</body>
-
 <script>
   //commonの読み込みに必要な変数だけ定義
   var defaultPlace = [35.682904,139.789066];
   var defaultZ = 15;
   var riverNameHere = '箱崎川';
-  var tallTitle;
+  var riverNameFurigana = 'はこざきがわ';
+  var bunsho = [
+    '隅田川から日本橋川までの南に流れる約1kmの本川と、現在の箱崎JCT付近で分流し東に流れる約0.1kmの支川からなる。箱崎川は1968年から埋め立てが始まり、現在川跡の上には首都高速道路が走っている。'
+  ]
   const capTextDict={
     "002267058":["「土州橋開通祝賀會記念－土州橋」（1915年頃）","正面が北東に当たる。写真左側が蛎殻町、右側が箱崎町である。"],
     "001702864":["「新永久橋から蛎殻町を望む」（1957年頃）","新永久橋は震災で被害を受けて廃橋になった永久橋に代わって架けられた。"],
@@ -81,8 +28,18 @@
   };
 </script>
 
-<script src="createControlPanel.js"></script>
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
 <script src="createLocationButton.js"></script>
-<script src="common.js"></script>
+<script src="newcommon.js"></script>
 <script src="riverScript.js"></script>
 </html>

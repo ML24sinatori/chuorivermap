@@ -56,7 +56,11 @@
   var defaultPlace = [35.666830, 139.767709];
   var defaultZ = 15;
   var riverNameHere = '築地川南支川';
-  var tallTitle=true;
+  var riverNameFurigana = 'つきじがわみなみしせん';
+  var bunsho = [
+    '築地川南支川は、中央区築地7丁目で築地川から分流して南に流れ、小田原橋付近で築地川東支川と合流する約0.4kmの水路。1657年の明暦の大火後に築地が埋め立てられ、その際に水路となった。備前橋よりも上流の部分は1960年に埋め立てられ、残りの部分も1979年から埋め立てられた。',
+    '築地川南支川の西岸に築地本願寺、東岸に小田原河岸があった。築地には本願寺周辺に武家屋敷が多く、岡山藩の中屋敷の名残が備前橋という名前に現れている。'
+  ]
   const capTextDict={
     "001989643":["「江戸土産－築地西本願寺　上」","江戸時代から描かれていた。"],
     "001988158":["「聖路加病院の見える場所」（1962年頃）","暁橋の向こうに聖路加病院が映る。"],
@@ -68,8 +72,18 @@
   };
 </script>
 
-<script src="createControlPanel.js"></script>
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
 <script src="createLocationButton.js"></script>
-<script src="common.js"></script>
+<script src="newcommon.js"></script>
 <script src="riverScript.js"></script>
 </html>

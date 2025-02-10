@@ -11,7 +11,7 @@ function insertImageAndCaption(){
     newImg.setAttribute('alt',value[0]);
 
     newImg.addEventListener('click', (e) => {
-      modal.style.display = 'flex';
+      modalSite.style.display = 'flex';
       modalImage.src = 'https://kawalbum.sakura.ne.jp/img/'+key+'.JPG';
       modalCaption.textContent = value[0] + (key[0]!='0' ? "（サイト管理者撮影）":"（写真提供：中央区立京橋図書館）");
       modalCaptionDetail.textContent = value[1];

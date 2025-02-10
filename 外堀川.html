@@ -9,68 +9,16 @@
   <link rel="stylesheet" href="riverStyle.css" type="text/css">
 </head>
 
-<body>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<div id="map"></div>
-
-<div id="textSection">
-<div id="riverFeature">
-  <div id="riverDescription">
-    <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">外堀川</span> - <span class="furigana">そとぼりがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
-    </div>
-    
-    <p id="allBunsho">
-      <span>外濠川とも。現在の呉服橋交差点付近で日本橋川から分流し、千代田・中央区境界に沿って流れ、土橋で汐留川に合流した掘割。東岸の城辺河岸は、日本橋・京橋・銀座と商工業者の集住地区が続き、江戸時代から物資輸送のための重要な水路となった。戦後、占領軍の命令により戦災残土の処理場所として利用され、1949年から埋め立て開始、現在では全域埋め立てられている。</span>
-      <span id="detailBunsho">埋め立てられた部分は首都高速八重洲線に利用されている他、跡地には鉄鋼ビルディングや銀座インズ、銀座コリドー街などが立ち並ぶ。東京高速道路株式会社は、上部を高速道路として整備する一方で、下部はビルとして民間に提供することで利益を出していた。</span><!--河川ごとに-->
-      <span id="detailButton" onclick="extendDetail()">▼詳細表示</span>
-    </p>
-    
-    <!--
-    <div><button class="img-button prev"><<br><<br><</button>
-      <div class="slider-container">
-        <div class="slider-track">
-          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-          <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
-          <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
-          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-        </div>
-      </div>
-
-      <button class="img-button next">><br>><br>></button>
-    </div> -->
-    <div id="easy-slider">
-    </div>
-  </div>
-</div>
-<form action="index.html" method="get">
-  <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
-</form>
-<details id="controlPanel" class="classControlPanel"><summary class="showDetails">詳細な表示設定</summary>
-  <div id="innerControlPanel"></div>
-</details>
-<form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
-  <button type="submit" class="largebtn">利用規約</button>
-</form>
-</div>
-
-<!-- モーダル -->
-<div class="modal" id="photoModal">
-  <span class="modal-close" id="modalClose">&times;</span>
-  <img id="modalImage" alt="拡大写真">
-  <p id="modalCaption"></p>
-  <p id="modalCaptionDetail"></p>
-</div>
-</body>
-
 <script>
   //commonの読み込みに必要な変数だけ定義
   var defaultPlace = [35.676571, 139.765649];
   var defaultZ = 15;
   var riverNameHere = '外堀川';
-  var tallTitle;
+  var riverNameFurigana = 'そとぼりがわ';
+  var bunsho = [
+    '外濠川とも。現在の呉服橋交差点付近で日本橋川から分流し、千代田・中央区境界に沿って流れ、土橋で汐留川に合流した掘割。東岸の城辺河岸は、日本橋・京橋・銀座と商工業者の集住地区が続き、江戸時代から物資輸送のための重要な水路となった。戦後、占領軍の命令により戦災残土の処理場所として利用され、1949年から埋め立て開始、現在では全域埋め立てられている。',
+    '埋め立てられた部分は首都高速八重洲線に利用されている他、跡地には鉄鋼ビルディングや銀座インズ、銀座コリドー街などが立ち並ぶ。東京高速道路株式会社は、上部を高速道路として整備する一方で、下部はビルとして民間に提供することで利益を出していた。'
+  ];
   const capTextDict={
     "002267708":["「常盤橋遠景－明治七年頃寫眞」（1874年頃）","奥から右に流れるのが日本橋川、手前が外堀川である。"],
     "001701696":["「日本銀行」（1897年頃）","日本銀行が現在の位置に移転したのは1896年。この写真はその直後のものである。手前が外堀川、左右に横切るのが日本橋川。"],
@@ -83,8 +31,18 @@
   };
 </script>
 
-<script src="createControlPanel.js"></script>
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
 <script src="createLocationButton.js"></script>
-<script src="common.js"></script>
+<script src="newcommon.js"></script>
 <script src="riverScript.js"></script>
 </html>

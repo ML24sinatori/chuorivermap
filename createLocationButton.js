@@ -1,39 +1,11 @@
-/*
-<div id="locationAlert"></div>
-<button id="toggleButton" onclick="toggleSight()"><img src="icon/spot.png" style="max-width: 5vh;"></button>
-<button id="locationButton" onclick="locationTracking()"><img src="icon/cross.png" style="max-width: 5vh;"></button>
-
-のように、観光地一括表示ボタン・現在位置の表示ボタンと、それに付随して発生する警告文を表示するのが目的
-
-*/
-
-// let nanseiBound=[35.645672,139.707843];
-// let hokutoBound=[35.709909,139.850320];
-let nanseiBound=[0,0];
-let hokutoBound=[90,180];
-
-let message = document.createElement('div');
-message.setAttribute('id','locationAlert');
-
-let sightbtn=document.createElement('button');
-sightbtn.setAttribute('id','toggleButton');
-sightbtn.setAttribute('onclick','toggleSight()');
-let sightbtnImage=document.createElement('img');
-sightbtnImage.setAttribute('src','icon/spot.png');
-sightbtnImage.setAttribute('style','max-width: 5vh;');
-sightbtn.appendChild(sightbtnImage);
-
-let locbtn=document.createElement('button');
-locbtn.setAttribute('id','locationButton');
-locbtn.setAttribute('onclick','locationTracking()');
-let locbtnImage=document.createElement('img');
-locbtnImage.setAttribute('src','icon/cross.png');
-locbtnImage.setAttribute('style','max-width: 5vh;');
-locbtn.appendChild(locbtnImage);
-
-document.body.appendChild(message);
-document.body.appendChild(sightbtn);
-document.body.appendChild(locbtn);
+document.body.insertAdjacentHTML('beforeend',`
+    <div id="locationAlert"></div>
+    <button id="toggleButton" onclick="toggleSight()"><img src="icon/spot.png" style="max-width: 5vh;"></button>
+    <button id="locationButton" onclick="locationTracking()"><img src="icon/cross.png" style="max-width: 5vh;"></button>
+`);
+let message = document.getElementById('locationAlert');
+let sightbtn = document.getElementById('toggleButton');
+let locbtn = document.getElementById('locationButton');
 
 //現在位置を取得
 var anySightDisplayed = false;

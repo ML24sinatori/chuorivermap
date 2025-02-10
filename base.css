@@ -146,7 +146,7 @@ details[open] .showDetails{
     cursor: pointer;
 }
 /* モーダルスタイル */
-.modal {
+#photoModal {
     display: none;
     position: fixed;
     flex-flow: column;
@@ -159,12 +159,12 @@ details[open] .showDetails{
     align-items: center;
     z-index: 1010;
 }
-.modal img {
+#photoModal img {
     max-width: 90vw;
     max-height: 80vh;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
-.modal-close {
+#modalClose {
     position: absolute;
     top: 20px;
     right: 20px;

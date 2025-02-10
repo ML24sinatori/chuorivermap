@@ -13,27 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <div id="map"></div>
 
-<div id="textSection">
-<details id="controlPanel"><summary class="showDetails">詳細な表示設定</summary>
-<div id="innerControlPanel">
-  <!-- ここはindexのみ -->
-  <span class="filterTitle">河川の絞り込み</span>
-  <button class="btn" onclick="toggleFilterPanel()">河川名から</button>
-  <button class="btn" onclick="toggleColorPanel()">埋め立て時期から</button>
-  <button class="btn" onclick="resetRiver()">初期表示に戻す</button>
-
-  <!-- 以下はJavaScriptによって生成される
-  <span class="filterTitle">スポットの絞り込み</span>
-  <label><input type="checkbox" class="sightType" id="bridge" unchecked onclick="displaySightUpdate()">橋</label>
-  <label><input type="checkbox" class="sightType" id="museum" unchecked onclick="displaySightUpdate()">博物館等</label>
-  <label><input type="checkbox" class="sightType" id="others" unchecked onclick="displaySightUpdate()">史跡等</label>
-  -->
-</div>
-</details>
-<form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
-  <button type="submit" class="largebtn">利用規約</button>
-</form>
-</div>
+<div id="textSection"></div>
 
 <div id="filterPanel">
   <div class="panelContent inner">
@@ -62,12 +42,7 @@
   </div>
 </div>
 
-<div class="modal" id="photoModal">
-  <span class="modal-close" id="modalClose">&times;</span>
-  <img id="modalImage" alt="拡大写真">
-  <p id="modalCaption"></p>
-  <p id="modalCaptionDetail"></p>
-</div>
+<div id="photoModal"></div>
 
 <!--ここに現在位置ボタンの領域が入る-->
 
@@ -81,7 +56,9 @@
   var capTextDict={};
 </script>
 
-<script src="createControlPanel.js"></script>
+<script src="global.js"></script>
+<script src="createMenus.js"></script>
+<script src="createModal.js"></script>
 <script src="createLocationButton.js"></script>
 
 <script src="common.js"></script>

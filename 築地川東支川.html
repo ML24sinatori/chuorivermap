@@ -9,54 +9,15 @@
   <link rel="stylesheet" href="riverStyle.css" type="text/css">
 </head>
 
-<body>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<div id="map"></div>
-
-<div id="textSection">
-  <div id="riverFeature">
-    <div id="riverDescription">
-      <div style="display: flex; justify-content: space-between;">
-        <span><span class="riverTitle">築地川東支川</span> <br> <span class="furiganasmall">つきじがわひがししせん</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
-      </div>
-      
-      <p id="allBunsho">
-        <span>築地4丁目で分流し東に流れ、隅田川に注いだ約0.7kmの水路。1657年の明暦の大火後に築地が埋め立てられ、その際に水路となった。北門橋から市場橋間は1978年に埋め立てが完了し、市場橋から海幸橋間は1995年に埋め立てられ、跡地には公園や駐車場が作られた。</span><br>
-        <span id="detailBunsho">関東大震災の際に、近くにある築地本願寺の墓所が被害を受け和田堀への移転を余儀なくされた結果、日本橋の魚市場が築地へ移転した。その際に市場橋より下流部の右岸にできたのが築地市場であり、左岸には場外市場が築かれた。場外市場の一部は築地川東支川の跡地に建っている。築地市場自体は2018年に豊洲に移転した。</span>
-        <span id="detailButton" onclick="extendDetail()">▼詳細表示</span>
-      </p>
-      
-      <div style="display: flex;">
-        <div id="easy-slider">
-      </div>
-      </div>
-      
-    </div>
-  </div>
-  <form action="index.html" method="get">
-    <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
-  </form>
-  <details id="controlPanel"><summary class="showDetails">詳細な表示設定</summary><div id="innerControlPanel"></div></details>
-  <form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
-    <button type="submit" class="largebtn">利用規約</button>
-  </form>
-</div>
-
-<!-- モーダル -->
-<div class="modal" id="photoModal">
-  <span class="modal-close" id="modalClose">&times;</span>
-  <img id="modalImage" alt="拡大写真">
-  <p id="modalCaption"></p>
-  <p id="modalCaptionDetail"></p>
-</div>
-</body>
-
 <script>
   //commonの読み込みに必要な変数だけ定義
   var defaultPlace = [35.666065, 139.768696];
   var defaultZ = 15;
   var riverNameHere = '築地川東支川';
-  var tallTitle=true;
+  var riverNameFurigana = 'つきじがわひがししせん';
+  var bunsho = [
+    '築地4丁目で分流し東に流れ、隅田川に注いだ約0.7kmの水路。1657年の明暦の大火後に築地が埋め立てられ、その際に水路となった。北門橋から市場橋間は1978年に埋め立てが完了し、市場橋から海幸橋間は1995年に埋め立てられ、跡地には公園や駐車場が作られた。'
+  ];
   const capTextDict={
     "001700833":["「海幸橋」（1979年頃）","河川は見えづらいが、埋め立て前であると思われる。"],
     "001700785":["「市場橋」（1979年頃）","河川は見えづらいが、埋め立て前であると思われる。"],
@@ -70,8 +31,18 @@
   };
 </script>
 
-<script src="createControlPanel.js"></script>
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
 <script src="createLocationButton.js"></script>
-<script src="common.js"></script>
+<script src="newcommon.js"></script>
 <script src="riverScript.js"></script>
 </html>

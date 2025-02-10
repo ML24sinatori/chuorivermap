@@ -9,68 +9,16 @@
   <link rel="stylesheet" href="riverStyle.css" type="text/css">
 </head>
 
-<body>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<div id="map"></div>
-
-<div id="textSection">
-<div id="riverFeature">
-  <div id="riverDescription">
-    <div style="display: flex; justify-content: space-between;">
-      <span><span class="riverTitle">汐留川</span> - <span class="furigana">しおどめがわ</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
-    </div>
-    
-    <p id="allBunsho">
-      <span>中央区と港区の境界を成す。明治期までは外堀川との接続点より上流の赤坂溜池まで繋がっていた。1954～63年にかけて5区画に分けて埋め立てられ、跡地は東京高速道路と首都高速道路となったが、現在も浜離宮外周の南門橋先から汐留川水門の延長0.90kmが残存している。</span><br>
-      <span id="detailBunsho">虎ノ門の堰堤から流れ出る赤坂溜池の余水と外堀の水の排水路として、江戸時代に整備された。汐留とは、溜池に潮の干満の影響が及ばないように造られた虎ノ門の堰堤に由来する。また、付近の「新橋」の地名は汐留川に架かっていた橋の名である。</span>
-      <span id="detailButton" onclick="extendDetail()">▼詳細表示</span>
-    </p>
-    
-    <!--
-    <div><button class="img-button prev"><<br><<br><</button>
-      <div class="slider-container">
-        <div class="slider-track">
-          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-          <div class="slide"><img src="img/photo2.jpg" alt="写真2"></div>
-          <div class="slide"><img src="img/photo3.jpg" alt="写真3"></div>
-          <div class="slide"><img src="img/photo4.jpg" alt="写真4"></div>
-          <div class="slide"><img src="img/photo1.jpg" alt="写真1"></div>
-        </div>
-      </div>
-
-      <button class="img-button next">><br>><br>></button>
-    </div> -->
-    <div id="easy-slider">
-    </div>
-  </div>
-</div>
-<form action="index.html" method="get">
-  <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
-</form>
-<details id="controlPanel" class="classControlPanel"><summary class="showDetails">詳細な表示設定</summary>
-  <div id="innerControlPanel"></div>
-</details>
-<form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
-  <button type="submit" class="largebtn">利用規約</button>
-</form>
-</div>
-
-<!-- モーダル -->
-<div class="modal" id="photoModal">
-  <span class="modal-close" id="modalClose">&times;</span>
-  <img id="modalImage" alt="拡大写真">
-  <p id="modalCaption"></p>
-  <p id="modalCaptionDetail"></p>
-</div>
-</body>
-
 <script>
   //commonの読み込みに必要な変数だけ定義
   var defaultPlace = [35.667434,139.761186];
   var defaultZ = 15;
   var riverNameHere = '汐留川';
-  var tallTitle;
+  var riverNameFurigana = 'しおとめがわ';
+  var bunsho = [
+    '中央区と港区の境界を成す。明治期までは外堀川との接続点より上流の赤坂溜池まで繋がっていた。1954～63年にかけて5区画に分けて埋め立てられ、跡地は東京高速道路と首都高速道路となったが、現在も浜離宮外周の南門橋先から汐留川水門の延長0.90kmが残存している。',
+    '虎ノ門の堰堤から流れ出る赤坂溜池の余水と外堀の水の排水路として、江戸時代に整備された。汐留とは、溜池に潮の干満の影響が及ばないように造られた虎ノ門の堰堤に由来する。また、付近の「新橋」の地名は汐留川に架かっていた橋の名である。'
+  ];
   const capTextDict={
     "002266398":["「建築写真類聚 官衙学校－遞信省」（1912年頃）","埋め立て前の汐留川の写真。"],
     "001701163":["「関東大震災後の新橋」（1923年頃）","埋め立て前、震災直後の汐留川。"],
@@ -82,8 +30,18 @@
   };
 </script>
 
-<script src="createControlPanel.js"></script>
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
 <script src="createLocationButton.js"></script>
-<script src="common.js"></script>
+<script src="newcommon.js"></script>
 <script src="riverScript.js"></script>
 </html>

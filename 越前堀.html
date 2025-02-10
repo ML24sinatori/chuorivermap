@@ -9,54 +9,16 @@
   <link rel="stylesheet" href="riverStyle.css" type="text/css">
 </head>
 
-<body>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<div id="map"></div>
-
-<div id="textSection">
-  <div id="riverFeature">
-    <div id="riverDescription">
-      <div style="display: flex; justify-content: space-between;">
-        <span><span class="riverTitle">越前堀</span> - <span class="furigana">えちぜんぼり</span></span><button id="descriptionButton" class="smallbtn" onclick="toggleDescription()">説明を表示</button>
-      </div>
-      
-      <p id="allBunsho">
-        <span>かつて霊岸島内に存在した、隅田川から分かれ、再び隅田川に注いでいた水路。明治期の市区改正事業で大部分は埋め立てられ道路となった上、わずかに残されていた隅田川からの分岐点付近と、隅田川への合流点付近の水面も関東大震災後埋め立てられた。</span><br>
-        <span id="detailBunsho">名前の由来は、霊岸島南の葦原地を中屋敷として拝領した福井藩主松平越前守が、屋敷地の周囲三面に堀を張り巡らせたことによる。</span>
-        <span id="detailButton" onclick="extendDetail()">▼詳細表示</span>
-      </p>
-      
-      <div style="display: flex;">
-        <div id="easy-slider">
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  <form action="index.html" method="get">
-    <button type="submit" id="returnButton" class="largebtn">全河川表示に戻る</button>
-  </form>
-  <details id="controlPanel"><summary class="showDetails">詳細な表示設定</summary><div id="innerControlPanel"></div></details>
-  <form action="https://github.com/ML24sinatori/chuorivermap/blob/main/README.md" method="get">
-    <button type="submit" class="largebtn">利用規約</button>
-  </form>
-</div>
-
-<!-- モーダル -->
-<div class="modal" id="photoModal">
-  <span class="modal-close" id="modalClose">&times;</span>
-  <img id="modalImage" alt="拡大写真">
-  <p id="modalCaption"></p>
-  <p id="modalCaptionDetail"></p>
-</div>
-</body>
-
 <script>
   //commonの読み込みに必要な変数だけ定義
   var defaultPlace = [35.675598,139.783015];
   var defaultZ = 15;
   var riverNameHere = '越前堀';
-  var tallTitle;
+  var riverNameFurigana = 'えちぜんぼり';
+  var bunsho = [
+    'かつて霊岸島内に存在した、隅田川から分かれ、再び隅田川に注いでいた水路。明治期の市区改正事業で大部分は埋め立てられ道路となった上、わずかに残されていた隅田川からの分岐点付近と、隅田川への合流点付近の水面も関東大震災後埋め立てられた。',
+    '名前の由来は、霊岸島南の葦原地を中屋敷として拝領した福井藩主松平越前守が、屋敷地の周囲三面に堀を張り巡らせたことによる。'
+  ];
   const capTextDict={
     "001702189":["「越前堀二丁目の河岸」（1957年頃）","埋め立て後の越前堀。右が隅田川であり、越前堀は切妻屋根の小屋のあたりを流れていたと考えられる。"],
     "001702183":["「越前堀の入堀」（1957年頃）","大部分が埋め立てられた中、栄橋付近に僅かに残されていた水面。（現在の新川二丁目27番/29番）"],
@@ -65,8 +27,19 @@
   };
 </script>
 
-<script src="createControlPanel.js"></script>
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <div id="map"></div>
+  <div id="textSection"></div>
+  <div id="photoModal"></div>
+</body>
+
+<script src="global.js"></script>
+<script src="createModal.js"></script>
+<script src="createRiverDescription.js"></script>
+<script src="createMenus.js"></script>
 <script src="createLocationButton.js"></script>
+
 <script src="common.js"></script>
 <script src="riverScript.js"></script>
 </html>

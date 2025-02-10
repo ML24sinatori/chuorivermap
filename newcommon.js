@@ -1,3 +1,6 @@
+let geoJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/chuorivermap/main/CHUORIVER.geojson';
+let dotJsonURL = 'https://raw.githubusercontent.com/ml24sinatori/chuorivermap/main/CHUORIVERDOT.geojson';
+
 //地図の読み込み(座標は河川ごと)
 var map = L.map('map').setView(defaultPlace, defaultZ);
 //L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png').addTo(map);
@@ -55,7 +58,7 @@ function eraseHyphen(str){
     return str.replace('-','');
 }
 
-//河川のオーバーレイ
+//地図のポップアップと挙動の設定
 let geoJsonLayer;
 fetch(geoJsonURL)
 .then(response => response.json())
@@ -148,7 +151,6 @@ function riverInProperties(searchName,setOfName){
     return setOfName.split('/').includes(searchName);
 }
 
-//観光地の表示
 let dotJsonLayer;
 fetch(dotJsonURL)
 .then(response => response.json())
